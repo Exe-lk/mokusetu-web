@@ -58,29 +58,58 @@ export default function Services() {
         <div className="section-divider mb-12"></div>
         
         <div className="grid lg:grid-cols-2 gap-8">
-          {services.map((service, index) => (
-            <div 
-              key={service.title} 
-              className={`floating-paper p-8 rounded-3xl group hover-lift service-card-unique ${sectionVisible ? 'stagger-in visible' : 'stagger-in'}`}
-              style={{ transitionDelay: `${index * 0.1}s` }}
-            >
-              <div className="flex items-start gap-6">
-                <div className={`icon-container-unique w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-lg`}>
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={service.icon} />
-                  </svg>
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
-                    {service.title}
-                  </h3>
-                  <p className="text-muted leading-relaxed">
-                    {service.description}
-                  </p>
+          {services.map((service, index) => {
+            // Apply different gradients to each service card like in About Us section
+            const gradientClass = index === 0 
+              ? "hover:from-primary hover:to-secondary"
+              : index === 1
+              ? "hover:from-secondary hover:to-success"
+              : index === 2
+              ? "hover:from-success hover:to-primary"
+              : "hover:from-warning hover:to-orange-400";
+            
+            return (
+              <div 
+                key={service.title} 
+                className={`floating-paper p-8 rounded-3xl group hover:bg-gradient-to-r ${gradientClass} transition-all duration-300 hover-lift ${sectionVisible ? 'stagger-in visible' : 'stagger-in'}`}
+                style={{ transitionDelay: `${index * 0.1}s` }}
+              >
+                <div className="flex items-start gap-6">
+                  <div className={`icon-container-unique w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-lg`}>
+                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={service.icon} />
+                    </svg>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-white transition-colors duration-300">
+                      {service.title}
+                    </h3>
+                    <p className="text-muted leading-relaxed group-hover:text-white transition-colors duration-300">
+                      {service.description}
+                    </p>
+                  </div>
                 </div>
               </div>
+            );
+          })}
+        </div>
+        
+        {/* Enhanced View Full Page Link - Fixed Gradient */}
+        <div className={`text-center mt-12 ${sectionVisible ? 'fade-in visible' : 'fade-in'}`} style={{ transitionDelay: '0.6s' }}>
+          <div className="inline-flex flex-col items-center gap-4 p-6 bg-white border border-primary/20 rounded-2xl shadow-md group hover:bg-gradient-to-r hover:from-primary hover:to-secondary transition-all duration-300">
+            <div className="text-center">
+              <p className="text-sm text-muted mb-3 group-hover:text-white transition-colors duration-300">Need more detailed information about our services?</p>
+              <a 
+                href="/services" 
+                className="inline-flex items-center gap-3 px-6 py-3 bg-white border border-primary/20 text-primary hover:bg-primary/5 hover:border-primary/30 rounded-xl transition-all duration-300 font-medium group shadow-sm hover:shadow-md hover:scale-105"
+              >
+                <span>View Full Services Page</span>
+                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>

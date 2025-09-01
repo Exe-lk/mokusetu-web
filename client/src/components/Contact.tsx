@@ -8,7 +8,7 @@ export default function Contact() {
     <section id="contact" className="section" ref={sectionRef}>
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <div className={`contact-card-unique p-12 rounded-3xl relative overflow-hidden hover-lift ${sectionVisible ? 'scale-in visible' : 'scale-in'}`}>
+          <div className={`floating-paper p-12 rounded-3xl relative overflow-hidden hover:bg-gradient-to-r hover:from-primary hover:to-secondary transition-all duration-300 hover-lift ${sectionVisible ? 'scale-in visible' : 'scale-in'}`}>
             {/* Unique Japanese Corporate Background Elements */}
             <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/20"></div>
             <div className="absolute -top-20 -right-20 w-40 h-40 bg-primary/10 rounded-full blur-3xl floating"></div>
@@ -21,11 +21,11 @@ export default function Contact() {
                 </svg>
               </div>
               
-              <h2 className="text-4xl lg:text-5xl font-bold mb-6">
+              <h2 className="text-4xl lg:text-5xl font-bold mb-6 group-hover:text-white transition-colors duration-300">
                 <span className="gradient-text-brand">Let's Build the Bridge</span>
               </h2>
               
-              <p className="text-xl text-muted mb-8 max-w-2xl mx-auto">
+              <p className="text-xl text-muted mb-8 max-w-2xl mx-auto group-hover:text-white transition-colors duration-300">
                 Tell us about your goals in Japan. We'll respond within 1–2 business days with a personalized strategy.
               </p>
               
@@ -48,6 +48,22 @@ export default function Contact() {
                   </svg>
                   Learn More
                 </a>
+              </div>
+              
+              {/* Enhanced View Full Page Link - Fixed Gradient */}
+              <div className="mt-8 pt-6 border-t border-accent/30">
+                <div className="text-center">
+                  <p className="text-sm text-muted mb-3 group-hover:text-white transition-colors duration-300">Need more ways to get in touch?</p>
+                  <a 
+                    href="/contact" 
+                    className="inline-flex items-center gap-3 px-6 py-3 bg-white border border-success/20 text-success hover:bg-success/5 hover:border-success/30 rounded-xl transition-all duration-300 font-medium group shadow-sm hover:shadow-md"
+                  >
+                    <span>View Full Contact Page</span>
+                    <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                </div>
               </div>
             </div>
           </div>

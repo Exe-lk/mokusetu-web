@@ -64,7 +64,7 @@ export default function Blog() {
           {blogPosts.map((post, index) => (
             <article 
               key={post.id} 
-              className={`floating-paper p-6 rounded-3xl group hover-lift service-card-unique ${sectionVisible ? 'stagger-in visible' : 'stagger-in'}`}
+              className={`floating-paper p-6 rounded-3xl group hover:bg-gradient-to-r hover:from-primary hover:to-secondary transition-all duration-300 hover-lift ${sectionVisible ? 'stagger-in visible' : 'stagger-in'}`}
               style={{ transitionDelay: `${index * 0.1}s` }}
             >
               {/* Blog Post Image Placeholder */}
@@ -86,25 +86,28 @@ export default function Blog() {
                   <span className="px-3 py-1 bg-primary/10 text-primary rounded-full font-medium">
                     {post.category}
                   </span>
-                  <span className="text-muted">{post.readTime}</span>
+                  <span className="text-muted group-hover:text-white transition-colors duration-300">{post.readTime}</span>
                 </div>
                 
                 {/* Title */}
-                <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300 line-clamp-2">
+                <h3 className="text-xl font-bold text-foreground group-hover:text-white transition-colors duration-300 line-clamp-2">
                   {post.title}
                 </h3>
                 
                 {/* Excerpt */}
-                <p className="text-muted leading-relaxed line-clamp-3">
+                <p className="text-muted leading-relaxed line-clamp-3 group-hover:text-white transition-colors duration-300">
                   {post.excerpt}
                 </p>
                 
-                {/* Date and Read More */}
+                {/* Date */}
                 <div className="flex items-center justify-between pt-4 border-t border-accent/30">
-                  <span className="text-sm text-muted font-medium">{post.date}</span>
-                  <button className="text-primary font-medium hover:text-primary-dark transition-colors duration-300 group-hover:translate-x-1 transition-transform duration-300">
-                    Read More →
-                  </button>
+                  <span className="text-sm text-muted group-hover:text-white transition-colors duration-300">{post.date}</span>
+                  <div className="flex items-center gap-2 text-primary group-hover:text-white transition-colors duration-300">
+                    <span className="text-sm font-medium">Read More</span>
+                    <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </div>
                 </div>
               </div>
             </article>
@@ -120,6 +123,24 @@ export default function Blog() {
               <span></span>
             </div>
             <span className="text-secondary font-medium">Blog section coming soon with real content</span>
+          </div>
+        </div>
+        
+        {/* Enhanced View Full Page Link - Fixed Gradient */}
+        <div className={`text-center mt-8 ${sectionVisible ? 'fade-in visible' : 'fade-in'}`} style={{ transitionDelay: '0.7s' }}>
+          <div className="inline-flex flex-col items-center gap-4 p-6 bg-white border border-primary/20 rounded-2xl shadow-md group hover:bg-gradient-to-r hover:from-secondary hover:to-primary transition-all duration-300">
+            <div className="text-center">
+              <p className="text-sm text-muted mb-3 group-hover:text-white transition-colors duration-300">Ready to explore our full blog content?</p>
+              <a 
+                href="/blog" 
+                className="inline-flex items-center gap-3 px-6 py-3 bg-white border border-secondary/20 text-secondary hover:bg-secondary/5 hover:border-secondary/30 rounded-xl transition-all duration-300 font-medium group shadow-sm hover:shadow-md hover:scale-105"
+              >
+                <span>View Full Blog Page</span>
+                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </div>

@@ -20,35 +20,57 @@ export default function USP() {
         <div className="section-divider mb-12"></div>
         
         <div className="grid lg:grid-cols-3 gap-8">
-          <div className={`floating-paper p-8 rounded-3xl text-center group hover-lift service-card-unique ${sectionVisible ? 'stagger-in visible' : 'stagger-in'}`}>
+          <div className={`floating-paper p-8 rounded-3xl text-center group hover:bg-gradient-to-r hover:from-primary hover:to-secondary transition-all duration-300 hover-lift ${sectionVisible ? 'stagger-in visible' : 'stagger-in'}`}>
             <div className="icon-container-unique w-20 h-20 mx-auto mb-6">
               <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
             </div>
-            <h3 className="text-xl font-bold text-foreground mb-3">Cultural fluency</h3>
-            <p className="text-muted">Operate effectively across Japanese and international contexts with deep cultural understanding and local expertise.</p>
+            <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-white transition-colors duration-300">Cultural fluency</h3>
+            <p className="text-muted group-hover:text-white transition-colors duration-300">Operate effectively across Japanese and international contexts with deep cultural understanding and local expertise.</p>
           </div>
           
-          <div className={`floating-paper p-8 rounded-3xl text-center group hover-lift service-card-unique ${sectionVisible ? 'stagger-in visible' : 'stagger-in'}`} style={{ transitionDelay: '0.1s' }}>
+          <div className={`floating-paper p-8 rounded-3xl text-center group hover:bg-gradient-to-r hover:from-secondary hover:to-success transition-all duration-300 hover-lift ${sectionVisible ? 'stagger-in visible' : 'stagger-in'}`} style={{ transitionDelay: '0.1s' }}>
             <div className="icon-container-unique w-20 h-20 mx-auto mb-6">
               <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
               </svg>
             </div>
-            <h3 className="text-xl font-bold text-foreground mb-3">Technical & commercial depth</h3>
-            <p className="text-muted">From supplier audits to strategic partnerships and sales enablement with comprehensive expertise.</p>
+            <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-white transition-colors duration-300">Technical & commercial depth</h3>
+            <p className="text-muted group-hover:text-white transition-colors duration-300">From supplier audits to strategic partnerships and sales enablement with comprehensive expertise.</p>
           </div>
           
-          <div className={`floating-paper p-8 rounded-3xl text-center group hover-lift service-card-unique ${sectionVisible ? 'stagger-in visible' : 'stagger-in'}`} style={{ transitionDelay: '0.2s' }}>
+          <div className={`floating-paper p-8 rounded-3xl text-center group hover:bg-gradient-to-r hover:from-success hover:to-primary transition-all duration-300 hover-lift ${sectionVisible ? 'stagger-in visible' : 'stagger-in'}`} style={{ transitionDelay: '0.2s' }}>
             <div className="icon-container-unique w-20 h-20 mx-auto mb-6">
               <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
             </div>
-            <h3 className="text-xl font-bold text-foreground mb-3">Trusted local network</h3>
-            <p className="text-muted">Direct access to verified partners and on-the-ground execution capabilities across Japan.</p>
+            <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-white transition-colors duration-300">Trusted local network</h3>
+            <p className="text-muted group-hover:text-white transition-colors duration-300">Direct access to verified partners and on-the-ground execution capabilities across Japan.</p>
+          </div>
+        </div>
+        
+        {/* Bottom CTA */}
+        <div className={`text-center mt-16 ${sectionVisible ? 'fade-in visible' : 'fade-in'}`} style={{ transitionDelay: '0.6s' }}>
+          <div className="floating-paper p-8 rounded-3xl max-w-4xl mx-auto group hover:bg-gradient-to-r hover:from-primary hover:to-secondary transition-all duration-300">
+            <h3 className="text-2xl font-bold text-foreground mb-4 group-hover:text-white transition-colors duration-300">Convinced We're the Right Partner?</h3>
+            <p className="text-lg text-muted mb-6 group-hover:text-white transition-colors duration-300">
+              Let's discuss how our unique advantages can accelerate your success in Japan.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="#contact" className="btn-primary">Start Partnership</a>
+              <a 
+                href="/why-us" 
+                className="inline-flex items-center gap-3 px-6 py-3 bg-white border border-primary/20 text-primary hover:bg-primary/5 hover:border-primary/30 rounded-xl transition-all duration-300 font-medium group hover:scale-105 shadow-sm hover:shadow-md"
+              >
+                <span>View Full Page</span>
+                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </div>

@@ -18,11 +18,14 @@ export default function Navbar() {
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
+          <a href="#home" className={navItemClass}>Home</a>
+          <a href="#about" className={navItemClass}>About Us</a>
           <a href="#services" className={navItemClass}>Services</a>
           <a href="#vmv" className={navItemClass}>Vision & Mission</a>
           <a href="#usp" className={navItemClass}>Why Us</a>
           <a href="#blog" className={navItemClass}>Blog</a>
-          <a href="#contact" className="btn-primary">Contact</a>
+          <a href="#contact" className={navItemClass}>Contact</a>
+          <Link href="/contact" className="btn-primary">Get Started</Link>
         </nav>
 
         <button
@@ -44,11 +47,14 @@ export default function Navbar() {
       {open && (
         <div className="md:hidden border-t border-primary/10 bg-white/95 backdrop-blur-sm">
           <div className="container mx-auto px-6 py-4 flex flex-col gap-4">
+            <a href="#home" className={navItemClass} onClick={() => setOpen(false)}>Home</a>
+            <a href="#about" className={navItemClass} onClick={() => setOpen(false)}>About Us</a>
             <a href="#services" className={navItemClass} onClick={() => setOpen(false)}>Services</a>
             <a href="#vmv" className={navItemClass} onClick={() => setOpen(false)}>Vision & Mission</a>
             <a href="#usp" className={navItemClass} onClick={() => setOpen(false)}>Why Us</a>
             <a href="#blog" className={navItemClass} onClick={() => setOpen(false)}>Blog</a>
-            <a href="#contact" className="btn-primary text-center" onClick={() => setOpen(false)}>Contact</a>
+            <a href="#contact" className={navItemClass} onClick={() => setOpen(false)}>Contact</a>
+            <Link href="/contact" className="btn-primary text-center" onClick={() => setOpen(false)}>Get Started</Link>
           </div>
         </div>
       )}
