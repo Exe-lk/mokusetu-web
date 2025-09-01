@@ -15,7 +15,7 @@ interface BlogPost {
   slug: string;
   date: string;
   category_names: string[];
-  featured_image_url?: string;
+  featured_image_url?: string | null;
 }
 
 interface BlogResponse {
@@ -113,7 +113,7 @@ export default function Blog() {
                   {/* Blog Post Image */}
                   <div className="relative mb-6 overflow-hidden rounded-2xl h-48">
                     <WordPressImage
-                      src={post.featured_image_url}
+                      src={post.featured_image_url || null}
                       alt={post.title?.rendered || 'Blog post image'}
                       fill
                       className="object-cover group-hover:scale-110 transition-transform duration-300"

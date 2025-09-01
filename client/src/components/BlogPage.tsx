@@ -13,7 +13,7 @@ interface BlogPost {
   slug: string;
   date: string;
   category_names: string[];
-  featured_image_url?: string;
+  featured_image_url?: string | null;
 }
 
 interface Category {
