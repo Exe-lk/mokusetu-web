@@ -13,7 +13,7 @@ const WordPressDebug = () => {
       const result = await testWordPressConnection();
       setConnectionTest(result);
     } catch (error) {
-      setConnectionTest({ success: false, error: error.message });
+      setConnectionTest({ success: false, error: error instanceof Error ? error.message : String(error) });
     }
     setLoading(false);
   };
@@ -24,7 +24,7 @@ const WordPressDebug = () => {
       const result = await testWordPressEndpoints();
       setEndpointTest(result);
     } catch (error) {
-      setEndpointTest({ error: error.message });
+      setEndpointTest({ error: error instanceof Error ? error.message : String(error) });
     }
     setLoading(false);
   };
