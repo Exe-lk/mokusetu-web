@@ -1,8 +1,8 @@
-import Blog from "@/components/Blog";
+import BlogPage from "@/components/BlogPage";
 import Breadcrumb from "@/components/Breadcrumb";
 import PageHeader from "@/components/PageHeader";
 
-export default function BlogPage() {
+export default function BlogPageRoute() {
   return (
     <>
       <Breadcrumb currentPage="Blog" currentPagePath="/blog" />
@@ -10,7 +10,7 @@ export default function BlogPage() {
         title="Our Blog" 
         subtitle="Insights, strategies, and expert knowledge for successful business in Japan."
       />
-      <Blog />
+      <BlogPage />
     </>
   );
 }
