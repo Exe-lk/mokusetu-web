@@ -3,17 +3,10 @@ import React from 'react';
 import CommentList from './CommentList';
 import { postComment } from '@/action/wp.client';
 import { useState } from 'react';
-const Comments = ({ post }) => {
-  // {"post": "846",
-  //     "author_name": "Snehal",
-  //     "author_email": "snehal.tayde13@gmail.com",
-  //     "content": "Test new 2"
-  //   }
 
+const Comments = ({ post }) => {
   const [content, setContent] = useState('');
-  const [author_name, setAuthorName] = useState('Snehal');
-  const [author_email, setAuthorEmail] = useState('snehal.tayde13@gmail.com');
-  const [postId, setPostId] = useState(post.id);
+  const [author_email, setAuthorEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -23,11 +16,6 @@ const Comments = ({ post }) => {
     
     if (!content.trim()) {
       setError('Please enter a comment');
-      return;
-    }
-    
-    if (!author_name.trim()) {
-      setError('Please enter your name');
       return;
     }
     
@@ -43,7 +31,7 @@ const Comments = ({ post }) => {
     try {
       const data = {
         post: post.id,
-        author_name,
+        author_name: author_email,
         author_email,
         content,
       };
@@ -53,6 +41,7 @@ const Comments = ({ post }) => {
       
       // Clear form and show success message
       setContent('');
+      setAuthorEmail('');
       setSuccess('Comment posted successfully! It will appear after approval.');
       
       // Refresh comments list after a short delay
@@ -67,22 +56,34 @@ const Comments = ({ post }) => {
       setLoading(false);
     }
   };
+
   return (
     <>
       <div>
         <div className="py-8 bg-white">
           <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-9xl">
             <div className="max-w-xl mx-auto">
-              {/* WordPress Authentication Issue Notice */}
-              <div className="mb-6 p-4 bg-orange-50 border border-orange-200 rounded-lg">
-                <h3 className="font-semibold text-orange-800 mb-2">⚠️ Comment System Temporarily Unavailable</h3>
-                <p className="text-sm text-orange-700 mb-2">
-                  We're experiencing technical issues with our comment system. WordPress requires authentication for comment posting.
+              <h3 className="text-lg font-semibold text-gray-900 mb-6">Leave a Comment</h3>
+              
+              {/* WordPress Settings Notice - Hidden since settings are now correct */}
+              {/* <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                <h4 className="font-semibold text-blue-800 mb-2">ℹ️ Comment System Status</h4>
+                <p className="text-sm text-blue-700 mb-2">
+                  <strong>Current Issue:</strong> Comments require authentication on the WordPress backend.
                 </p>
-                <p className="text-xs text-orange-600">
-                  <strong>What this means:</strong> You can read the blog post, but commenting is temporarily disabled until we resolve the authentication issue.
+                <p className="text-sm text-blue-700 mb-2">
+                  <strong>To fix this:</strong> The WordPress administrator needs to:
                 </p>
-              </div>
+                <ul className="text-xs text-blue-600 space-y-1 ml-4">
+                  <li>• Go to WordPress Admin → Settings → Discussion</li>
+                  <li>• Uncheck "Users must be registered and logged in to comment"</li>
+                  <li>• Check "Anyone can post a comment"</li>
+                  <li>• Save Changes</li>
+                </ul>
+                <p className="text-xs text-blue-600 mt-2">
+                  <em>This is a WordPress configuration issue, not a problem with this website.</em>
+                </p>
+              </div> */}
               
               {/* Error Message */}
               {error && (
@@ -98,71 +99,59 @@ const Comments = ({ post }) => {
                 </div>
               )}
               
-              <div>
-                <label
-                  htmlFor=""
-                  className="block text-sm font-bold text-gray-900"
-                >
-                  Name
-                </label>
-                <div className="mt-2">
-                  <input
-                    name=""
-                    id=""
-                    placeholder="Name"
-                    rows="3"
-                    className="border block w-full px-4 py-3 placeholder-gray-500 border-gray-300 rounded-lg resize-y focus:ring-indigo-600 focus:border-indigo-600 sm:text-sm caret-indigo-600"
-                    onChange={(e) => setAuthorName(e.target.value)}
-                    disabled={true}
-                  ></input>
-                </div>
-                <label
-                  htmlFor=""
-                  className="block text-sm font-bold text-gray-900"
-                >
-                  {' '}
-                  Your Email{' '}
-                </label>
-                <div className="mt-2">
-                  <textarea
-                    name=""
-                    id=""
-                    placeholder="Enter Your Email"
-                    rows="3"
-                    className="border block w-full px-4 py-3 placeholder-gray-500 border-gray-300 rounded-lg resize-y focus:ring-indigo-600 focus:border-indigo-600 sm:text-sm caret-indigo-600 disabled:opacity-50"
-                    onChange={(e) => setAuthorEmail(e.target.value)}
-                    disabled={true}
-                  ></textarea>
-                </div>
-                <label
-                  htmlFor=""
-                  className="block text-sm font-bold text-gray-900"
-                >
-                  {' '}
-                  Comment{' '}
-                </label>
-                <div className="mt-2">
-                  <textarea
-                    name=""
-                    id=""
-                    placeholder="Share Your Thoughts"
-                    rows="3"
-                    className="border block w-full px-4 py-3 placeholder-gray-500 border-gray-300 rounded-lg resize-y focus:ring-indigo-600 focus:border-indigo-600 sm:text-sm caret-indigo-600 disabled:opacity-50"
-                    onChange={(e) => setContent(e.target.value)}
-                    disabled={true}
-                  ></textarea>
-                </div>
-                <div className="flex justify-end mt-2">
-                  <button
-                    onClick={handleSubmit}
-                    disabled={true}
-                    type="button"
-                    className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-400 bg-gray-100 cursor-not-allowed"
+              <form onSubmit={handleSubmit}>
+                <div className="mb-4">
+                  <label
+                    htmlFor="author_email"
+                    className="block text-sm font-bold text-gray-900 mb-2"
                   >
-                    Comment System Disabled
+                    Email
+                  </label>
+                  <input
+                    name="author_email"
+                    id="author_email"
+                    type="email"
+                    placeholder="your.email@example.com"
+                    value={author_email}
+                    onChange={(e) => setAuthorEmail(e.target.value)}
+                    className="border block w-full px-4 py-3 placeholder-gray-500 border-gray-300 rounded-lg focus:ring-indigo-600 focus:border-indigo-600 sm:text-sm"
+                    required
+                  />
+                </div>
+                
+                <div className="mb-4">
+                  <label
+                    htmlFor="content"
+                    className="block text-sm font-bold text-gray-900 mb-2"
+                  >
+                    Comment
+                  </label>
+                  <textarea
+                    name="content"
+                    id="content"
+                    placeholder="Share your thoughts..."
+                    rows="4"
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
+                    className="border block w-full px-4 py-3 placeholder-gray-500 border-gray-300 rounded-lg resize-y focus:ring-indigo-600 focus:border-indigo-600 sm:text-sm"
+                    required
+                  />
+                </div>
+                
+                <div className="flex justify-end">
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className={`inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white ${
+                      loading 
+                        ? 'bg-gray-400 cursor-not-allowed' 
+                        : 'bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+                    }`}
+                  >
+                    {loading ? 'Posting...' : 'Post Comment'}
                   </button>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>

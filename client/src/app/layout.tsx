@@ -5,6 +5,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Loader from "@/components/Loader";
 import WordPressStatus from "@/components/WordPressStatus";
+import ScrollIndicator from "@/components/ScrollIndicator";
+import CustomCursor from "@/components/CustomCursor";
 import { LoadingProvider } from "@/contexts/LoadingContext";
 
 const geistSans = Geist({
@@ -48,56 +50,16 @@ export default function RootLayout({
           {/* Modern Loader */}
           <Loader />
           
-          {/* Unique Scroll Indicator */}
-          <div className="scroll-indicator" id="scroll-indicator"></div>
+          {/* Scroll Indicator - Client Component */}
+          <ScrollIndicator />
           
-          {/* Unique Custom Cursor */}
-          <div className="custom-cursor" id="custom-cursor"></div>
+          {/* Custom Cursor - Client Component */}
+          <CustomCursor />
           
           <Navbar />
           <main>{children}</main>
           <Footer />
           <WordPressStatus />
-          
-          {/* Unique Scroll Indicator Script */}
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-                // Scroll Indicator
-                window.addEventListener('scroll', () => {
-                  const scrollIndicator = document.getElementById('scroll-indicator');
-                  if (scrollIndicator) {
-                    const scrollTop = window.pageYOffset;
-                    const docHeight = document.body.scrollHeight - window.innerHeight;
-                    const scrollPercent = (scrollTop / docHeight) * 100;
-                    scrollIndicator.style.transform = \`scaleX(\${scrollPercent / 100})\`;
-                  }
-                });
-                
-                // Custom Cursor
-                const cursor = document.getElementById('custom-cursor');
-                if (cursor) {
-                  document.addEventListener('mousemove', (e) => {
-                    cursor.style.left = e.clientX + 'px';
-                    cursor.style.top = e.clientY + 'px';
-                  });
-                  
-                  // Add hover effect to interactive elements
-                  document.addEventListener('mouseover', (e) => {
-                    if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.closest('.hover-lift')) {
-                      cursor.classList.add('hover');
-                    }
-                  });
-                  
-                  document.addEventListener('mouseout', (e) => {
-                    if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.closest('.hover-lift')) {
-                      cursor.classList.remove('hover');
-                    }
-                  });
-                }
-              `,
-            }}
-          />
         </LoadingProvider>
       </body>
     </html>
