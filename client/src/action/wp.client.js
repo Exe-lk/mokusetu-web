@@ -364,24 +364,34 @@ export async function postComment(data) {
     
     // Handle specific error cases
     if (error.message === 'Authentication required') {
-      throw new Error('Comment posting requires authentication. Please contact the administrator.');
+      throw new Error('WordPress requires authentication for comments. Please contact the administrator to enable anonymous commenting in WordPress Settings → Discussion.');
     }
     
     if (error.message === 'Access forbidden') {
-      throw new Error('Comment posting is currently disabled.');
+      throw new Error('Comment posting is currently disabled. Please contact the administrator.');
     }
     
     if (error.message === 'Empty response from server') {
-      throw new Error('Server returned an empty response. Please try again.');
+      throw new Error('WordPress returned an empty response. This usually means commenting is disabled or requires authentication. Please check WordPress Settings → Discussion.');
+    }
+    
+    // Handle 401 Unauthorized specifically
+    if (error.message.includes('401') || error.message.includes('Unauthorized')) {
+      throw new Error('WordPress requires authentication for comments. Please contact the administrator to enable anonymous commenting in WordPress Settings → Discussion → Uncheck "Users must be registered and logged in to comment".');
     }
     
     if (error.message === 'Invalid response from server') {
-      throw new Error('Server returned an invalid response. Please try again.');
+      throw new Error('WordPress returned an invalid response. Please try again.');
     }
     
     // For connection errors
     if (error.message.includes('Failed to fetch') || error.message.includes('ERR_CONNECTION_RESET')) {
-      throw new Error('Unable to connect to the server. Please check your internet connection and try again.');
+      throw new Error('Unable to connect to WordPress. Please check your internet connection and try again.');
+    }
+    
+    // For WordPress-specific errors
+    if (error.message.includes('401') || error.message.includes('Unauthorized')) {
+      throw new Error('WordPress requires authentication for comments. Please contact the administrator to enable anonymous commenting in WordPress Settings → Discussion.');
     }
     
     // For other errors

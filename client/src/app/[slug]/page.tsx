@@ -114,13 +114,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 height={600}
                 className="w-full h-auto object-cover"
                 priority
-                onError={(e) => {
-                  // Hide the image container if WordPress image fails
-                  const container = e.currentTarget.parentElement;
-                  if (container) {
-                    container.style.display = 'none';
-                  }
-                }}
               />
             </div>
           )}
@@ -136,9 +129,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
 
           {/* Comments Section */}
-        {/* <div className="mt-16">
+        <div className="mt-16">
             <CommentsWrapper post={post} />
-          </div> */}
+          </div> 
         </article>
       </>
     );
@@ -185,15 +178,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               </div>
               
               <div className="mt-8 space-x-4">
-                <button 
-                  onClick={() => window.location.reload()}
+                <Link 
+                  href={`/${slug}`}
                   className="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors duration-300"
                 >
                   <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                   </svg>
                   Try Again
-                </button>
+                </Link>
                 
                 <Link 
                   href="/blog" 

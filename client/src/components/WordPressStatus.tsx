@@ -65,7 +65,7 @@ const WordPressStatus = () => {
             ) : (
               <div className="text-sm">
                 <p>{healthStatus.error || 'Unknown error occurred'}</p>
-                <p className="text-xs opacity-75 mt-1">
+                <p className="text-xs opacity-75 mt-1" suppressHydrationWarning>
                   Last checked: {lastChecked}
                 </p>
               </div>

@@ -35,7 +35,7 @@ let connectionStats = {
 const isBrowser = typeof window !== 'undefined';
 
 // Helper function to create fetch with proper configuration and retry logic
-async function fetchWithTimeout(url, options = {}, timeout = 15000, retries = 3) {
+async function fetchWithTimeout(url, options = {}, timeout = 20000, retries = 5) {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), timeout);
   
@@ -92,11 +92,11 @@ async function fetchWithTimeout(url, options = {}, timeout = 15000, retries = 3)
       }
       
       // If it's a connection error and we have retries left, try again
-      if ((error.code === 'ECONNRESET' || error.message.includes('fetch failed')) && attempt < retries) {
+      if ((error.code === 'ECONNRESET' || error.message.includes('fetch failed') || error.message.includes('ECONNRESET')) && attempt < retries) {
         console.warn(`WordPress API attempt ${attempt} failed, retrying... (${error.message})`);
-        // Wait a bit before retrying (exponential backoff)
-        const delay = Math.pow(2, attempt) * 1000;
-        console.log(`Waiting ${delay}ms before retry...`);
+        // Wait a bit before retrying (exponential backoff with jitter)
+        const delay = Math.pow(2, attempt) * 1000 + Math.random() * 1000;
+        console.log(`Waiting ${Math.round(delay)}ms before retry...`);
         await new Promise(resolve => setTimeout(resolve, delay));
         continue;
       }
@@ -177,6 +177,19 @@ export async function checkWordPressHealth() {
       1
     );
     
+    // Test comments endpoint
+    let commentsTest = null;
+    try {
+      commentsTest = await fetchWithTimeout(
+        `${WORDPRESS_URL}/wp-json/wp/v2/comments?per_page=1`, 
+        {}, 
+      10000, 
+      1
+      );
+    } catch (commentError) {
+      console.warn('Comments endpoint test failed:', commentError.message);
+    }
+    
     const responseTime = Date.now() - startTime;
     
     return {
@@ -184,6 +197,7 @@ export async function checkWordPressHealth() {
       responseTime,
       apiVersion: apiData.namespaces?.includes('wp/v2') ? 'v2' : 'unknown',
       postsEndpoint: postsTest.ok ? 'working' : 'failing',
+      commentsEndpoint: commentsTest?.ok ? 'working' : 'failing',
       timestamp: new Date().toISOString(),
       connectionStats,
       environment: isBrowser ? 'browser' : 'server'
