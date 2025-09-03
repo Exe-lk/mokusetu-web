@@ -15,6 +15,7 @@ const Comments = ({ post }) => {
         </div>
       </div>
       <CommentList post={post} />
+      
     </>
   );
 };
