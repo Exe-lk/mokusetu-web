@@ -27,7 +27,6 @@ const WordPressStatus = () => {
 
   useEffect(() => {
     checkHealth();
-    // Check health every 5 minutes
     const interval = setInterval(checkHealth, 5 * 60 * 1000);
     return () => clearInterval(interval);
   }, []);

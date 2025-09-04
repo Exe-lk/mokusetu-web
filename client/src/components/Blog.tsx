@@ -34,11 +34,10 @@ export default function Blog() {
 
   useEffect(() => {
     const fetchRecentPosts = async () => {
-      // Only fetch posts in browser environment
       if (typeof window === 'undefined') return;
       
       try {
-        const response: BlogResponse = await getPosts(1, 3); // Get first 3 posts
+        const response: BlogResponse = await getPosts(1, 3); 
         console.log('Recent posts fetched:', response);
         
         if (response.isFallback) {
@@ -74,7 +73,6 @@ export default function Blog() {
           </p>
         </div>
         
-        {/* Unique Section Divider */}
         <div className="section-divider mb-12"></div>
         
         {loading ? (
@@ -88,7 +86,6 @@ export default function Blog() {
           </div>
         ) : recentPosts.length > 0 ? (
           <>
-            {/* Fallback Warning */}
             {isFallback && (
               <div className="mb-8 p-4 bg-amber-50 border border-amber-200 rounded-lg">
                 <div className="flex items-center gap-3">
@@ -110,7 +107,6 @@ export default function Blog() {
                   className={`floating-paper p-6 rounded-3xl group hover:bg-gradient-to-r hover:from-primary hover:to-secondary transition-all duration-300 hover-lift ${sectionVisible ? 'stagger-in visible' : 'stagger-in'}`}
                   style={{ transitionDelay: `${index * 0.1}s` }}
                 >
-                  {/* Blog Post Image */}
                   <div className="relative mb-6 overflow-hidden rounded-2xl h-48">
                     <WordPressImage
                       src={post.featured_image_url || null}
@@ -119,7 +115,6 @@ export default function Blog() {
                       className="object-cover group-hover:scale-110 transition-transform duration-300"
                       fallbackSeed={post.id}
                     />
-                    {/* Category Badge */}
                     <div className="absolute top-3 left-3">
                       <span className="px-3 py-1 text-xs font-bold text-gray-900 bg-white rounded-full shadow-sm">
                         {post.category_names && post.category_names.length > 0 ? post.category_names[0] : 'Uncategorized'}
@@ -127,26 +122,21 @@ export default function Blog() {
                     </div>
                   </div>
                   
-                  {/* Blog Post Content */}
                   <div className="space-y-4">
-                    {/* Date */}
                     <div className="flex items-center gap-3 text-sm">
                       <span className="text-muted group-hover:text-white transition-colors duration-300" suppressHydrationWarning>
                         {post.date ? formatDate(post.date) : 'No date'}
                       </span>
                     </div>
                     
-                    {/* Title */}
                     <h3 className="text-xl font-bold text-foreground group-hover:text-white transition-colors duration-300 line-clamp-2">
                       {post.title?.rendered ? decodeHTMLEntities(post.title.rendered) : 'No title'}
                     </h3>
                     
-                    {/* Excerpt */}
                     <p className="text-muted leading-relaxed line-clamp-3 group-hover:text-white transition-colors duration-300">
                       {post.excerpt?.rendered ? decodeHTMLEntities(post.excerpt.rendered) : 'No excerpt available'}
                     </p>
                     
-                    {/* Read More Link */}
                     <div className="flex items-center justify-between pt-4 border-t border-accent/30">
                       <div className="flex items-center gap-2 text-primary group-hover:text-white transition-colors duration-300">
                         <Link 
@@ -194,7 +184,6 @@ export default function Blog() {
           </div>
         )}
         
-        {/* Enhanced View Full Page Link */}
         <div className={`text-center mt-12 ${sectionVisible ? 'fade-in visible' : 'fade-in'}`} style={{ transitionDelay: '0.7s' }}>
           <div className="inline-flex flex-col items-center gap-4 p-6 bg-white border border-primary/20 rounded-2xl shadow-md group hover:bg-gradient-to-r hover:from-secondary hover:to-primary transition-all duration-300">
             <div className="text-center">

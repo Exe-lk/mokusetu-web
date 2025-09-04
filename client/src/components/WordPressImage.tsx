@@ -27,7 +27,6 @@ export default function WordPressImage({
   const [imageError, setImageError] = useState(false);
   const [currentSrc, setCurrentSrc] = useState(src);
 
-  // Generate fallback image URL
   const getFallbackUrl = () => {
     const seed = typeof fallbackSeed === 'number' ? fallbackSeed : fallbackSeed.length || 1;
     return `https://picsum.photos/${width || 400}/${height || 250}?random=${seed}`;
@@ -41,7 +40,6 @@ export default function WordPressImage({
     }
   };
 
-  // If no source or image has errored, use fallback
   if (!currentSrc || imageError) {
     const fallbackUrl = getFallbackUrl();
     
@@ -53,7 +51,7 @@ export default function WordPressImage({
           fill
           className={className}
           priority={priority}
-          unoptimized // Don't optimize placeholder images
+          unoptimized 
         />
       );
     }
@@ -66,12 +64,11 @@ export default function WordPressImage({
         height={height || 250}
         className={className}
         priority={priority}
-        unoptimized // Don't optimize placeholder images
+        unoptimized 
       />
     );
   }
 
-  // Render WordPress image with error handling
   if (fill) {
     return (
       <Image
