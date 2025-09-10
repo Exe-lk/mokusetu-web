@@ -2,7 +2,6 @@
 
 import dynamic from 'next/dynamic';
 
-// Dynamically import the Comments component with no SSR to avoid hydration issues
 const Comments = dynamic(() => import('./Comments'), {
   ssr: false,
   loading: () => (

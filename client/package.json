@@ -8,11 +8,13 @@
     "start": "next start"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@types/dompurify": "^3.0.5",
     "dompurify": "^3.2.6",
     "next": "15.5.0",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "sweetalert2": "^11.23.0"
   },
   "devDependencies": {
     "@netlify/plugin-nextjs": "^5.12.1",

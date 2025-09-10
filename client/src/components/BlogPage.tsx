@@ -33,7 +33,6 @@ export default function BlogPage() {
 
   useEffect(() => {
     const fetchCategories = async () => {
-      // Only fetch categories in browser environment
       if (typeof window === 'undefined') return;
       
       try {
@@ -50,7 +49,6 @@ export default function BlogPage() {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      // Only fetch posts in browser environment
       if (typeof window === 'undefined') return;
       
       setLoading(true);
@@ -64,7 +62,6 @@ export default function BlogPage() {
         
         console.log('Posts fetched:', result);
         
-        // Handle both array and object return types
         if (Array.isArray(result)) {
           setPosts(result);
           setTotalPages(1);
@@ -86,7 +83,7 @@ export default function BlogPage() {
 
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
-    setCurrentPage(1); // Reset to first page when changing category
+    setCurrentPage(1); 
   };
 
   const handlePageChange = (page: number) => {
@@ -96,7 +93,6 @@ export default function BlogPage() {
 
   return (
     <div className="container mx-auto px-6 py-12">
-      {/* Categories Filter */}
       {categories.length > 0 && (
         <div className="mb-12">
           <h3 className="text-2xl font-bold text-gray-900 mb-6">Filter by Category</h3>
@@ -128,7 +124,6 @@ export default function BlogPage() {
         </div>
       )}
 
-      {/* Posts Grid */}
       {loading ? (
         <div className="text-center py-12">
           <div className="loading-dots">
@@ -146,7 +141,6 @@ export default function BlogPage() {
                 key={post.id}
                 className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group border border-gray-100"
               >
-                {/* Post Image */}
                 <div className="relative h-48 overflow-hidden">
                   <Image
                     src={post.featured_image_url || `https://picsum.photos/400/250?random=${post.id}`}
@@ -154,7 +148,6 @@ export default function BlogPage() {
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-300"
                   />
-                  {/* Category Badge */}
                   <div className="absolute top-3 left-3">
                     <span className="px-3 py-1 text-xs font-bold text-gray-900 bg-white rounded-full shadow-sm">
                       {post.category_names && post.category_names.length > 0 ? post.category_names[0] : 'Uncategorized'}
@@ -162,7 +155,6 @@ export default function BlogPage() {
                   </div>
                 </div>
 
-                {/* Post Content */}
                 <div className="p-6">
                   <p className="text-sm text-gray-500 mb-3" suppressHydrationWarning>
                     {post.date ? formatDate(post.date) : 'No date'}
@@ -176,7 +168,6 @@ export default function BlogPage() {
                     {post.excerpt?.rendered ? decodeHTMLEntities(post.excerpt.rendered) : 'No excerpt available'}
                   </p>
 
-                  {/* Continue Reading Button */}
                   <div className="flex justify-end">
                     <Link
                       href={`/${post.slug || '#'}`}
@@ -204,7 +195,6 @@ export default function BlogPage() {
             ))}
           </div>
 
-          {/* Pagination */}
           {totalPages > 1 && (
             <div className="flex justify-center items-center space-x-2">
               <button

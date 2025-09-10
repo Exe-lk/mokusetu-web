@@ -11,11 +11,9 @@ const CommentList = ({ post }) => {
   const getAllComments = async () => {
     setLoading(true);
     try {
-      // Get all comments for the post
       const allComments = await getAllCommentsForPost(post.id);
       console.log('All comments received:', allComments);
       
-      // Filter to show only approved comments
       const approvedComments = allComments.filter(comment => comment.status === 'approved');
       setComments(approvedComments);
     } catch (error) {
@@ -45,14 +43,12 @@ const CommentList = ({ post }) => {
           key={comment.id}
           className="p-4 border rounded-lg shadow-sm bg-white"
         >
-          {/* Email */}
           <div className="mb-2">
             <span className="text-sm text-gray-600 font-medium">
               Email: {comment.author_name}
             </span>
           </div>
 
-          {/* Comment Content */}
           <div className="mb-3">
             <div
               dangerouslySetInnerHTML={{
@@ -62,7 +58,6 @@ const CommentList = ({ post }) => {
             />
           </div>
 
-          {/* Date */}
           <div className="flex justify-end">
             <span className="text-xs text-gray-500" suppressHydrationWarning>
               {formatDate(comment?.date)}

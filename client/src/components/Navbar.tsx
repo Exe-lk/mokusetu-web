@@ -4,6 +4,7 @@ import { useState } from "react";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const navItemClass = "text-sm font-medium text-foreground/90 hover:text-primary transition-colors duration-300";
 
   return (
@@ -20,7 +21,39 @@ export default function Navbar() {
         <nav className="hidden md:flex items-center gap-8">
           <a href="#home" className={navItemClass}>Home</a>
           <a href="#about" className={navItemClass}>About Us</a>
-          <a href="#services" className={navItemClass}>Services</a>
+          <div className="relative">
+            <button
+              className={`${navItemClass} flex items-center gap-1`}
+              onMouseEnter={() => setServicesDropdownOpen(true)}
+              onMouseLeave={() => setServicesDropdownOpen(false)}
+            >
+              Services
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            {servicesDropdownOpen && (
+              <div 
+                className="absolute top-full left-0 mt-2 w-64 bg-white border border-primary/20 rounded-lg shadow-lg py-2 z-50"
+                onMouseEnter={() => setServicesDropdownOpen(true)}
+                onMouseLeave={() => setServicesDropdownOpen(false)}
+              >
+                <Link href="/services" className="block px-4 py-2 text-sm text-foreground hover:bg-primary/5 transition-colors">
+                  All Services
+                </Link>
+                <div className="border-t border-primary/10 my-1"></div>
+                <Link href="/services/sales-representation" className="block px-4 py-2 text-sm text-foreground hover:bg-primary/5 transition-colors">
+                  Sales & Representation Support
+                </Link>
+                <Link href="/services/business-visa" className="block px-4 py-2 text-sm text-foreground hover:bg-primary/5 transition-colors">
+                  Business Visa Support
+                </Link>
+                <Link href="/services/recruitment" className="block px-4 py-2 text-sm text-foreground hover:bg-primary/5 transition-colors">
+                  Recruitment
+                </Link>
+              </div>
+            )}
+          </div>
           <a href="#vmv" className={navItemClass}>Vision & Mission</a>
           <a href="#usp" className={navItemClass}>Why Us</a>
           <a href="#blog" className={navItemClass}>Blog</a>
@@ -49,7 +82,20 @@ export default function Navbar() {
           <div className="container mx-auto px-6 py-4 flex flex-col gap-4">
             <a href="#home" className={navItemClass} onClick={() => setOpen(false)}>Home</a>
             <a href="#about" className={navItemClass} onClick={() => setOpen(false)}>About Us</a>
-            <a href="#services" className={navItemClass} onClick={() => setOpen(false)}>Services</a>
+            <div className="flex flex-col gap-2">
+              <Link href="/services" className={navItemClass} onClick={() => setOpen(false)}>All Services</Link>
+              <div className="ml-4 flex flex-col gap-2">
+                <Link href="/services/sales-representation" className="text-sm text-foreground/80 hover:text-primary transition-colors" onClick={() => setOpen(false)}>
+                  Sales & Representation Support
+                </Link>
+                <Link href="/services/business-visa" className="text-sm text-foreground/80 hover:text-primary transition-colors" onClick={() => setOpen(false)}>
+                  Business Visa Support
+                </Link>
+                <Link href="/services/recruitment" className="text-sm text-foreground/80 hover:text-primary transition-colors" onClick={() => setOpen(false)}>
+                  Recruitment
+                </Link>
+              </div>
+            </div>
             <a href="#vmv" className={navItemClass} onClick={() => setOpen(false)}>Vision & Mission</a>
             <a href="#usp" className={navItemClass} onClick={() => setOpen(false)}>Why Us</a>
             <a href="#blog" className={navItemClass} onClick={() => setOpen(false)}>Blog</a>

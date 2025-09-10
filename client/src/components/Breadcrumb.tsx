@@ -4,9 +4,11 @@ import Link from "next/link";
 interface BreadcrumbProps {
   currentPage: string;
   currentPagePath: string;
+  parentPage?: string;
+  parentPagePath?: string;
 }
 
-export default function Breadcrumb({ currentPage, currentPagePath }: BreadcrumbProps) {
+export default function Breadcrumb({ currentPage, currentPagePath, parentPage, parentPagePath }: BreadcrumbProps) {
   return (
     <nav className="bg-accent/30 border-b border-primary/10 py-4">
       <div className="container mx-auto px-6">
@@ -20,6 +22,20 @@ export default function Breadcrumb({ currentPage, currentPagePath }: BreadcrumbP
             </svg>
             <span>Home</span>
           </Link>
+          
+          {parentPage && parentPagePath && (
+            <>
+              <svg className="w-4 h-4 text-primary/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+              <Link 
+                href={parentPagePath}
+                className="hover:text-primary transition-colors duration-300"
+              >
+                {parentPage}
+              </Link>
+            </>
+          )}
           
           <svg className="w-4 h-4 text-primary/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
