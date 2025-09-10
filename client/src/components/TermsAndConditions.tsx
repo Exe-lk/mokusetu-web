@@ -21,7 +21,7 @@ export default function PrivacyPolicy() {
                   </svg>
                 </div>
                 <h1 className="text-4xl lg:text-5xl font-bold mb-6">
-                  <span className="gradient-text-brand">Privacy Policy & Terms</span>
+                  <span className="gradient-text-brand">Terms and Conditions</span>
                 </h1>
                 <p className="text-xl text-muted">
                   Last updated: September 08, 2025
@@ -29,81 +29,82 @@ export default function PrivacyPolicy() {
               </div>
 
               <div className="space-y-12 text-left">
-                <div className="space-y-8">
+                <div className="space-y-8 border-t border-muted/20 pt-12">
                   <div className="text-center">
-                    <h2 className="text-3xl font-bold text-primary mb-4">Privacy Policy</h2>
+                    <h2 className="text-3xl font-bold text-primary mb-4">Terms and Conditions</h2>
                     <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
                   </div>
-                  
+
                   <section>
                     <p className="text-muted leading-relaxed mb-6">
-                      MokuSetu Group ("MokuSetu," "we," "our," or "us") values your privacy. This policy explains how we collect, use, and protect your information when you use our website.
+                      By using this website, you agree to the following terms:
                     </p>
                   </section>
 
                   <section>
-                    <h3 className="text-xl font-semibold text-secondary mb-4">Information We Collect</h3>
-                    <ul className="list-disc list-inside text-muted space-y-2 ml-4">
-                      <li>Name</li>
-                      <li>Company name</li>
-                      <li>Email address</li>
-                      <li>Phone number</li>
-                    </ul>
-                    <p className="text-muted leading-relaxed mt-4">
-                      We do not collect information from minors (under 16 under GDPR / as defined by APPI).
+                    <h3 className="text-xl font-semibold text-secondary mb-4">Acceptable Use</h3>
+                    <p className="text-muted leading-relaxed mb-4">
+                      You may use the site only to submit legitimate business inquiries related to our services.
                     </p>
-                  </section>
-
-                  <section>
-                    <h3 className="text-xl font-semibold text-secondary mb-4">How We Use Your Information</h3>
-                    <p className="text-muted leading-relaxed mb-4">We use your data to:</p>
+                    <p className="text-muted leading-relaxed mb-2">You may not:</p>
                     <ul className="list-disc list-inside text-muted space-y-2 ml-4">
-                      <li>Respond to inquiries</li>
-                      <li>Provide services (market entry, supplier sourcing, quality inspections, regulatory & cultural advisory)</li>
-                      <li>Connect businesses with opportunities in Japan</li>
+                      <li>Submit spam or false information</li>
+                      <li>Misrepresent affiliations</li>
+                      <li>Use the site for unrelated purposes</li>
                     </ul>
                   </section>
 
                   <section>
-                    <h3 className="text-xl font-semibold text-secondary mb-4">Sharing of Information</h3>
-                    <p className="text-muted leading-relaxed mb-4">We only share data when necessary to:</p>
+                    <h3 className="text-xl font-semibold text-secondary mb-4">Our Services</h3>
+                    <p className="text-muted leading-relaxed mb-2">We provide:</p>
                     <ul className="list-disc list-inside text-muted space-y-2 ml-4">
-                      <li>Work with trusted suppliers or partners to deliver services</li>
-                      <li>Comply with legal obligations</li>
-                      <li>Protect our rights or users' rights</li>
+                      <li>Market entry & business development</li>
+                      <li>Supplier sourcing & procurement</li>
+                      <li>Quality inspection & compliance</li>
+                      <li>Regulatory & cultural advisory</li>
                     </ul>
-                    <p className="text-muted leading-relaxed mt-4 font-semibold">
-                      We do not sell or rent your personal data.
+                  </section>
+
+                  <section>
+                    <h3 className="text-xl font-semibold text-secondary mb-4">Your Responsibilities</h3>
+                    <ul className="list-disc list-inside text-muted space-y-2 ml-4">
+                      <li>Provide accurate information in forms</li>
+                      <li>Comply with Japanese laws and regulations related to your business activities</li>
+                    </ul>
+                  </section>
+
+                  <section>
+                    <h3 className="text-xl font-semibold text-secondary mb-4">Ownership</h3>
+                    <p className="text-muted leading-relaxed mb-4">
+                      All website content belongs to MokuSetu Group.
                     </p>
-                  </section>
-
-                  <section>
-                    <h3 className="text-xl font-semibold text-secondary mb-4">Cookies</h3>
                     <p className="text-muted leading-relaxed">
-                      We use cookies for analytics. A bilingual cookie banner allows you to accept, reject, or manage preferences.
+                      By submitting an inquiry, you grant us permission to process your information for service delivery.
                     </p>
                   </section>
 
                   <section>
-                    <h3 className="text-xl font-semibold text-secondary mb-4">Your Rights</h3>
-                    <p className="text-muted leading-relaxed">
-                      You can request access, correction, or deletion of your data via our bilingual contact form.
-                    </p>
+                    <h3 className="text-xl font-semibold text-secondary mb-4">Liability</h3>
+                    <p className="text-muted leading-relaxed mb-2">MokuSetu is not liable for:</p>
+                    <ul className="list-disc list-inside text-muted space-y-2 ml-4">
+                      <li>Third-party supplier issues (delays, quality failures)</li>
+                      <li>Indirect damages (e.g., lost profits)</li>
+                      <li>Market outcomes beyond our control</li>
+                    </ul>
                   </section>
 
                   <section>
                     <h3 className="text-xl font-semibold text-secondary mb-4">Updates</h3>
                     <p className="text-muted leading-relaxed">
-                      We will post changes to this policy on the website in both Japanese and English.
+                      Changes to these Terms will be posted on this website in both Japanese and English.
                     </p>
                   </section>
 
-                  <section>
-                    <h3 className="text-xl font-semibold text-secondary mb-4">Contact</h3>
-                    <p className="text-muted leading-relaxed">
-                      For privacy-related questions, please contact us via the website's contact form.
+                  <div className="mt-8 p-6 bg-accent/20 rounded-xl text-center">
+                    <p className="text-muted font-semibold">
+                      Last updated: September 08, 2025
                     </p>
-                  </section>
+                  </div>
                 </div>
               </div>
             </div>
