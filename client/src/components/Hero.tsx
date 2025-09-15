@@ -172,7 +172,7 @@ export default function Hero() {
                   {counts.partners}+
                 </div>
                 <div className="text-sm text-muted font-medium">Global Partners</div>
-                <div className="text-xs text-primary mt-1">25+ Countries</div>
+                <div className="text-xs text-primary mt-1">2+ Countries</div>
               </div>
               <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-accent/20 hover:bg-white/80 transition-all duration-300 hover:scale-105">
                 <div className="stat-number text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-secondary to-success mb-1">
@@ -204,23 +204,10 @@ export default function Hero() {
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center space-y-8">
                     <div className="relative">
-                      <div className="w-32 h-32 bg-gradient-to-br from-primary via-secondary to-success rounded-3xl flex items-center justify-center shadow-lg mx-auto">
-                        <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9" />
-                        </svg>
-                      </div>
-                      <div className="absolute -top-3 -right-3 w-10 h-10 bg-success rounded-full flex items-center justify-center border-4 border-white shadow-lg">
-                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                      </div>
+                      
+                     <Image src="/Picture1.png" alt="Hero Image" width={350} height={350} className="rounded-3xl mr-auto image-center" />
                     </div>
                     
-                    <div className="space-y-3">
-                      <div className="h-3 bg-gradient-to-r from-primary to-secondary rounded-full w-40 mx-auto shadow-md"></div>
-                      <div className="h-3 bg-gradient-to-r from-secondary to-success rounded-full w-32 mx-auto shadow-md" style={{ animationDelay: '0.5s' }}></div>
-                      <div className="h-3 bg-gradient-to-r from-success to-primary rounded-full w-36 mx-auto shadow-md" style={{ animationDelay: '1s' }}></div>
-                    </div>
                     
                     <div className="space-y-3">
                       <div className="text-base text-secondary font-semibold max-w-xs mx-auto">
@@ -236,15 +223,6 @@ export default function Hero() {
               
               <div className="absolute -top-6 -right-6 w-20 h-20 bg-gradient-to-br from-success to-primary rounded-2xl rotate-12 floating shadow-lg"></div>
               <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-xl -rotate-12 floating shadow-lg" style={{ animationDelay: '2s' }}></div>
-              
-              <div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2">
-                <div className="bg-white/95 backdrop-blur-sm px-6 py-3 rounded-2xl border border-primary/30 shadow-xl">
-                  <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-success rounded-full animate-pulse"></div>
-                    <span className="text-sm text-secondary font-semibold">Live Support Available</span>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>

@@ -1,11 +1,30 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const servicesDropdownRef = useRef<HTMLDivElement>(null);
   const navItemClass = "text-sm font-medium text-foreground/90 hover:text-primary transition-colors duration-300";
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (servicesDropdownRef.current && !servicesDropdownRef.current.contains(event.target as Node)) {
+        setServicesDropdownOpen(false);
+      }
+    }
+
+    if (servicesDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [servicesDropdownOpen]);
 
   return (
     <header className="sticky top-0 z-50 glass-japanese border-b border-primary/10">
@@ -21,22 +40,24 @@ export default function Navbar() {
         <nav className="hidden md:flex items-center gap-8">
           <a href="#home" className={navItemClass}>Home</a>
           <a href="#about" className={navItemClass}>About Us</a>
-          <div className="relative">
+          <div className="relative" ref={servicesDropdownRef}>
             <button
               className={`${navItemClass} flex items-center gap-1`}
-              onMouseEnter={() => setServicesDropdownOpen(true)}
-              onMouseLeave={() => setServicesDropdownOpen(false)}
+              onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
             >
               Services
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg 
+                className={`w-4 h-4 transition-transform duration-200 ${servicesDropdownOpen ? 'rotate-180' : ''}`} 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </button>
             {servicesDropdownOpen && (
               <div 
                 className="absolute top-full left-0 mt-2 w-64 bg-white border border-primary/20 rounded-lg shadow-lg py-2 z-50"
-                onMouseEnter={() => setServicesDropdownOpen(true)}
-                onMouseLeave={() => setServicesDropdownOpen(false)}
               >
                 <Link href="/services" className="block px-4 py-2 text-sm text-foreground hover:bg-primary/5 transition-colors">
                   All Services
@@ -45,11 +66,11 @@ export default function Navbar() {
                 <Link href="/services/sales-representation" className="block px-4 py-2 text-sm text-foreground hover:bg-primary/5 transition-colors">
                   Sales & Representation Support
                 </Link>
-                <Link href="/services/business-visa" className="block px-4 py-2 text-sm text-foreground hover:bg-primary/5 transition-colors">
-                  Business Visa Support
-                </Link>
-                <Link href="/services/recruitment" className="block px-4 py-2 text-sm text-foreground hover:bg-primary/5 transition-colors">
+                {/* <Link href="/services/recruitment" className="block px-4 py-2 text-sm text-foreground hover:bg-primary/5 transition-colors">
                   Recruitment
+                </Link> */}
+                <Link href="/services/quality-inspection" className="block px-4 py-2 text-sm text-foreground hover:bg-primary/5 transition-colors">
+                  Quality Inspection
                 </Link>
               </div>
             )}
@@ -83,18 +104,33 @@ export default function Navbar() {
             <a href="#home" className={navItemClass} onClick={() => setOpen(false)}>Home</a>
             <a href="#about" className={navItemClass} onClick={() => setOpen(false)}>About Us</a>
             <div className="flex flex-col gap-2">
-              <Link href="/services" className={navItemClass} onClick={() => setOpen(false)}>All Services</Link>
-              <div className="ml-4 flex flex-col gap-2">
-                <Link href="/services/sales-representation" className="text-sm text-foreground/80 hover:text-primary transition-colors" onClick={() => setOpen(false)}>
-                  Sales & Representation Support
-                </Link>
-                <Link href="/services/business-visa" className="text-sm text-foreground/80 hover:text-primary transition-colors" onClick={() => setOpen(false)}>
-                  Business Visa Support
-                </Link>
-                <Link href="/services/recruitment" className="text-sm text-foreground/80 hover:text-primary transition-colors" onClick={() => setOpen(false)}>
-                  Recruitment
-                </Link>
-              </div>
+              <button
+                className={`${navItemClass} flex items-center justify-between`}
+                onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+              >
+                Services
+                <svg 
+                  className={`w-4 h-4 transition-transform duration-200 ${mobileServicesOpen ? 'rotate-180' : ''}`} 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              {mobileServicesOpen && (
+                <div className="ml-4 flex flex-col gap-2">
+                  <Link href="/services" className="text-sm text-foreground/80 hover:text-primary transition-colors" onClick={() => setOpen(false)}>
+                    All Services
+                  </Link>
+                  <Link href="/services/sales-representation" className="text-sm text-foreground/80 hover:text-primary transition-colors" onClick={() => setOpen(false)}>
+                    Sales & Representation Support
+                  </Link>
+                  {/* <Link href="/services/recruitment" className="text-sm text-foreground/80 hover:text-primary transition-colors" onClick={() => setOpen(false)}>
+                    Recruitment
+                  </Link> */}
+                </div>
+              )}
             </div>
             <a href="#vmv" className={navItemClass} onClick={() => setOpen(false)}>Vision & Mission</a>
             <a href="#usp" className={navItemClass} onClick={() => setOpen(false)}>Why Us</a>

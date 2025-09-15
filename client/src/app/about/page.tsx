@@ -10,42 +10,55 @@ export default function AboutPage() {
         subtitle="Your trusted partner in bridging global business with Japan's dynamic market."
       />
       
-      {/* Hero Section */}
+      {/* Our Story Section */}
       <section className="section bg-gradient-to-br from-accent/5 via-white to-secondary/5">
         <div className="container mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <h2 className="text-4xl lg:text-5xl font-bold">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl lg:text-5xl font-bold mb-6">
                 <span className="gradient-text-brand">Our Story</span>
               </h2>
-              <p className="text-xl text-muted leading-relaxed">
-                MokuSetu Group G.K. was founded with a clear mission: to bridge the gap between international businesses and Japan's unique market landscape. We understand that success in Japan requires more than just business acumen—it demands cultural sensitivity, local expertise, and proven execution strategies.
-              </p>
-              <p className="text-lg text-muted leading-relaxed">
-                With over 15 years of experience and a network spanning 25+ countries, we've helped hundreds of companies navigate the complexities of the Japanese market, from initial market entry to sustainable growth and expansion.
-              </p>
-              <div className="flex flex-wrap gap-6 pt-4">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-primary mb-2">15+</div>
-                  <div className="text-sm text-muted">Years Experience</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-secondary mb-2">25+</div>
-                  <div className="text-sm text-muted">Countries</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-success mb-2">500+</div>
-                  <div className="text-sm text-muted">Projects Completed</div>
-                </div>
-              </div>
             </div>
-            <div className="relative">
+            
+            <div className="space-y-12">
+              {/* MokuSetu: Where Bridge Begins */}
               <div className="floating-paper p-8 rounded-3xl">
-                <div className="aspect-square bg-gradient-to-br from-primary/10 to-secondary/10 rounded-2xl flex items-center justify-center">
-                  <svg className="w-32 h-32 text-primary/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                </div>
+                <h3 className="text-2xl lg:text-3xl font-bold text-foreground mb-6 text-center">
+                  <span className="gradient-text-brand">MokuSetu: Where Bridge Begins</span>
+                </h3>
+                <p className="text-lg text-muted leading-relaxed mb-4">
+                  Words carry power. In Japanese, the term <em className="text-primary font-semibold">mokuteki</em> (目的) denotes purpose or objective — the sense of a clear aim. In Sanskrit, <em className="text-secondary font-semibold">setu</em> (सेतु) refers to a bridge, something that connects spaces and brings people together. Combining these two ideas, MokuSetu literally means "aim to bridge" and embodies a dedication to purposeful connection.
+                </p>
+              </div>
+
+              {/* Bridging Cultures and Generations */}
+              <div className="floating-paper p-8 rounded-3xl">
+                <h3 className="text-2xl lg:text-3xl font-bold text-foreground mb-6">
+                  <span className="gradient-text-brand">Bridging Cultures and Generations</span>
+                </h3>
+                <p className="text-lg text-muted leading-relaxed">
+                  MokuSetu was founded on a simple yet ambitious belief: that intentional connections can transcend borders, disciplines, and generations. After years of working across different industries and cultures, our founders saw how easily communities become siloed. Artists and engineers rarely collaborate; local traditions fade as cities grow; people who could solve each other's problems never meet. The name MokuSetu serves as both a goal and a promise to address those divides.
+                </p>
+              </div>
+
+              {/* Inspired by Purpose */}
+              <div className="floating-paper p-8 rounded-3xl">
+                <h3 className="text-2xl lg:text-3xl font-bold text-foreground mb-6">
+                  <span className="gradient-text-brand">Inspired by Purpose</span>
+                </h3>
+                <p className="text-lg text-muted leading-relaxed">
+                  Purpose (mokuteki) matters. Without a goal, bridges lead nowhere. We ask ourselves daily: What are we trying to achieve? Whether designing a community workspace, developing a digital platform, or curating a cross-cultural exhibition, we begin with a clear intention. That intention guides our choices and ensures our bridges are built to last.
+                </p>
+              </div>
+
+              {/* Rooted in Connection */}
+              <div className="floating-paper p-8 rounded-3xl">
+                <h3 className="text-2xl lg:text-3xl font-bold text-foreground mb-6">
+                  <span className="gradient-text-brand">Rooted in Connection</span>
+                </h3>
+                <p className="text-lg text-muted leading-relaxed">
+                  A bridge (setu) is more than steel or stone. In the Sanskrit tradition, bridges often symbolize connection and transition. The mythological bridge of Setu Bandha, for example, linked mainland India to Lanka so Rama could rescue Sita—a story of unity against great odds. MokuSetu embraces this symbolism. We build pathways—literal and metaphorical—that allow people to cross divides, share experiences, and grow together.
+                </p>
               </div>
             </div>
           </div>
@@ -220,7 +233,7 @@ export default function AboutPage() {
               <div className="relative flex items-center">
                 <div className="w-1/2 pr-8 text-right">
                   <div className="floating-paper p-6 rounded-2xl">
-                    <h3 className="text-xl font-bold text-foreground mb-2">2008 - Foundation</h3>
+                    <h3 className="text-xl font-bold text-foreground mb-2">2025 July - Foundation</h3>
                     <p className="text-muted">MokuSetu Group G.K. was established with a vision to bridge international businesses with Japan's market.</p>
                   </div>
                 </div>
@@ -233,86 +246,19 @@ export default function AboutPage() {
                 <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-secondary rounded-full border-4 border-white shadow-lg"></div>
                 <div className="w-1/2 pl-8">
                   <div className="floating-paper p-6 rounded-2xl">
-                    <h3 className="text-xl font-bold text-foreground mb-2">2013 - Expansion</h3>
-                    <p className="text-muted">Expanded services to cover 15+ countries and established key partnerships across Asia-Pacific.</p>
-                  </div>
+                    <h3 className="text-xl font-bold text-foreground mb-2">2025 August - Expansion</h3>
+                    <p className="text-muted">First collaboration established with TQ Cert, strengthening industry credibility and expanding opportunities.</p>
+                    </div>
                 </div>
               </div>
               
-              <div className="relative flex items-center">
-                <div className="w-1/2 pr-8 text-right">
-                  <div className="floating-paper p-6 rounded-2xl">
-                    <h3 className="text-xl font-bold text-foreground mb-2">2018 - Digital Transformation</h3>
-                    <p className="text-muted">Launched digital platforms and tools to enhance our service delivery and client communication.</p>
-                  </div>
-                </div>
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-success rounded-full border-4 border-white shadow-lg"></div>
-                <div className="w-1/2 pl-8"></div>
-              </div>
-              
-              <div className="relative flex items-center">
-                <div className="w-1/2 pr-8"></div>
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-primary rounded-full border-4 border-white shadow-lg"></div>
-                <div className="w-1/2 pl-8">
-                  <div className="floating-paper p-6 rounded-2xl">
-                    <h3 className="text-xl font-bold text-foreground mb-2">2023 - Global Leadership</h3>
-                    <p className="text-muted">Became the leading consultancy for international businesses entering the Japanese market.</p>
-                  </div>
-                </div>
-              </div>
+           
+            
             </div>
           </div>
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="section">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold mb-4">
-              <span className="gradient-text-brand">Our Leadership Team</span>
-            </h2>
-            <p className="text-xl text-muted max-w-3xl mx-auto">
-              Meet the experts who drive our success and guide our clients to victory in Japan
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="floating-paper p-6 rounded-2xl text-center group hover-lift">
-              <div className="w-24 h-24 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto mb-4 flex items-center justify-center">
-                <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-foreground mb-2">Takashi Yamamoto</h3>
-              <p className="text-secondary font-medium mb-3">CEO & Founder</p>
-              <p className="text-muted text-sm">15+ years of experience in international business development and Japanese market entry strategies.</p>
-            </div>
-            
-            <div className="floating-paper p-6 rounded-2xl text-center group hover-lift">
-              <div className="w-24 h-24 bg-gradient-to-r from-secondary to-success rounded-full mx-auto mb-4 flex items-center justify-center">
-                <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-foreground mb-2">Sarah Chen</h3>
-              <p className="text-secondary font-medium mb-3">Head of Operations</p>
-              <p className="text-muted text-sm">Expert in cross-cultural business operations and strategic partnership development across Asia-Pacific.</p>
-            </div>
-            
-            <div className="floating-paper p-6 rounded-2xl text-center group hover-lift">
-              <div className="w-24 h-24 bg-gradient-to-r from-success to-primary rounded-full mx-auto mb-4 flex items-center justify-center">
-                <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-foreground mb-2">Kenji Tanaka</h3>
-              <p className="text-secondary font-medium mb-3">Director of Strategy</p>
-              <p className="text-muted text-sm">Specialist in Japanese market analysis and international business strategy with deep regulatory knowledge.</p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* CTA Section */}
       <section className="section section-muted">
