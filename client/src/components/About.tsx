@@ -25,10 +25,10 @@ export default function About() {
             <div className="floating-paper p-8 rounded-3xl group hover:bg-gradient-to-r hover:from-primary hover:to-secondary transition-all duration-300">
               <h3 className="text-2xl font-bold text-foreground mb-4 group-hover:text-white transition-colors duration-300">Our Story</h3>
               <p className="text-muted leading-relaxed mb-4 group-hover:text-white transition-colors duration-300">
-                MokuSetu Group G.K. was founded with a clear mission: to bridge the gap between international businesses and Japan's unique market landscape. We understand that success in Japan requires more than just business acumen—it demands cultural sensitivity, local expertise, and proven execution strategies.
+              MokuSetu: Where Purpose Meets Connection
               </p>
-              <p className="text-muted leading-relaxed group-hover:text-white transition-colors duration-300">
-                With over 15 years of experience and a network spanning 25+ countries, we've helped hundreds of companies navigate the complexities of the Japanese market, from initial market entry to sustainable growth and expansion.
+              <p className="text-muted leading-relaxed mb-4 group-hover:text-white transition-colors duration-300">
+MokuSetu was created with a clear vision of building purposeful bridges that unite people, ideas, and communities. The name combines mokuteki (Japanese for purpose) and setu (Sanskrit for bridge), symbolizing the belief that true progress happens when intention guides connection. A bridge is not only a means of crossing; it represents transition, collaboration, and shared growth. Guided by this philosophy, MokuSetu works to close divides across cultures, generations, and disciplines, creating pathways that inspire lasting impact.
               </p>
             </div>
           </div>

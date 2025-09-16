@@ -6,7 +6,6 @@ import Footer from "@/components/Footer";
 import Loader from "@/components/Loader";
 import WordPressStatus from "@/components/WordPressStatus";
 import ScrollIndicator from "@/components/ScrollIndicator";
-import CustomCursor from "@/components/CustomCursor";
 import { LoadingProvider } from "@/contexts/LoadingContext";
 
 const geistSans = Geist({
@@ -53,8 +52,6 @@ export default function RootLayout({
           {/* Scroll Indicator - Client Component */}
           <ScrollIndicator />
           
-          {/* Custom Cursor - Client Component */}
-          <CustomCursor />
           
           <Navbar />
           <main>{children}</main>

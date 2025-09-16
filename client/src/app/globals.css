@@ -655,23 +655,6 @@ html {
   backdrop-filter: blur(10px);
 }
 
-/* Modern Cursor Effect */
-.custom-cursor {
-  position: fixed;
-  width: 20px;
-  height: 20px;
-  background: var(--primary);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  mix-blend-mode: difference;
-  transition: transform 0.1s ease;
-  backdrop-filter: blur(5px);
-}
-
-.custom-cursor.hover {
-  transform: scale(2);
-}
 
 /* Loader Animations */
 .animate-fade-in {
