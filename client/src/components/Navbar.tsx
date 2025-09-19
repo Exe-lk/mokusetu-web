@@ -64,7 +64,7 @@ export default function Navbar() {
                 </Link>
                 <div className="border-t border-primary/10 my-1"></div>
                 <Link href="/services/sales-representation" className="block px-4 py-2 text-sm text-foreground hover:bg-primary/5 transition-colors">
-                  Sales & Representation Support
+                  Sales & Representative  Support
                 </Link>
                 {/* <Link href="/services/recruitment" className="block px-4 py-2 text-sm text-foreground hover:bg-primary/5 transition-colors">
                   Recruitment
@@ -124,7 +124,7 @@ export default function Navbar() {
                     All Services
                   </Link>
                   <Link href="/services/sales-representation" className="text-sm text-foreground/80 hover:text-primary transition-colors" onClick={() => setOpen(false)}>
-                    Sales & Representation Support
+                    Sales & Representative  Support
                   </Link>
                   {/* <Link href="/services/recruitment" className="text-sm text-foreground/80 hover:text-primary transition-colors" onClick={() => setOpen(false)}>
                     Recruitment

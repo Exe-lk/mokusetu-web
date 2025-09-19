@@ -16,6 +16,13 @@ interface BlogPost {
   featured_image_url?: string | null;
 }
 
+interface BlogData {
+  posts: BlogPost[];
+  totalPages: number;
+  error?: string;
+  isFallback?: boolean;
+}
+
 interface Category {
   id: number;
   name: string;
@@ -29,6 +36,8 @@ export default function BlogPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [isFallback, setIsFallback] = useState(false);
   const postsPerPage = 9;
 
   useEffect(() => {
@@ -52,8 +61,10 @@ export default function BlogPage() {
       if (typeof window === 'undefined') return;
       
       setLoading(true);
+      setError(null);
+      
       try {
-        let result;
+        let result: BlogData;
         if (selectedCategory === 'all') {
           result = await getPosts(currentPage, postsPerPage);
         } else {
@@ -65,14 +76,19 @@ export default function BlogPage() {
         if (Array.isArray(result)) {
           setPosts(result);
           setTotalPages(1);
+          setIsFallback(false);
         } else {
           setPosts(result.posts || []);
           setTotalPages(result.totalPages || 1);
+          setError(result.error || null);
+          setIsFallback(result.isFallback || false);
         }
       } catch (error) {
         console.error('Error fetching posts:', error);
         setPosts([]);
         setTotalPages(1);
+        setError(error instanceof Error ? error.message : 'Unknown error occurred');
+        setIsFallback(false);
       } finally {
         setLoading(false);
       }
@@ -91,8 +107,46 @@ export default function BlogPage() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleRefresh = () => {
+    setError(null);
+    setIsFallback(false);
+    setLoading(true);
+    
+    // Force a refresh by updating the current page state
+    setCurrentPage(prev => prev);
+  };
+
   return (
     <div className="container mx-auto px-6 py-12">
+      {/* Connection Status Banner */}
+      {(error || isFallback) && (
+        <div className="mb-8 p-4 rounded-lg border-l-4 border-yellow-400 bg-yellow-50">
+          <div className="flex items-center">
+            <svg className="w-5 h-5 text-yellow-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+            </svg>
+            <div>
+              <h4 className="text-sm font-medium text-yellow-800">
+                {isFallback ? 'Connection Issue Detected' : 'WordPress API Error'}
+              </h4>
+              <p className="text-sm text-yellow-700 mt-1">
+                {isFallback 
+                  ? "We're experiencing connectivity issues with our blog server. Showing cached content while we work to restore the connection."
+                  : `There was an issue loading the blog content: ${error}`
+                }
+              </p>
+            </div>
+            <button
+              onClick={handleRefresh}
+              disabled={loading}
+              className="ml-4 px-4 py-2 text-sm font-medium text-yellow-800 bg-yellow-100 rounded-md hover:bg-yellow-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+            >
+              {loading ? 'Retrying...' : 'Retry'}
+            </button>
+          </div>
+        </div>
+      )}
+
       {categories.length > 0 && (
         <div className="mb-12">
           <h3 className="text-2xl font-bold text-gray-900 mb-6">Filter by Category</h3>
