@@ -8,12 +8,34 @@ const FALLBACK_DATA = {
   posts: [
     {
       id: 1,
-      title: { rendered: 'Welcome to Our Blog' },
-      excerpt: { rendered: 'We\'re experiencing some technical difficulties with our blog at the moment. Please check back soon for the latest updates and articles.' },
-      content: { rendered: '<p>We\'re experiencing some technical difficulties with our blog at the moment. Please check back soon for the latest updates and articles.</p><p>In the meantime, feel free to explore our other services and contact us if you need assistance.</p>' },
-      date: new Date().toISOString(),
-      slug: 'welcome',
-      category_names: ['General'],
+      title: { rendered: 'Understanding Japanese Business Culture' },
+      excerpt: { rendered: 'Learn the essential aspects of Japanese business culture to succeed in your ventures. From proper etiquette to building lasting relationships, discover what makes business in Japan unique.' },
+      content: { rendered: '<p>Understanding Japanese business culture is crucial for success in the Japanese market. This guide covers essential aspects from business etiquette to relationship building.</p>' },
+      date: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(), // 7 days ago
+      slug: 'understanding-japanese-business-culture',
+      category_names: ['Business Culture'],
+      _embedded: {},
+      featured_image_url: null
+    },
+    {
+      id: 2,
+      title: { rendered: 'Market Entry Strategies for Japan' },
+      excerpt: { rendered: 'Explore proven strategies for entering the Japanese market successfully. From market research to local partnerships, get insights that can make the difference between success and failure.' },
+      content: { rendered: '<p>Entering the Japanese market requires careful planning and strategy. This article outlines key approaches that have proven successful for international businesses.</p>' },
+      date: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString(), // 14 days ago
+      slug: 'market-entry-strategies-japan',
+      category_names: ['Market Strategy'],
+      _embedded: {},
+      featured_image_url: null
+    },
+    {
+      id: 3,
+      title: { rendered: 'Quality Standards in Japanese Manufacturing' },
+      excerpt: { rendered: 'Discover the rigorous quality standards that define Japanese manufacturing excellence. Learn how these principles can be applied to your business operations.' },
+      content: { rendered: '<p>Japanese manufacturing is renowned worldwide for its quality standards. This article explores the principles behind this excellence and how they can benefit your business.</p>' },
+      date: new Date(Date.now() - 21 * 24 * 60 * 60 * 1000).toISOString(), // 21 days ago
+      slug: 'quality-standards-japanese-manufacturing',
+      category_names: ['Quality Control'],
       _embedded: {},
       featured_image_url: null
     }
@@ -32,21 +54,34 @@ function generatePlaceholderImage(post) {
   return `https://picsum.photos/400/250?random=${seed}`;
 }
 
-// Client-side fetch function for WordPress API with better CORS handling
-async function fetchWordPressAPI(endpoint, options = {}) {
+// Client-side fetch function for WordPress API with better error handling and retry logic
+async function fetchWordPressAPI(endpoint, options = {}, retryCount = 0) {
+  const maxRetries = 3;
+  const retryDelay = 1000 * (retryCount + 1); // Progressive delay
+
   try {
     // Try with CORS mode first
-    const response = await fetch(`${WORDPRESS_URL}/wp-json/wp/v2/${endpoint}`, {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+
+    // Add cache-busting parameter for retries to avoid cached responses
+    const separator = endpoint.includes('?') ? '&' : '?';
+    const cacheBuster = retryCount > 0 ? `${separator}_cb=${Date.now()}` : '';
+    const finalEndpoint = `${endpoint}${cacheBuster}`;
+
+    const response = await fetch(`${WORDPRESS_URL}/wp-json/wp/v2/${finalEndpoint}`, {
       ...options,
       mode: 'cors',
       credentials: 'omit',
+      signal: controller.signal,
       headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json, text/plain, */*',
-        'Accept-Language': 'en-US,en;q=0.9',
+        'Accept': 'application/json',
+        ...(options.method === 'POST' && { 'Content-Type': 'application/json' }),
         ...options.headers,
       },
     });
+
+    clearTimeout(timeoutId);
 
     if (!response.ok) {
       // Handle specific error cases
@@ -58,36 +93,57 @@ async function fetchWordPressAPI(endpoint, options = {}) {
         console.warn('WordPress API access forbidden for this endpoint:', endpoint);
         throw new Error('Access forbidden');
       }
+      if (response.status === 404) {
+        console.warn('WordPress API endpoint not found:', endpoint);
+        throw new Error('Endpoint not found');
+      }
+      if (response.status >= 500) {
+        console.warn('WordPress API server error:', response.status);
+        throw new Error(`Server error: ${response.status}`);
+      }
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
     return response;
   } catch (error) {
-    console.error('WordPress API request failed:', error);
+    console.error(`WordPress API request failed (attempt ${retryCount + 1}/${maxRetries + 1}):`, error);
     
-    // If CORS fails, try without CORS mode
-    try {
-      console.log('Retrying without CORS mode...');
-      const response = await fetch(`${WORDPRESS_URL}/wp-json/wp/v2/${endpoint}`, {
-        ...options,
-        mode: 'no-cors',
-        credentials: 'omit',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          ...options.headers,
-        },
-      });
-
-      if (!response.ok && response.status !== 0) { // no-cors returns status 0
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      return response;
-    } catch (corsError) {
-      console.error('Both CORS and no-cors attempts failed:', corsError);
-      throw error; // Throw the original error
+    // Check if we should retry
+    if (retryCount < maxRetries && (
+      error.name === 'AbortError' || 
+      error.message.includes('Failed to fetch') || 
+      error.message.includes('ERR_CONNECTION_RESET') ||
+      error.message.includes('ERR_NETWORK') ||
+      error.message.includes('Server error')
+    )) {
+      console.log(`Retrying in ${retryDelay}ms... (attempt ${retryCount + 1}/${maxRetries})`);
+      await new Promise(resolve => setTimeout(resolve, retryDelay));
+      return fetchWordPressAPI(endpoint, options, retryCount + 1);
     }
+    
+    // If all retries fail, try a different approach for GET requests
+    if (retryCount >= maxRetries && (!options.method || options.method === 'GET')) {
+      try {
+        console.log('Trying alternative fetch approach...');
+        
+        // Try with a minimal fetch configuration
+        const altSeparator = endpoint.includes('?') ? '&' : '?';
+        const altCacheBuster = `${altSeparator}_alt=${Date.now()}`;
+        const simpleResponse = await fetch(`${WORDPRESS_URL}/wp-json/wp/v2/${endpoint}${altCacheBuster}`, {
+          method: 'GET',
+          mode: 'cors',
+          credentials: 'omit',
+        });
+
+        if (simpleResponse.ok) {
+          return simpleResponse;
+        }
+      } catch (alternativeError) {
+        console.error('Alternative fetch approach also failed:', alternativeError);
+      }
+    }
+    
+    throw error; // Throw the original error after all attempts fail
   }
 }
 
@@ -115,11 +171,37 @@ export async function isImageUrlValid(url) {
   }
 }
 
+// Utility function to safely parse JSON response
+async function safeJsonParse(response) {
+  const text = await response.text();
+  
+  // Check if response is empty
+  if (!text || text.trim() === '') {
+    console.warn('WordPress API returned empty response');
+    throw new Error('Empty response from WordPress API');
+  }
+  
+  // Try to parse as JSON
+  try {
+    return JSON.parse(text);
+  } catch (parseError) {
+    console.error('Failed to parse WordPress API response as JSON:', parseError);
+    console.log('Raw response:', text.substring(0, 500) + (text.length > 500 ? '...' : ''));
+    throw new Error('Invalid JSON response from WordPress API');
+  }
+}
+
 // Get posts with fallback and better image handling
 export async function getPosts(page, perPage = 12) {
   try {
     const response = await fetchWordPressAPI(`posts?page=${page}&per_page=${perPage}&_embed&status=publish`);
-    const posts = await response.json();
+    const posts = await safeJsonParse(response);
+    
+    // Ensure posts is an array
+    if (!Array.isArray(posts)) {
+      console.warn('WordPress API returned non-array response for posts:', posts);
+      throw new Error('Invalid posts data structure');
+    }
     
     // Process posts to include category names and handle images
     const postsWithCategories = posts.map(post => {
@@ -142,7 +224,7 @@ export async function getPosts(page, perPage = 12) {
     });
     
     const totalPages = response.headers.get('X-WP-TotalPages');
-    return { posts: postsWithCategories, totalPages: parseInt(totalPages, 10) };
+    return { posts: postsWithCategories, totalPages: parseInt(totalPages, 10) || 1 };
   } catch (error) {
     console.error('Error fetching posts from WordPress:', error);
     
@@ -159,17 +241,23 @@ export async function getPosts(page, perPage = 12) {
 export async function getPostsByCategoryName(categoryName, page, perPage = 12) {
   try {
     const categoryResponse = await fetchWordPressAPI(`categories?slug=${categoryName}`);
-    const categories = await categoryResponse.json();
+    const categories = await safeJsonParse(categoryResponse);
 
-    if (categories.length === 0) {
-      console.log('Category not found');
+    if (!Array.isArray(categories) || categories.length === 0) {
+      console.log('Category not found or invalid response');
       return { posts: [], totalPages: 0 };
     }
 
     const categoryId = categories[0].id;
 
     const postsResponse = await fetchWordPressAPI(`posts?categories=${categoryId}&page=${page}&per_page=${perPage}&_embed&status=publish`);
-    const posts = await postsResponse.json();
+    const posts = await safeJsonParse(postsResponse);
+    
+    // Ensure posts is an array
+    if (!Array.isArray(posts)) {
+      console.warn('WordPress API returned non-array response for category posts:', posts);
+      return { posts: [], totalPages: 0 };
+    }
     
     // Process posts to include category names and handle images
     const postsWithCategories = posts.map(post => {
@@ -191,13 +279,18 @@ export async function getPostsByCategoryName(categoryName, page, perPage = 12) {
     });
     
     const totalPages = postsResponse.headers.get('X-WP-TotalPages');
-    return { posts: postsWithCategories, totalPages: parseInt(totalPages, 10) };
+    return { posts: postsWithCategories, totalPages: parseInt(totalPages, 10) || 1 };
   } catch (error) {
     console.error('Error fetching posts by category from WordPress:', error);
     
-    // Return fallback data when WordPress is down
+    // Return category-specific fallback data when WordPress is down
+    const categoryPosts = FALLBACK_DATA.posts.filter(post => 
+      post.category_names.some(cat => cat.toLowerCase().replace(/\s+/g, '-') === categoryName)
+    );
+    
     return { 
-      ...FALLBACK_DATA,
+      posts: categoryPosts,
+      totalPages: 1,
       error: error.message,
       isFallback: true
     };
@@ -208,14 +301,23 @@ export async function getPostsByCategoryName(categoryName, page, perPage = 12) {
 export async function getCategories() {
   try {
     const response = await fetchWordPressAPI('categories');
-    const categories = await response.json();
+    const categories = await safeJsonParse(response);
+    
+    // Ensure categories is an array
+    if (!Array.isArray(categories)) {
+      console.warn('WordPress API returned non-array response for categories:', categories);
+      throw new Error('Invalid categories data structure');
+    }
+    
     return categories;
   } catch (error) {
     console.error('Error fetching categories from WordPress:', error);
     
     // Return fallback categories when WordPress is down
     return [
-      { id: 1, name: 'General', slug: 'general', count: 1 }
+      { id: 1, name: 'Business Culture', slug: 'business-culture', count: 1 },
+      { id: 2, name: 'Market Strategy', slug: 'market-strategy', count: 1 },
+      { id: 3, name: 'Quality Control', slug: 'quality-control', count: 1 }
     ];
   }
 }

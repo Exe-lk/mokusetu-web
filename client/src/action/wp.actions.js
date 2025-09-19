@@ -22,45 +22,22 @@ const FALLBACK_DATA = {
 
 
 
-// Connection monitoring
-let connectionStats = {
-  totalRequests: 0,
-  successfulRequests: 0,
-  failedRequests: 0,
-  lastError: null,
-  lastSuccess: null
-};
-
 // Check if we're in a browser environment
 const isBrowser = typeof window !== 'undefined';
 
 // Helper function to create fetch with proper configuration and retry logic
-async function fetchWithTimeout(url, options = {}, timeout = 20000, retries = 5) {
+async function fetchWithTimeout(url, options = {}, timeout = 20000, retries = 3) {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), timeout);
-  
-  connectionStats.totalRequests++;
   
   for (let attempt = 1; attempt <= retries; attempt++) {
     try {
       console.log(`WordPress API request attempt ${attempt}/${retries}: ${url}`);
       
-      // Use different headers for browser vs server environments
-      const headers = isBrowser ? {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json, text/plain, */*',
-        ...options.headers,
-      } : {
-        'Content-Type': 'application/json',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        'Accept': 'application/json, text/plain, */*',
-        'Accept-Language': 'en-US,en;q=0.9',
-        'Accept-Encoding': 'gzip, deflate, br',
-        'Cache-Control': 'no-cache',
-        'Pragma': 'no-cache',
-        'Sec-Fetch-Dest': 'empty',
-        'Sec-Fetch-Mode': 'cors',
-        'Sec-Fetch-Site': 'cross-site',
+      // Use simplified headers to avoid CORS issues
+      const headers = {
+        'Accept': 'application/json',
+        ...(options.method === 'POST' && { 'Content-Type': 'application/json' }),
         ...options.headers,
       };
       
@@ -78,8 +55,6 @@ async function fetchWithTimeout(url, options = {}, timeout = 20000, retries = 5)
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       
-      connectionStats.successfulRequests++;
-      connectionStats.lastSuccess = new Date().toISOString();
       console.log(`WordPress API request successful: ${url}`);
       
       return response;
@@ -94,20 +69,12 @@ async function fetchWithTimeout(url, options = {}, timeout = 20000, retries = 5)
       // If it's a connection error and we have retries left, try again
       if ((error.code === 'ECONNRESET' || error.message.includes('fetch failed') || error.message.includes('ECONNRESET')) && attempt < retries) {
         console.warn(`WordPress API attempt ${attempt} failed, retrying... (${error.message})`);
-        // Wait a bit before retrying (exponential backoff with jitter)
-        const delay = Math.pow(2, attempt) * 1000 + Math.random() * 1000;
-        console.log(`Waiting ${Math.round(delay)}ms before retry...`);
+        // Wait a bit before retrying (exponential backoff)
+        const delay = Math.pow(2, attempt) * 1000;
+        console.log(`Waiting ${delay}ms before retry...`);
         await new Promise(resolve => setTimeout(resolve, delay));
         continue;
       }
-      
-      connectionStats.failedRequests++;
-      connectionStats.lastError = {
-        message: error.message,
-        code: error.code,
-        timestamp: new Date().toISOString(),
-        url: url
-      };
       
       console.error(`WordPress API request failed after ${retries} attempts: ${url}`, error);
       throw error;
@@ -115,114 +82,7 @@ async function fetchWithTimeout(url, options = {}, timeout = 20000, retries = 5)
   }
 }
 
-// Alternative connection method using XMLHttpRequest (browser only)
-async function fetchWithXHR(url, options = {}) {
-  if (!isBrowser) {
-    throw new Error('XHR method only available in browser environment');
-  }
-  
-  return new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', url, true);
-    xhr.setRequestHeader('Accept', 'application/json');
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    
-    xhr.onload = function() {
-      if (xhr.status >= 200 && xhr.status < 300) {
-        try {
-          const data = JSON.parse(xhr.responseText);
-          resolve({
-            ok: true,
-            status: xhr.status,
-            json: () => Promise.resolve(data),
-            headers: {
-              get: (name) => xhr.getResponseHeader(name)
-            }
-          });
-        } catch (e) {
-          reject(new Error('Invalid JSON response'));
-        }
-      } else {
-        reject(new Error(`HTTP error! status: ${xhr.status}`));
-      }
-    };
-    
-    xhr.onerror = function() {
-      reject(new Error('Network error'));
-    };
-    
-    xhr.ontimeout = function() {
-      reject(new Error('Request timeout'));
-    };
-    
-    xhr.timeout = 15000;
-    xhr.send();
-  });
-}
-
-// Health check function to monitor WordPress connection
-export async function checkWordPressHealth() {
-  const startTime = Date.now();
-  
-  try {
-    // Test basic API access
-    const apiTest = await fetchWithTimeout(`${WORDPRESS_URL}/wp-json`, {}, 10000, 1);
-    const apiData = await apiTest.json();
-    
-    // Test posts endpoint
-    const postsTest = await fetchWithTimeout(
-      `${WORDPRESS_URL}/wp-json/wp/v2/posts?per_page=1`, 
-      {}, 
-      10000, 
-      1
-    );
-    
-    // Test comments endpoint
-    let commentsTest = null;
-    try {
-      commentsTest = await fetchWithTimeout(
-        `${WORDPRESS_URL}/wp-json/wp/v2/comments?per_page=1`, 
-        {}, 
-      10000, 
-      1
-      );
-    } catch (commentError) {
-      console.warn('Comments endpoint test failed:', commentError.message);
-    }
-    
-    const responseTime = Date.now() - startTime;
-    
-    return {
-      status: 'healthy',
-      responseTime,
-      apiVersion: apiData.namespaces?.includes('wp/v2') ? 'v2' : 'unknown',
-      postsEndpoint: postsTest.ok ? 'working' : 'failing',
-      commentsEndpoint: commentsTest?.ok ? 'working' : 'failing',
-      timestamp: new Date().toISOString(),
-      connectionStats,
-      environment: isBrowser ? 'browser' : 'server'
-    };
-  } catch (error) {
-    const responseTime = Date.now() - startTime;
-    
-    return {
-      status: 'unhealthy',
-      responseTime,
-      error: error.message,
-      errorCode: error.code,
-      timestamp: new Date().toISOString(),
-      connectionStats,
-      environment: isBrowser ? 'browser' : 'server'
-    };
-  }
-}
-
-// Get connection statistics
-export async function getConnectionStats() {
-  return connectionStats;
-}
-
-// Test function to check if WordPress site is accessible
+// Test function to check if WordPress site is accessible (kept for debugging purposes)
 export async function testWordPressConnection() {
   try {
     const res = await fetchWithTimeout(`${WORDPRESS_URL}/wp-json`);

@@ -49,7 +49,7 @@ export default function Hero() {
           if (currentStep >= steps) {
             clearInterval(interval);
             setCounts({
-              partners: 500,
+              partners: 2,
               experience: 15,
               success: 98
             });
@@ -172,7 +172,6 @@ export default function Hero() {
                   {counts.partners}+
                 </div>
                 <div className="text-sm text-muted font-medium">Global Partners</div>
-                <div className="text-xs text-primary mt-1">2+ Countries</div>
               </div>
               <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-accent/20 hover:bg-white/80 transition-all duration-300 hover:scale-105">
                 <div className="stat-number text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-secondary to-success mb-1">

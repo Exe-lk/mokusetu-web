@@ -4,7 +4,6 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Loader from "@/components/Loader";
-import WordPressStatus from "@/components/WordPressStatus";
 import ScrollIndicator from "@/components/ScrollIndicator";
 import { LoadingProvider } from "@/contexts/LoadingContext";
 
@@ -56,7 +55,6 @@ export default function RootLayout({
           <Navbar />
           <main>{children}</main>
           <Footer />
-          <WordPressStatus />
         </LoadingProvider>
       </body>
     </html>

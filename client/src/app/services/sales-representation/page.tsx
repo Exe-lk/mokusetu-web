@@ -5,13 +5,13 @@ export default function SalesRepresentationPage() {
   return (
     <>
       <Breadcrumb 
-        currentPage="Sales & Representation Support" 
+        currentPage="Sales & Representative  Support" 
         currentPagePath="/services/sales-representation"
         parentPage="Services"
         parentPagePath="/services"
       />
       <PageHeader 
-        title="Sales & Representation Support" 
+        title="Sales & Representative  Support" 
         subtitle="Comprehensive sales and representation services to help your business thrive in the Japanese market."
       />
       
