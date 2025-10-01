@@ -14,11 +14,6 @@ export default function AboutPage() {
       <section className="section bg-gradient-to-br from-accent/5 via-white to-secondary/5">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-                <span className="gradient-text-brand">Our Story</span>
-              </h2>
-            </div>
             
             <div className="space-y-12">
               {/* MokuSetu: Where Bridge Begins */}

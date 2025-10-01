@@ -27,8 +27,8 @@ export default function Hero() {
 
   useEffect(() => {
     if (heroVisible) {
-      const duration = 2000; 
-      const steps = 60;
+      const duration = 3000; 
+      const steps = 100;
       const stepDuration = duration / steps;
 
       const animateCounts = () => {
@@ -41,7 +41,7 @@ export default function Hero() {
           const easeOutQuart = 1 - Math.pow(1 - progress, 4);
           
           setCounts({
-            partners: Math.floor(500 * easeOutQuart),
+            partners: Math.floor(3 * easeOutQuart),
             experience: Math.floor(15 * easeOutQuart),
             success: Math.floor(98 * easeOutQuart)
           });
@@ -49,7 +49,7 @@ export default function Hero() {
           if (currentStep >= steps) {
             clearInterval(interval);
             setCounts({
-              partners: 2,
+              partners: 3,
               experience: 15,
               success: 98
             });
@@ -155,38 +155,6 @@ export default function Hero() {
                   Explore Services
                 </Link>
               </div>
-              
-              <div className="flex items-center gap-4 p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-accent/20">
-                <div className="flex -space-x-2">
-                  <div className="w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-full border-2 border-white"></div>
-                  <div className="w-8 h-8 bg-gradient-to-r from-secondary to-success rounded-full border-2 border-white"></div>
-                  <div className="w-8 h-8 bg-gradient-to-r from-success to-primary rounded-full border-2 border-white"></div>
-                </div>
-                <span className="text-sm text-muted font-medium">Trusted by 500+ companies worldwide</span>
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-3 gap-4 pt-6">
-              <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-accent/20 hover:bg-white/80 transition-all duration-300 hover:scale-105">
-                <div className="stat-number text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary mb-1">
-                  {counts.partners}+
-                </div>
-                <div className="text-sm text-muted font-medium">Global Partners</div>
-              </div>
-              <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-accent/20 hover:bg-white/80 transition-all duration-300 hover:scale-105">
-                <div className="stat-number text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-secondary to-success mb-1">
-                  {counts.experience}+
-                </div>
-                <div className="text-sm text-muted font-medium">Years Experience</div>
-                <div className="text-xs text-secondary mt-1">Deep Knowledge</div>
-              </div>
-              <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-accent/20 hover:bg-white/80 transition-all duration-300 hover:scale-105">
-                <div className="stat-number text-3xl font-bold text-success mb-1">
-                  {counts.success}%
-                </div>
-                <div className="text-sm text-muted font-medium">Success Rate</div>
-                <div className="text-xs text-success mt-1">Proven Results</div>
-              </div>
             </div>
           </div>
           
@@ -222,6 +190,29 @@ export default function Hero() {
               
               <div className="absolute -top-6 -right-6 w-20 h-20 bg-gradient-to-br from-success to-primary rounded-2xl rotate-12 floating shadow-lg"></div>
               <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-xl -rotate-12 floating shadow-lg" style={{ animationDelay: '2s' }}></div>
+            </div>
+          </div>
+        </div>
+        
+        <div className="mt-16 lg:mt-20">
+          <div className="grid grid-cols-3 gap-4 lg:gap-8 items-center max-w-4xl mx-auto">
+            <div className="text-center p-4 lg:p-6 bg-white/60 backdrop-blur-sm rounded-2xl border border-accent/20 hover:bg-white/80 transition-all duration-300 hover:scale-105">
+              <div className="stat-number text-4xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary mb-1">
+                {counts.partners}+
+              </div>
+              <div className="text-sm text-muted font-medium">Global Partners</div>
+            </div>
+            <div className="text-center p-4 lg:p-6 bg-white/60 backdrop-blur-sm rounded-2xl border border-accent/20 hover:bg-white/80 transition-all duration-300 hover:scale-105">
+              <div className="stat-number text-4xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-secondary to-success mb-1">
+                {counts.experience}+
+              </div>
+              <div className="text-sm text-muted font-medium">Years Experience</div>
+            </div>
+            <div className="text-center p-4 lg:p-6 bg-white/60 backdrop-blur-sm rounded-2xl border border-accent/20 hover:bg-white/80 transition-all duration-300 hover:scale-105">
+              <div className="stat-number text-4xl lg:text-6xl font-bold text-success mb-1">
+                {counts.success}%
+              </div>
+              <div className="text-sm text-muted font-medium">Success Rate</div>
             </div>
           </div>
         </div>

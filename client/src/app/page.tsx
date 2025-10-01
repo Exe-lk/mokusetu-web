@@ -13,11 +13,9 @@ export default function Home() {
       <Hero />
       <About />
       <Services />
-      <VMV />
       <USP />
       <Blog />
       <Contact />
-      <NavigationSummary />
     </>
   );
 }

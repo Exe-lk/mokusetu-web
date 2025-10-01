@@ -51,28 +51,6 @@ export default function USP() {
             <p className="text-muted group-hover:text-white transition-colors duration-300">Direct access to verified partners and on-the-ground execution capabilities across Japan.</p>
           </div>
         </div>
-        
-        {/* Bottom CTA */}
-        <div className={`text-center mt-16 ${sectionVisible ? 'fade-in visible' : 'fade-in'}`} style={{ transitionDelay: '0.6s' }}>
-          <div className="floating-paper p-8 rounded-3xl max-w-4xl mx-auto group hover:bg-gradient-to-r hover:from-primary hover:to-secondary transition-all duration-300">
-            <h3 className="text-2xl font-bold text-foreground mb-4 group-hover:text-white transition-colors duration-300">Convinced We're the Right Partner?</h3>
-            <p className="text-lg text-muted mb-6 group-hover:text-white transition-colors duration-300">
-              Let's discuss how our unique advantages can accelerate your success in Japan.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="#contact" className="btn-primary">Start Partnership</a>
-              <a 
-                href="/why-us" 
-                className="inline-flex items-center gap-3 px-6 py-3 bg-white border border-primary/20 text-primary hover:bg-primary/5 hover:border-primary/30 rounded-xl transition-all duration-300 font-medium group hover:scale-105 shadow-sm hover:shadow-md"
-              >
-                <span>View Full Page</span>
-                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
