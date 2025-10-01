@@ -31,7 +31,7 @@ const services: Service[] = [
     title: "Quality Inspection",
     description:
       "Ensure your products meet the highest standards with our comprehensive quality inspection services.",
-    icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z",
+    icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z",
     color: "from-primary to-primary-light",
     href: "/services/quality-inspection"
   },
@@ -54,37 +54,39 @@ export default function Services() {
         
         <div className="section-divider mb-12"></div>
         
-        <div className="grid lg:grid-cols-3 gap-8">
-          {services.map((service, index) => {
-            const gradientClass = index === 0 
-              ? "hover:from-primary hover:to-secondary"
-              : index === 1
-              ? "hover:from-secondary hover:to-success"
-              : "hover:from-success hover:to-primary";
-            
-            return (
-              <Link 
-                key={service.title} 
-                href={service.href}
-                className={`floating-paper p-8 rounded-3xl group hover:bg-gradient-to-r ${gradientClass} transition-all duration-300 hover-lift ${sectionVisible ? 'stagger-in visible' : 'stagger-in'} block`}
-                style={{ transitionDelay: `${index * 0.1}s` }}
-              >
-                <div className="flex flex-col items-center text-center">
-                  <div className={`icon-container-unique w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-lg mb-6`}>
-                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={service.icon} />
-                    </svg>
+        <div className="flex justify-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl w-full">
+            {services.map((service, index) => {
+              const gradientClass = index === 0 
+                ? "hover:from-primary hover:to-secondary"
+                : index === 1
+                ? "hover:from-secondary hover:to-success"
+                : "hover:from-success hover:to-primary";
+              
+              return (
+                <Link 
+                  key={service.title} 
+                  href={service.href}
+                  className={`floating-paper p-8 rounded-3xl group hover:bg-gradient-to-r ${gradientClass} transition-all duration-300 hover-lift ${sectionVisible ? 'stagger-in visible' : 'stagger-in'} block`}
+                  style={{ transitionDelay: `${index * 0.1}s` }}
+                >
+                  <div className="flex flex-col items-center text-center">
+                    <div className={`icon-container-unique w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-lg mb-6`}>
+                      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={service.icon} />
+                      </svg>
+                    </div>
+                    <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-white transition-colors duration-300">
+                      {service.title}
+                    </h3>
+                    <p className="text-muted leading-relaxed group-hover:text-white transition-colors duration-300">
+                      {service.description}
+                    </p>
                   </div>
-                  <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-white transition-colors duration-300">
-                    {service.title}
-                  </h3>
-                  <p className="text-muted leading-relaxed group-hover:text-white transition-colors duration-300">
-                    {service.description}
-                  </p>
-                </div>
-              </Link>
-            );
-          })}
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

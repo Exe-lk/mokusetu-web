@@ -107,8 +107,6 @@ export default function Navbar() {
               </div>
             )}
           </div>
-          <button onClick={() => navigateToSection('vmv')} className={navItemClass}>Vision & Mission</button>
-          <button onClick={() => navigateToSection('usp')} className={navItemClass}>Why Us</button>
           <button onClick={() => navigateToSection('blog')} className={navItemClass}>Blog</button>
           <button onClick={() => navigateToSection('contact')} className={navItemClass}>Contact</button>
           <Link href="/contact" className="btn-primary">Get Started</Link>
@@ -164,8 +162,6 @@ export default function Navbar() {
                 </div>
               )}
             </div>
-            <button onClick={() => navigateToSection('vmv')} className={navItemClass}>Vision & Mission</button>
-            <button onClick={() => navigateToSection('usp')} className={navItemClass}>Why Us</button>
             <button onClick={() => navigateToSection('blog')} className={navItemClass}>Blog</button>
             <button onClick={() => navigateToSection('contact')} className={navItemClass}>Contact</button>
             <Link href="/contact" className="btn-primary text-center" onClick={() => setOpen(false)}>Get Started</Link>

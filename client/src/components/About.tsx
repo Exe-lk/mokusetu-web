@@ -30,6 +30,22 @@ export default function About() {
               <p className="text-muted leading-relaxed mb-4 group-hover:text-white transition-colors duration-300">
 MokuSetu was created with a clear vision of building purposeful bridges that unite people, ideas, and communities. The name combines mokuteki (Japanese for purpose) and setu (Sanskrit for bridge), symbolizing the belief that true progress happens when intention guides connection. A bridge is not only a means of crossing; it represents transition, collaboration, and shared growth. Guided by this philosophy, MokuSetu works to close divides across cultures, generations, and disciplines, creating pathways that inspire lasting impact.
               </p>
+              <div className="mt-8 pt-6 border-t border-accent/30">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <div className="text-center">
+                  <p className="text-sm text-muted mb-3 group-hover:text-white transition-colors duration-300">Want to learn more about our company?</p>
+                  <a 
+                    href="/about" 
+                    className="inline-flex items-center gap-3 px-6 py-3 bg-white border border-primary/20 text-primary hover:bg-primary/5 hover:border-primary/30 rounded-xl transition-all duration-300 font-medium group shadow-sm hover:shadow-md"
+                  >
+                    <span>View Full About Page</span>
+                    <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
             </div>
           </div>
 
@@ -75,34 +91,6 @@ MokuSetu was created with a clear vision of building purposeful bridges that uni
                     <h4 className="text-lg font-semibold text-foreground mb-2 group-hover:text-white transition-colors duration-300">Proven Results</h4>
                     <p className="text-muted text-sm group-hover:text-white transition-colors duration-300">Track record of successful market entries, partnerships, and business expansions with measurable outcomes.</p>
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom Section - Mission Statement */}
-        <div className={`mt-16 text-center ${sectionVisible ? 'fade-in visible' : 'fade-in'}`} style={{ transitionDelay: '0.5s' }}>
-          <div className="floating-paper p-8 rounded-3xl max-w-4xl mx-auto group hover:bg-gradient-to-r hover:from-primary hover:to-secondary transition-all duration-300">
-            <h3 className="text-2xl font-bold text-foreground mb-4 group-hover:text-white transition-colors duration-300">Our Mission</h3>
-            <p className="text-lg text-muted leading-relaxed group-hover:text-white transition-colors duration-300">
-              To empower international businesses with the knowledge, connections, and execution capabilities needed to thrive in Japan's dynamic market, while fostering sustainable partnerships that benefit all stakeholders.
-            </p>
-            
-            {/* Enhanced View Full Page Link - Fixed Gradient */}
-            <div className="mt-8 pt-6 border-t border-accent/30">
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <div className="text-center">
-                  <p className="text-sm text-muted mb-3 group-hover:text-white transition-colors duration-300">Want to learn more about our company?</p>
-                  <a 
-                    href="/about" 
-                    className="inline-flex items-center gap-3 px-6 py-3 bg-white border border-primary/20 text-primary hover:bg-primary/5 hover:border-primary/30 rounded-xl transition-all duration-300 font-medium group shadow-sm hover:shadow-md"
-                  >
-                    <span>View Full About Page</span>
-                    <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                  </a>
                 </div>
               </div>
             </div>
