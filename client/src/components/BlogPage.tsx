@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { getPosts, getCategories, getPostsByCategoryName } from "@/action/wp.client";
 import Link from "next/link";
 import Image from "next/image";
-import { decodeHTMLEntities } from "@/utils/lib";
+import { decodeHTMLEntities, stripHtmlTags } from "@/utils/lib";
 import { formatDate } from "@/utils/lib";
 
 interface BlogPost {
@@ -219,7 +219,7 @@ export default function BlogPage() {
                   </h3>
                   
                   <p className="text-gray-600 mb-4 line-clamp-3">
-                    {post.excerpt?.rendered ? decodeHTMLEntities(post.excerpt.rendered) : 'No excerpt available'}
+                    {post.excerpt?.rendered ? stripHtmlTags(post.excerpt.rendered) : 'No excerpt available'}
                   </p>
 
                   <div className="flex justify-end">
