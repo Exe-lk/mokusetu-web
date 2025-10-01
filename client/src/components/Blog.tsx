@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { getPosts, getPostImageUrl } from "@/action/wp.client";
 import Link from "next/link";
 import Image from "next/image";
-import { decodeHTMLEntities } from "@/utils/lib";
+import { decodeHTMLEntities, stripHtmlTags } from "@/utils/lib";
 import { formatDate } from "@/utils/lib";
 import WordPressImage from "@/components/WordPressImage";
 
@@ -134,7 +134,7 @@ export default function Blog() {
                     </h3>
                     
                     <p className="text-muted leading-relaxed line-clamp-3 group-hover:text-white transition-colors duration-300">
-                      {post.excerpt?.rendered ? decodeHTMLEntities(post.excerpt.rendered) : 'No excerpt available'}
+                      {post.excerpt?.rendered ? stripHtmlTags(post.excerpt.rendered) : 'No excerpt available'}
                     </p>
                     
                     <div className="flex items-center justify-between pt-4 border-t border-accent/30">

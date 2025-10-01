@@ -1,13 +1,45 @@
 "use client";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
+import { useRouter, usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const servicesDropdownRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+  const pathname = usePathname();
   const navItemClass = "text-sm font-medium text-foreground/90 hover:text-primary transition-colors duration-300";
+
+  // Function to handle navigation to home page sections
+  const navigateToSection = (sectionId: string) => {
+    if (pathname === '/') {
+      // If we're already on the home page, just scroll to the section
+      const element = document.getElementById(sectionId.replace('#', ''));
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // If we're on a different page, navigate to home page with the section
+      router.push(`/#${sectionId}`);
+    }
+    setOpen(false); // Close mobile menu
+  };
+
+  // Handle hash navigation when component mounts
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash && pathname === '/') {
+      // Small delay to ensure the page is fully loaded
+      setTimeout(() => {
+        const element = document.getElementById(hash.replace('#', ''));
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  }, [pathname]);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -29,17 +61,17 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 glass-japanese border-b border-primary/10">
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-        <Link href="#home" className="flex items-center gap-3 group">
+        <button onClick={() => navigateToSection('home')} className="flex items-center gap-3 group">
           <div className="relative">
             <img src="/logo.svg" alt="MokuSetu Group G.K. Logo" className="h-10 w-auto group-hover:scale-105 transition-transform duration-300" />
             <div className="absolute -inset-2 bg-primary/10 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </div>
           <span className="font-bold tracking-wide text-secondary text-lg">MokuSetu Group G.K.</span>
-        </Link>
+        </button>
 
         <nav className="hidden md:flex items-center gap-8">
-          <a href="#home" className={navItemClass}>Home</a>
-          <a href="#about" className={navItemClass}>About Us</a>
+          <button onClick={() => navigateToSection('home')} className={navItemClass}>Home</button>
+          <button onClick={() => navigateToSection('about')} className={navItemClass}>About Us</button>
           <div className="relative" ref={servicesDropdownRef}>
             <button
               className={`${navItemClass} flex items-center gap-1`}
@@ -75,10 +107,10 @@ export default function Navbar() {
               </div>
             )}
           </div>
-          <a href="#vmv" className={navItemClass}>Vision & Mission</a>
-          <a href="#usp" className={navItemClass}>Why Us</a>
-          <a href="#blog" className={navItemClass}>Blog</a>
-          <a href="#contact" className={navItemClass}>Contact</a>
+          <button onClick={() => navigateToSection('vmv')} className={navItemClass}>Vision & Mission</button>
+          <button onClick={() => navigateToSection('usp')} className={navItemClass}>Why Us</button>
+          <button onClick={() => navigateToSection('blog')} className={navItemClass}>Blog</button>
+          <button onClick={() => navigateToSection('contact')} className={navItemClass}>Contact</button>
           <Link href="/contact" className="btn-primary">Get Started</Link>
         </nav>
 
@@ -101,8 +133,8 @@ export default function Navbar() {
       {open && (
         <div className="md:hidden border-t border-primary/10 bg-white/95 backdrop-blur-sm">
           <div className="container mx-auto px-6 py-4 flex flex-col gap-4">
-            <a href="#home" className={navItemClass} onClick={() => setOpen(false)}>Home</a>
-            <a href="#about" className={navItemClass} onClick={() => setOpen(false)}>About Us</a>
+            <button onClick={() => navigateToSection('home')} className={navItemClass}>Home</button>
+            <button onClick={() => navigateToSection('about')} className={navItemClass}>About Us</button>
             <div className="flex flex-col gap-2">
               <button
                 className={`${navItemClass} flex items-center justify-between`}
@@ -132,10 +164,10 @@ export default function Navbar() {
                 </div>
               )}
             </div>
-            <a href="#vmv" className={navItemClass} onClick={() => setOpen(false)}>Vision & Mission</a>
-            <a href="#usp" className={navItemClass} onClick={() => setOpen(false)}>Why Us</a>
-            <a href="#blog" className={navItemClass} onClick={() => setOpen(false)}>Blog</a>
-            <a href="#contact" className={navItemClass} onClick={() => setOpen(false)}>Contact</a>
+            <button onClick={() => navigateToSection('vmv')} className={navItemClass}>Vision & Mission</button>
+            <button onClick={() => navigateToSection('usp')} className={navItemClass}>Why Us</button>
+            <button onClick={() => navigateToSection('blog')} className={navItemClass}>Blog</button>
+            <button onClick={() => navigateToSection('contact')} className={navItemClass}>Contact</button>
             <Link href="/contact" className="btn-primary text-center" onClick={() => setOpen(false)}>Get Started</Link>
           </div>
         </div>
