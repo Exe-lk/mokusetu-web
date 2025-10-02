@@ -14,7 +14,7 @@ export default function SalesRepresentationPage() {
         title="Sales & Representative  Support" 
         subtitle="Comprehensive sales and representation services to help your business thrive in the Japanese market."
       />
-      
+
       <section className="section">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">

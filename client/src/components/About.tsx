@@ -7,22 +7,11 @@ export default function About() {
   return (
     <section id="about" className="section section-muted" ref={sectionRef}>
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className={`text-4xl lg:text-5xl font-bold mb-4 ${sectionVisible ? 'fade-in visible' : 'fade-in'}`}>
-            <span className="gradient-text-brand">About Us</span>
-          </h2>
-          <p className={`text-xl text-muted max-w-3xl mx-auto ${sectionVisible ? 'fade-in visible' : 'fade-in'}`} style={{ transitionDelay: '0.2s' }}>
-            Your trusted partner in bridging global business with Japan's dynamic market.
-          </p>
-        </div>
-        
-        {/* Modern Section Divider */}
-        <div className="section-divider mb-12"></div>
         
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Company Story */}
           <div className={`space-y-6 ${sectionVisible ? 'fade-in visible' : 'fade-in'}`} style={{ transitionDelay: '0.3s' }}>
-            <div className="floating-paper p-8 rounded-3xl group hover:bg-gradient-to-r hover:from-primary hover:to-secondary transition-all duration-300">
+            <div className="floating-paper p-8 rounded-3xl group hover:bg-gradient-to-r hover:from-secondary hover:to-success transition-all duration-300 hover-lift">
               <h3 className="text-2xl font-bold text-foreground mb-4">Our Story</h3>
               <p className="text-muted leading-relaxed mb-4">
               MokuSetu: Where Purpose Meets Connection
@@ -52,7 +41,7 @@ MokuSetu was created with a clear vision of building purposeful bridges that uni
           {/* Right Column - Key Strengths */}
           <div className={`space-y-6 ${sectionVisible ? 'fade-in visible' : 'fade-in'}`} style={{ transitionDelay: '0.4s' }}>
             <div className="grid gap-6">
-              <div className="floating-paper p-6 rounded-2xl group hover:bg-gradient-to-r hover:from-primary hover:to-secondary transition-all duration-300 hover-lift">
+              <div className="floating-paper p-6 rounded-2xl group">
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-xl flex items-center justify-center flex-shrink-0">
                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -66,7 +55,7 @@ MokuSetu was created with a clear vision of building purposeful bridges that uni
                 </div>
               </div>
 
-              <div className="floating-paper p-6 rounded-2xl group hover:bg-gradient-to-r hover:from-secondary hover:to-success transition-all duration-300 hover-lift">
+              <div className="floating-paper p-6 rounded-2xl group">
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 bg-gradient-to-r from-secondary to-success rounded-xl flex items-center justify-center flex-shrink-0">
                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -80,7 +69,7 @@ MokuSetu was created with a clear vision of building purposeful bridges that uni
                 </div>
               </div>
 
-              <div className="floating-paper p-6 rounded-2xl group hover:bg-gradient-to-r hover:from-success hover:to-primary transition-all duration-300 hover-lift">
+              <div className="floating-paper p-6 rounded-2xl group">
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 bg-gradient-to-r from-success to-primary rounded-xl flex items-center justify-center flex-shrink-0">
                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">

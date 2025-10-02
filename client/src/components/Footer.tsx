@@ -1,18 +1,18 @@
 export default function Footer() {
   return (
-    <footer className="border-t border-primary/10 mt-20 bg-accent/30">
+    <footer className="border-t border-primary/10 mt-20" style={{ backgroundColor: '#1D3557' }}>
       <div className="container mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-foreground">MokuSetu Group G.K.</h3>
-            <p className="text-sm text-muted leading-relaxed">
+            <h3 className="text-lg font-semibold text-white">MokuSetu Group G.K.</h3>
+            <p className="text-sm text-white leading-relaxed">
               Your trusted partner in innovation and excellence. Building the future together.
             </p>
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-foreground">Contact Info</h3>
-            <div className="space-y-3 text-sm text-muted">
+            <h3 className="text-lg font-semibold text-white">Contact Info</h3>
+            <div className="space-y-3 text-sm text-white">
               <div className="flex items-start gap-2">
                 <svg className="w-4 h-4 mt-0.5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -47,62 +47,64 @@ export default function Footer() {
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-foreground">Location</h3>
-            <div className="space-y-3 text-sm text-muted">
+            <h3 className="text-lg font-semibold text-white">Location</h3>
+            <div className="space-y-3 text-sm text-white">
               <div>
-                <p className="font-medium text-foreground">Headquarters</p>
+                <p className="font-medium text-white">Headquarters</p>
                 <p>Yokohama, Kanagawa</p>
               </div>
               <div>
-                <p className="font-medium text-foreground">Address</p>
+                <p className="font-medium text-white">Address</p>
                 <p>6-50-10 Honchō, Naka-ku</p>
                 <p>Yokohama-shi, Kanagawa-ken</p>
                 <p>231-0005, Japan</p>
               </div>
               <div>
-                <p className="font-medium text-foreground">Time Zone</p>
+                <p className="font-medium text-white">Time Zone</p>
                 <p>UTC+9 (Japan Standard Time)</p>
               </div>
             </div>
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-foreground">Quick Links</h3>
+            <h3 className="text-lg font-semibold text-white">Quick Links</h3>
             <div className="space-y-3 text-sm">
-              <a href="#about" className="block hover:text-primary transition-colors duration-300 text-muted">About Us</a>
-              <a href="#services" className="block hover:text-primary transition-colors duration-300 text-muted">Services</a>
-              <a href="#blog" className="block hover:text-primary transition-colors duration-300 text-muted">Blog</a>
-              <a href="#contact" className="block hover:text-primary transition-colors duration-300 text-muted">Contact</a>
+              <a href="#about" className="block hover:text-primary transition-colors duration-300 text-white">About Us</a>
+              <a href="#services" className="block hover:text-primary transition-colors duration-300 text-white">Services</a>
+              <a href="#blog" className="block hover:text-primary transition-colors duration-300 text-white">Blog</a>
+              <a href="#contact" className="block hover:text-primary transition-colors duration-300 text-white">Contact</a>
             </div>
           </div>
         </div>
+
+         <div className="section-divider mb-12 opacity-30 border-t border-white"></div>
 
         <div className="border-t border-primary/10 pt-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2">
-                <svg className="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                </svg>
                 <a 
                   href="https://www.linkedin.com/company/mokusetu-group" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-primary hover:text-primary/80 transition-colors duration-300 font-medium"
+                  className="text-primary hover:text-primary/80 transition-colors duration-300"
+                  aria-label="Visit our LinkedIn page"
                 >
-                  LinkedIn
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                  </svg>
                 </a>
               </div>
             </div>
             
-            <div className="flex flex-col md:flex-row items-center gap-4 text-xs text-muted">
+            <div className="flex flex-col md:flex-row items-center gap-4 text-xs text-white">
               <a href="/privacy-policy" className="hover:text-primary transition-colors duration-300 font-medium">Privacy Policy</a>
               <a href="/terms-and-conditions" className="hover:text-primary transition-colors duration-300 font-medium">Terms and Conditions</a>
             </div>
           </div>
           
           <div className="mt-4 pt-4 border-t border-primary/5">
-            <p className="text-center text-sm text-muted">
+            <p className="text-center text-sm text-white">
               © 2025 MokuSetu Group G.K. All rights reserved.
             </p>
           </div>

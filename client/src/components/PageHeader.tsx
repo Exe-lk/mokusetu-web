@@ -35,6 +35,7 @@ export default function PageHeader({ title, subtitle }: PageHeaderProps) {
               {subtitle}
             </p>
           )}
+          <div className="section-divider mb-12"></div>
         </div>
       </div>
     </div>

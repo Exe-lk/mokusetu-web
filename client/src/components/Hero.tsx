@@ -142,14 +142,14 @@ export default function Hero() {
             <div className="space-y-6">
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link 
-                  href="#contact" 
+                  href="/contact" 
                   className="group relative px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-2xl overflow-hidden hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
                   <span className="relative z-10">Start Your Journey</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-secondary to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </Link>
                 <Link 
-                  href="#services" 
+                  href="/services" 
                   className="px-8 py-4 bg-white/80 backdrop-blur-sm border-2 border-secondary/30 text-secondary font-semibold rounded-2xl hover:bg-white hover:border-secondary/50 transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
                   Explore Services
@@ -194,7 +194,7 @@ export default function Hero() {
           </div>
         </div>
         
-        <div className="mt-16 lg:mt-20">
+        <div className="mt-16 lg:mt-20 mb-8">
           <div className="grid grid-cols-3 gap-4 lg:gap-8 items-center max-w-4xl mx-auto">
             <div className="text-center p-4 lg:p-6 bg-white/60 backdrop-blur-sm rounded-2xl border border-accent/20 hover:bg-white/80 transition-all duration-300 hover:scale-105">
               <div className="stat-number text-4xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary mb-1">
