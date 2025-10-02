@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="border-t border-primary/10 mt-20" style={{ backgroundColor: '#1D3557' }}>
@@ -65,10 +67,10 @@ export default function Footer() {
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-white">Quick Links</h3>
             <div className="space-y-3 text-sm">
-              <a href="#about" className="block hover:text-primary transition-colors duration-300 text-white">About Us</a>
-              <a href="#services" className="block hover:text-primary transition-colors duration-300 text-white">Services</a>
-              <a href="#blog" className="block hover:text-primary transition-colors duration-300 text-white">Blog</a>
-              <a href="#contact" className="block hover:text-primary transition-colors duration-300 text-white">Contact</a>
+              <Link href="/about" className="block hover:text-primary transition-colors duration-300 text-white">About Us</Link>
+              <Link href="/services" className="block hover:text-primary transition-colors duration-300 text-white">Services</Link>
+              <Link href="/blog" className="block hover:text-primary transition-colors duration-300 text-white">Blog</Link>
+              <Link href="/contact" className="block hover:text-primary transition-colors duration-300 text-white">Contact</Link>
             </div>
           </div>
         </div>

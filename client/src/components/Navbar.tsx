@@ -66,7 +66,7 @@ export default function Navbar() {
         </Link>
 
         {/* Centered Navigation */}
-        <nav className="hidden md:flex items-center gap-8 flex-1 justify-center">
+        <nav className="hidden md:flex items-center gap-18 flex-1 justify-center">
           <Link href="/" className={navItemClass}>Home</Link>
           <Link href="/about" className={navItemClass}>About Us</Link>
           <div className="relative" ref={servicesDropdownRef}>
@@ -108,10 +108,6 @@ export default function Navbar() {
           <Link href="/contact" className={navItemClass}>Contact</Link>
         </nav>
 
-        {/* Get Started Button - Right Corner */}
-        <div className="hidden md:flex">
-          <Link href="/contact" className="btn-primary">Get Started</Link>
-        </div>
 
         <button
           aria-label="Toggle menu"
@@ -165,7 +161,6 @@ export default function Navbar() {
             </div>
             <Link href="/blog" className={navItemClass} onClick={() => setOpen(false)}>Blog</Link>
             <Link href="/contact" className={navItemClass} onClick={() => setOpen(false)}>Contact</Link>
-            <Link href="/contact" className="btn-primary text-center mt-2" onClick={() => setOpen(false)}>Get Started</Link>
           </div>
         </div>
       )}
