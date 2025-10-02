@@ -76,10 +76,10 @@ export default function Services() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={service.icon} />
                       </svg>
                     </div>
-                    <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-white transition-colors duration-300">
+                    <h3 className="text-xl font-bold text-foreground mb-3">
                       {service.title}
                     </h3>
-                    <p className="text-muted leading-relaxed group-hover:text-white transition-colors duration-300">
+                    <p className="text-muted leading-relaxed">
                       {service.description}
                     </p>
                   </div>

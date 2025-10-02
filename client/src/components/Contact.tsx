@@ -161,15 +161,12 @@ export default function Contact() {
     <section id="contact" className="section" ref={sectionRef}>
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
-          <div className={`floating-paper p-12 rounded-3xl relative overflow-hidden transition-all duration-300 hover-lift ${sectionVisible ? 'scale-in visible' : 'scale-in'}`}>
-            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/20"></div>
-            <div className="absolute -top-20 -right-20 w-40 h-40 bg-primary/10 rounded-full blur-3xl floating"></div>
-            <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-secondary/10 rounded-full blur-3xl floating" style={{ animationDelay: '2s' }}></div>
+          <div className={`floating-paper p-12 rounded-3xl relative overflow-hidden ${sectionVisible ? 'scale-in visible' : 'scale-in'}`}>
             
             <div className="relative z-10">
               <div className="text-center mb-12">
-              <div className="icon-container-unique w-20 h-20 mx-auto mb-8">
-                <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-20 h-20 mx-auto mb-8 bg-gray-100 rounded-xl flex items-center justify-center">
+                <svg className="w-10 h-10 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                 </svg>
               </div>

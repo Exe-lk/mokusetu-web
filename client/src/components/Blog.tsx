@@ -124,21 +124,21 @@ export default function Blog() {
                   
                   <div className="space-y-4">
                     <div className="flex items-center gap-3 text-sm">
-                      <span className="text-muted group-hover:text-white transition-colors duration-300" suppressHydrationWarning>
+                      <span className="text-muted" suppressHydrationWarning>
                         {post.date ? formatDate(post.date) : 'No date'}
                       </span>
                     </div>
                     
-                    <h3 className="text-xl font-bold text-foreground group-hover:text-white transition-colors duration-300 line-clamp-2">
+                    <h3 className="text-xl font-bold text-foreground line-clamp-2">
                       {post.title?.rendered ? decodeHTMLEntities(post.title.rendered) : 'No title'}
                     </h3>
                     
-                    <p className="text-muted leading-relaxed line-clamp-3 group-hover:text-white transition-colors duration-300">
+                    <p className="text-muted leading-relaxed line-clamp-3">
                       {post.excerpt?.rendered ? stripHtmlTags(post.excerpt.rendered) : 'No excerpt available'}
                     </p>
                     
                     <div className="flex items-center justify-between pt-4 border-t border-accent/30">
-                      <div className="flex items-center gap-2 text-primary group-hover:text-white transition-colors duration-300">
+                      <div className="flex items-center gap-2 text-primary">
                         <Link 
                           href={`/${post.slug || '#'}`}
                           className="text-sm font-medium hover:underline"
@@ -187,7 +187,7 @@ export default function Blog() {
         <div className={`text-center mt-12 ${sectionVisible ? 'fade-in visible' : 'fade-in'}`} style={{ transitionDelay: '0.7s' }}>
           <div className="inline-flex flex-col items-center gap-4 p-6 bg-white border border-primary/20 rounded-2xl shadow-md group hover:bg-gradient-to-r hover:from-secondary hover:to-primary transition-all duration-300">
             <div className="text-center">
-              <p className="text-sm text-muted mb-3 group-hover:text-white transition-colors duration-300">Ready to explore our full blog content?</p>
+              <p className="text-sm text-muted mb-3">Ready to explore our full blog content?</p>
               <Link 
                 href="/blog" 
                 className="inline-flex items-center gap-3 px-6 py-3 bg-white border border-secondary/20 text-secondary hover:bg-secondary/5 hover:border-secondary/30 rounded-xl transition-all duration-300 font-medium group shadow-sm hover:shadow-md hover:scale-105"
