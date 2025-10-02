@@ -2,6 +2,7 @@
 import { useState, useRef } from "react";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import Swal from 'sweetalert2';
+import GoogleMap from './GoogleMap';
 
 interface FormData {
   name: string;
@@ -327,6 +328,15 @@ export default function Contact() {
                 </div>
 
               </form>
+
+              {/* Google Map Section */}
+              <div className="mt-12">
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl font-bold text-primary mb-3">Visit Our Office</h3>
+                  <p className="text-muted">6-chōme-50 Honchō, Naka Ward, Yokohama, Kanagawa 231-0005, Japan</p>
+                </div>
+                <GoogleMap className="w-full h-96 rounded-xl shadow-lg" />
+              </div>
               
               <div className="mt-12 pt-8 border-t border-accent/30">
                 <div className="text-center">

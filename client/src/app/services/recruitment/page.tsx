@@ -14,7 +14,6 @@ export default function RecruitmentPage() {
         title="Recruitment Services" 
         subtitle="Find the right talent for your business with our comprehensive recruitment solutions."
       />
-      
       <section className="section">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">

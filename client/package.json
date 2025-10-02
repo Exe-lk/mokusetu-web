@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "@googlemaps/react-wrapper": "^1.2.0",
     "@types/dompurify": "^3.0.5",
     "dompurify": "^3.2.6",
     "next": "15.5.0",
@@ -19,6 +20,7 @@
   "devDependencies": {
     "@netlify/plugin-nextjs": "^5.12.1",
     "@tailwindcss/postcss": "^4",
+    "@types/google.maps": "^3.58.1",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

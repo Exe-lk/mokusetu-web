@@ -14,7 +14,6 @@ export default function QualityInspectionPage() {
         title="Quality Inspection Services" 
         subtitle="Comprehensive QA/QC and inspection services to ensure the highest standards of safety, reliability, and compliance."
       />
-      
       <section className="section">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
