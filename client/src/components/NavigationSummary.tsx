@@ -72,20 +72,20 @@ export default function NavigationSummary() {
                   </svg>
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-white transition-colors duration-300">{section.title}</h3>
-                  <p className="text-muted text-sm mb-4 group-hover:text-white transition-colors duration-300">{section.description}</p>
+                  <h3 className="text-lg font-semibold text-foreground mb-2">{section.title}</h3>
+                  <p className="text-muted text-sm mb-4">{section.description}</p>
                   
                   <div className="flex gap-2">
                     <a 
                       href={section.homeAnchor}
-                      className="text-xs text-primary hover:text-white transition-colors duration-300 font-medium"
+                      className="text-xs text-primary font-medium"
                     >
                       View Section
                     </a>
-                    <span className="text-muted group-hover:text-white transition-colors duration-300">•</span>
+                    <span className="text-muted">•</span>
                     <Link 
                       href={section.pageLink}
-                      className="text-xs text-secondary hover:text-white transition-colors duration-300 font-medium"
+                      className="text-xs text-secondary font-medium"
                     >
                       Full Page
                     </Link>

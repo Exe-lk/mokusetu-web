@@ -66,7 +66,7 @@ body {
 }
 
 .section-muted {
-  background: linear-gradient(135deg, var(--accent) 0%, #FFFFFF 100%);
+  background: #FFFFFF;
 }
 
 .section-secondary {
@@ -103,38 +103,24 @@ body {
 /* Modern Floating Paper Effect */
 .floating-paper {
   position: relative;
-  background: linear-gradient(145deg, #FFFFFF 0%, var(--accent) 100%);
+  background: #FFFFFF;
   border: 1px solid var(--border);
-  box-shadow: 
-    0 20px 40px -10px rgba(29, 53, 87, 0.15),
-    0 10px 20px -5px rgba(29, 53, 87, 0.1);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(10px);
+  box-shadow: none;
+  transition: none;
+  backdrop-filter: none;
 }
 
 .floating-paper::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg, var(--primary), var(--secondary), var(--success));
-  border-radius: inherit;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.4s ease;
+  display: none;
 }
 
 .floating-paper:hover::before {
-  opacity: 1;
+  display: none;
 }
 
 .floating-paper:hover {
-  transform: translateY(-8px) rotate(1deg);
-  box-shadow: 
-    0 30px 60px -15px rgba(29, 53, 87, 0.25),
-    0 15px 30px -10px rgba(29, 53, 87, 0.15);
+  transform: none;
+  box-shadow: none;
 }
 
 /* Modern Glass Effect with Japanese Aesthetic */
@@ -189,10 +175,11 @@ body {
 }
 
 .gradient-text-brand {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--foreground);
+  background: none;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: unset;
+  background-clip: unset;
 }
 
 /* Modern Hero Background with Japanese Elements */

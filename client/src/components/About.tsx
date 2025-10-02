@@ -23,17 +23,17 @@ export default function About() {
           {/* Left Column - Company Story */}
           <div className={`space-y-6 ${sectionVisible ? 'fade-in visible' : 'fade-in'}`} style={{ transitionDelay: '0.3s' }}>
             <div className="floating-paper p-8 rounded-3xl group hover:bg-gradient-to-r hover:from-primary hover:to-secondary transition-all duration-300">
-              <h3 className="text-2xl font-bold text-foreground mb-4 group-hover:text-white transition-colors duration-300">Our Story</h3>
-              <p className="text-muted leading-relaxed mb-4 group-hover:text-white transition-colors duration-300">
+              <h3 className="text-2xl font-bold text-foreground mb-4">Our Story</h3>
+              <p className="text-muted leading-relaxed mb-4">
               MokuSetu: Where Purpose Meets Connection
               </p>
-              <p className="text-muted leading-relaxed mb-4 group-hover:text-white transition-colors duration-300">
+              <p className="text-muted leading-relaxed mb-4">
 MokuSetu was created with a clear vision of building purposeful bridges that unite people, ideas, and communities. The name combines mokuteki (Japanese for purpose) and setu (Sanskrit for bridge), symbolizing the belief that true progress happens when intention guides connection. A bridge is not only a means of crossing; it represents transition, collaboration, and shared growth. Guided by this philosophy, MokuSetu works to close divides across cultures, generations, and disciplines, creating pathways that inspire lasting impact.
               </p>
               <div className="mt-8 pt-6 border-t border-accent/30">
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <div className="text-center">
-                  <p className="text-sm text-muted mb-3 group-hover:text-white transition-colors duration-300">Want to learn more about our company?</p>
+                  <p className="text-sm text-muted mb-3">Want to learn more about our company?</p>
                   <a 
                     href="/about" 
                     className="inline-flex items-center gap-3 px-6 py-3 bg-white border border-primary/20 text-primary hover:bg-primary/5 hover:border-primary/30 rounded-xl transition-all duration-300 font-medium group shadow-sm hover:shadow-md"
@@ -60,8 +60,8 @@ MokuSetu was created with a clear vision of building purposeful bridges that uni
                     </svg>
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-foreground mb-2 group-hover:text-white transition-colors duration-300">Cultural Expertise</h4>
-                    <p className="text-muted text-sm group-hover:text-white transition-colors duration-300">Deep understanding of Japanese business culture, etiquette, and communication styles that drive successful partnerships.</p>
+                    <h4 className="text-lg font-semibold text-foreground mb-2">Cultural Expertise</h4>
+                    <p className="text-muted text-sm">Deep understanding of Japanese business culture, etiquette, and communication styles that drive successful partnerships.</p>
                   </div>
                 </div>
               </div>
@@ -74,8 +74,8 @@ MokuSetu was created with a clear vision of building purposeful bridges that uni
                     </svg>
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-foreground mb-2 group-hover:text-white transition-colors duration-300">Local Network</h4>
-                    <p className="text-muted text-sm group-hover:text-white transition-colors duration-300">Extensive connections with Japanese suppliers, partners, and regulatory bodies across diverse industries.</p>
+                    <h4 className="text-lg font-semibold text-foreground mb-2">Local Network</h4>
+                    <p className="text-muted text-sm">Extensive connections with Japanese suppliers, partners, and regulatory bodies across diverse industries.</p>
                   </div>
                 </div>
               </div>
@@ -88,8 +88,8 @@ MokuSetu was created with a clear vision of building purposeful bridges that uni
                     </svg>
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-foreground mb-2 group-hover:text-white transition-colors duration-300">Proven Results</h4>
-                    <p className="text-muted text-sm group-hover:text-white transition-colors duration-300">Track record of successful market entries, partnerships, and business expansions with measurable outcomes.</p>
+                    <h4 className="text-lg font-semibold text-foreground mb-2">Proven Results</h4>
+                    <p className="text-muted text-sm">Track record of successful market entries, partnerships, and business expansions with measurable outcomes.</p>
                   </div>
                 </div>
               </div>

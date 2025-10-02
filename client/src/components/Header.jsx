@@ -129,7 +129,7 @@ const Header = () => {
                     rounded-xl
                     font-pj
                     focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900
-                    hover:bg-gray-900 hover:text-white
+                    hover:bg-gray-900
                     focus:bg-gray-900 focus:text-white
                 "
               role="button"
@@ -198,7 +198,7 @@ const Header = () => {
                         rounded-xl
                         font-pj
                         focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900
-                        hover:bg-gray-900 hover:text-white
+                        hover:bg-gray-900
                         focus:bg-gray-900 focus:text-white
                     "
                 role="button"
