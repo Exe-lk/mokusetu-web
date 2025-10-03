@@ -130,7 +130,7 @@ export default function Hero() {
                 </Link>
                 <Link 
                   href="/services" 
-                  className="px-8 py-4 bg-white/80 backdrop-blur-sm border-2 border-secondary/30 text-secondary font-semibold rounded-2xl hover:bg-white hover:border-secondary/50 transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="px-8 py-4 bg-white/80 backdrop-blur-sm border-2 border-secondary/30 text-secondary font-semibold rounded-2xl hover:bg-gradient-to-r hover:from-secondary hover:to-primary hover:text-white hover:border-secondary/50 transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
                   Explore Services
                 </Link>
@@ -148,7 +148,7 @@ export default function Hero() {
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center space-y-8">
                     <div className="relative">
-                     <Image src="/Picture1.png" alt="Hero Image" width={350} height={350} className="rounded-3xl mr-auto image-center" />
+                     <Image src="/Picture1.png" alt="Hero Image" width={350} height={350} className="rounded-3xl mx-auto" />
                     </div>
                     <div className="space-y-3">
                       <div className="text-base text-secondary font-semibold max-w-xs mx-auto">
