@@ -84,12 +84,7 @@ export default function Hero() {
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div className={`space-y-8 ${heroVisible ? 'fade-in visible' : 'fade-in'}`}>
-            <div className="inline-flex items-center gap-3 px-6 py-3 bg-white/80 backdrop-blur-sm border border-primary/20 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
-              <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
-              <span className="text-sm font-semibold text-secondary">Where Bridge Begins</span>
-            </div>
-            
-            <div className="space-y-6">
+            <div className="space-y-6 mt-8">
               <h1 className="text-5xl lg:text-7xl font-black leading-none">
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-success">
                   Bridging
@@ -122,21 +117,6 @@ export default function Hero() {
               <p className="text-xl text-muted max-w-2xl leading-relaxed font-medium">
                 MokuSetu Group G.K. connects international businesses with opportunities in the Japanese market — from strategy to on-the-ground execution.
               </p>
-              
-              <div className="grid grid-cols-3 gap-4">
-                <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-accent/20 hover:bg-white/80 transition-all duration-300">
-                  <div className="w-3 h-3 bg-primary rounded-full mx-auto mb-2"></div>
-                  <span className="text-sm font-medium text-secondary">Cultural Expertise</span>
-                </div>
-                <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-accent/20 hover:bg-white/80 transition-all duration-300">
-                  <div className="w-3 h-3 bg-secondary rounded-full mx-auto mb-2"></div>
-                  <span className="text-sm font-medium text-secondary">Local Network</span>
-                </div>
-                <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-accent/20 hover:bg-white/80 transition-all duration-300">
-                  <div className="w-3 h-3 bg-success rounded-full mx-auto mb-2"></div>
-                  <span className="text-sm font-medium text-secondary">Proven Results</span>
-                </div>
-              </div>
             </div>
             
             <div className="space-y-6">
@@ -163,26 +143,31 @@ export default function Hero() {
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-secondary/10 to-success/20 rounded-3xl blur-3xl"></div>
               
               <div 
-                className="relative aspect-square rounded-3xl bg-white/90 backdrop-blur-sm border border-white/50 shadow-2xl overflow-hidden hover:scale-105 transition-all duration-500"
-                style={{
-                  transform: `perspective(1000px) rotateX(${mousePosition.y * 0.02}deg) rotateY(${mousePosition.x * 0.02}deg)`,
-                }}
+                className="relative aspect-square rounded-3xl bg-white/90 backdrop-blur-sm border border-white/50 shadow-2xl overflow-hidden"
               >
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center space-y-8">
                     <div className="relative">
-                      
                      <Image src="/Picture1.png" alt="Hero Image" width={350} height={350} className="rounded-3xl mr-auto image-center" />
                     </div>
-                    
-                    
                     <div className="space-y-3">
                       <div className="text-base text-secondary font-semibold max-w-xs mx-auto">
                         Comprehensive market entry solutions with local expertise
                       </div>
-                      <div className="text-sm text-primary font-medium">
-                        ✓ Cultural Bridge • ✓ Local Network • ✓ Proven Results
-                      </div>
+                      <div className="grid grid-cols-3 gap-4">
+                <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-accent/20 hover:bg-white/80 transition-all duration-300">
+                  <div className="w-3 h-3 bg-primary rounded-full mx-auto mb-2"></div>
+                  <span className="text-sm font-medium text-secondary">Cultural Expertise</span>
+                </div>
+                <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-accent/20 hover:bg-white/80 transition-all duration-300">
+                  <div className="w-3 h-3 bg-secondary rounded-full mx-auto mb-2"></div>
+                  <span className="text-sm font-medium text-secondary">Local Network</span>
+                </div>
+                <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-accent/20 hover:bg-white/80 transition-all duration-300">
+                  <div className="w-3 h-3 bg-success rounded-full mx-auto mb-2"></div>
+                  <span className="text-sm font-medium text-secondary">Proven Results</span>
+                </div>
+              </div>
                     </div>
                   </div>
                 </div>
