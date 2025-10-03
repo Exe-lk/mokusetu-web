@@ -19,44 +19,26 @@ const MapComponent: React.FC<MapProps> = ({ center, zoom, className }) => {
         zoom,
         styles: [
           {
-            featureType: "all",
-            elementType: "geometry.fill",
+            featureType: "water",
+            elementType: "geometry",
             stylers: [
               {
-                weight: "2.00"
-              }
-            ]
-          },
-          {
-            featureType: "all",
-            elementType: "geometry.stroke",
-            stylers: [
-              {
-                color: "#9c9c9c"
-              }
-            ]
-          },
-          {
-            featureType: "all",
-            elementType: "labels.text",
-            stylers: [
-              {
-                visibility: "on"
+                color: "#a0d8ef"
               }
             ]
           },
           {
             featureType: "landscape",
-            elementType: "all",
+            elementType: "geometry",
             stylers: [
               {
-                color: "#f2f2f2"
+                color: "#f5f5f5"
               }
             ]
           },
           {
-            featureType: "landscape",
-            elementType: "geometry.fill",
+            featureType: "road",
+            elementType: "geometry",
             stylers: [
               {
                 color: "#ffffff"
@@ -64,125 +46,29 @@ const MapComponent: React.FC<MapProps> = ({ center, zoom, className }) => {
             ]
           },
           {
-            featureType: "landscape.man_made",
-            elementType: "geometry.fill",
+            featureType: "road",
+            elementType: "labels.text.fill",
             stylers: [
               {
-                color: "#ffffff"
+                color: "#333333"
               }
             ]
           },
           {
             featureType: "poi",
-            elementType: "all",
+            elementType: "geometry",
             stylers: [
               {
-                visibility: "off"
+                color: "#f5f5f5"
               }
             ]
           },
           {
-            featureType: "road",
-            elementType: "all",
-            stylers: [
-              {
-                saturation: -100
-              },
-              {
-                lightness: 45
-              }
-            ]
-          },
-          {
-            featureType: "road",
-            elementType: "geometry.fill",
-            stylers: [
-              {
-                color: "#eeeeee"
-              }
-            ]
-          },
-          {
-            featureType: "road",
+            featureType: "poi",
             elementType: "labels.text.fill",
             stylers: [
               {
-                color: "#7b7b7b"
-              }
-            ]
-          },
-          {
-            featureType: "road",
-            elementType: "labels.text.stroke",
-            stylers: [
-              {
-                color: "#ffffff"
-              }
-            ]
-          },
-          {
-            featureType: "road.highway",
-            elementType: "all",
-            stylers: [
-              {
-                visibility: "simplified"
-              }
-            ]
-          },
-          {
-            featureType: "road.arterial",
-            elementType: "labels.icon",
-            stylers: [
-              {
-                visibility: "off"
-              }
-            ]
-          },
-          {
-            featureType: "transit",
-            elementType: "all",
-            stylers: [
-              {
-                visibility: "off"
-              }
-            ]
-          },
-          {
-            featureType: "water",
-            elementType: "all",
-            stylers: [
-              {
-                color: "#46bcec"
-              },
-              {
-                visibility: "on"
-              }
-            ]
-          },
-          {
-            featureType: "water",
-            elementType: "geometry.fill",
-            stylers: [
-              {
-                color: "#c8d7d4"
-              }
-            ]
-          },
-          {
-            featureType: "water",
-            elementType: "labels.text.fill",
-            stylers: [
-              {
-                color: "#070707"
-              }
-            ]
-          },
-          {
-            featureType: "water",
-            elementType: "labels.text.stroke",
-            stylers: [
-              {
-                color: "#ffffff"
+                color: "#666666"
               }
             ]
           }
@@ -193,17 +79,7 @@ const MapComponent: React.FC<MapProps> = ({ center, zoom, className }) => {
       new window.google.maps.Marker({
         position: center,
         map: newMap,
-        title: "Mokusetu Office",
-        icon: {
-          url: "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(`
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="20" cy="20" r="18" fill="#DD2136" stroke="#ffffff" stroke-width="4"/>
-              <path d="M20 8C15.58 8 12 11.58 12 16C12 22 20 32 20 32C20 32 28 22 28 16C28 11.58 24.42 8 20 8ZM20 19C18.9 19 18 18.1 18 17C18 15.9 18.9 15 20 15C21.1 15 22 15.9 22 17C22 18.1 21.1 19 20 19Z" fill="#ffffff"/>
-            </svg>
-          `),
-          scaledSize: new window.google.maps.Size(40, 40),
-          anchor: new window.google.maps.Point(20, 20)
-        }
+        title: "Mokusetu Office"
       });
 
       setMap(newMap);

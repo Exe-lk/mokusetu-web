@@ -25,7 +25,7 @@ MokuSetu was created with a clear vision of building purposeful bridges that uni
                   <p className="text-sm text-muted mb-3">Want to learn more about our company?</p>
                   <a 
                     href="/about" 
-                    className="inline-flex items-center gap-3 px-6 py-3 bg-white border border-primary/20 text-primary hover:bg-primary/5 hover:border-primary/30 rounded-xl transition-all duration-300 font-medium group shadow-sm hover:shadow-md"
+                    className="inline-flex items-center gap-3 px-6 py-3 bg-white border border-primary/20 text-primary hover:bg-gradient-to-r hover:from-secondary hover:to-primary hover:text-white hover:border-secondary rounded-xl transition-all duration-300 font-medium group shadow-sm hover:shadow-md hover:scale-105"
                   >
                     <span>View Full About Page</span>
                     <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">

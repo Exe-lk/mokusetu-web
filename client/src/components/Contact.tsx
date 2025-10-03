@@ -123,7 +123,7 @@ export default function Contact() {
         background: '#ffffff',
         color: '#1D3557',
         customClass: {
-          popup: 'rounded-xl shadow-2xl',
+          popup: 'rounded-lg shadow-2xl',
           title: 'text-2xl font-bold',
           htmlContainer: 'text-lg',
           confirmButton: 'px-8 py-3 rounded-lg font-semibold'
@@ -144,7 +144,7 @@ export default function Contact() {
         background: '#ffffff',
         color: '#1D3557',
         customClass: {
-          popup: 'rounded-xl shadow-2xl',
+          popup: 'rounded-lg shadow-2xl',
           title: 'text-2xl font-bold',
           htmlContainer: 'text-lg',
           confirmButton: 'px-8 py-3 rounded-lg font-semibold'
@@ -166,7 +166,7 @@ export default function Contact() {
             
             <div className="relative z-10">
               <div className="text-center mb-12">
-              <div className="w-20 h-20 mx-auto mb-8 bg-gray-100 rounded-xl flex items-center justify-center">
+              <div className="w-20 h-20 mx-auto mb-8 bg-gray-100 rounded-lg flex items-center justify-center">
                 <svg className="w-10 h-10 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                 </svg>
@@ -182,8 +182,8 @@ export default function Contact() {
               </div>
 
               {/* Contact Form */}
-              <form ref={formRef} onSubmit={handleSubmit} className="w-full space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <form ref={formRef} onSubmit={handleSubmit} className="w-full space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {/* Name Field */}
                   <div className="floating-label">
                     <input
@@ -194,13 +194,13 @@ export default function Contact() {
                       onChange={handleInputChange}
                       placeholder=" "
                       required
-                      className={`w-full px-4 py-4 border-2 rounded-xl bg-white/50 backdrop-blur-sm focus:ring-0 focus:outline-none transition-all duration-300 ${
+                      className={`w-full px-3 py-3 border-2 rounded-lg bg-white/50 backdrop-blur-sm focus:ring-0 focus:outline-none transition-all duration-300 ${
                         errors.name 
                           ? 'border-error focus:border-error' 
                           : 'border-border focus:border-primary'
                       }`}
                     />
-                    <label htmlFor="name" className="absolute left-4 top-4 text-muted transition-all duration-300 pointer-events-none bg-white px-2 text-sm">
+                    <label htmlFor="name" className="absolute left-3 top-3 text-muted transition-all duration-300 pointer-events-none bg-white px-2 text-sm">
                       Full Name *
                     </label>
                     {errors.name && (
@@ -223,13 +223,13 @@ export default function Contact() {
                       onChange={handleInputChange}
                       placeholder=" "
                       required
-                      className={`w-full px-4 py-4 border-2 rounded-xl bg-white/50 backdrop-blur-sm focus:ring-0 focus:outline-none transition-all duration-300 ${
+                      className={`w-full px-3 py-3 border-2 rounded-lg bg-white/50 backdrop-blur-sm focus:ring-0 focus:outline-none transition-all duration-300 ${
                         errors.email 
                           ? 'border-error focus:border-error' 
                           : 'border-border focus:border-primary'
                       }`}
                     />
-                    <label htmlFor="email" className="absolute left-4 top-4 text-muted transition-all duration-300 pointer-events-none bg-white px-2 text-sm">
+                    <label htmlFor="email" className="absolute left-3 top-3 text-muted transition-all duration-300 pointer-events-none bg-white px-2 text-sm">
                       Email Address *
                     </label>
                     {errors.email && (
@@ -241,34 +241,34 @@ export default function Contact() {
                       </p>
                     )}
                   </div>
-                </div>
 
-                {/* Phone Field */}
-                <div className="floating-label">
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    placeholder=" "
-                    className={`w-full px-4 py-4 border-2 rounded-xl bg-white/50 backdrop-blur-sm focus:ring-0 focus:outline-none transition-all duration-300 ${
-                      errors.phone 
-                        ? 'border-error focus:border-error' 
-                        : 'border-border focus:border-primary'
-                    }`}
-                  />
-                  <label htmlFor="phone" className="absolute left-4 top-4 text-muted transition-all duration-300 pointer-events-none bg-white px-2 text-sm">
-                    Phone Number
-                  </label>
-                  {errors.phone && (
-                    <p className="mt-2 text-sm text-error flex items-center gap-1">
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                      </svg>
-                      {errors.phone}
-                    </p>
-                  )}
+                  {/* Phone Field */}
+                  <div className="floating-label">
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      placeholder=" "
+                      className={`w-full px-3 py-3 border-2 rounded-lg bg-white/50 backdrop-blur-sm focus:ring-0 focus:outline-none transition-all duration-300 ${
+                        errors.phone 
+                          ? 'border-error focus:border-error' 
+                          : 'border-border focus:border-primary'
+                      }`}
+                    />
+                    <label htmlFor="phone" className="absolute left-3 top-3 text-muted transition-all duration-300 pointer-events-none bg-white px-2 text-sm">
+                      Phone Number
+                    </label>
+                    {errors.phone && (
+                      <p className="mt-2 text-sm text-error flex items-center gap-1">
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                        </svg>
+                        {errors.phone}
+                      </p>
+                    )}
+                  </div>
                 </div>
 
                 {/* Message Field */}
@@ -279,15 +279,15 @@ export default function Contact() {
                     value={formData.message}
                     onChange={handleInputChange}
                     placeholder=" "
-                    rows={6}
+                    rows={4}
                     required
-                    className={`w-full px-4 py-4 border-2 rounded-xl bg-white/50 backdrop-blur-sm focus:ring-0 focus:outline-none transition-all duration-300 resize-none ${
+                    className={`w-full px-3 py-3 border-2 rounded-lg bg-white/50 backdrop-blur-sm focus:ring-0 focus:outline-none transition-all duration-300 resize-none ${
                       errors.message 
                         ? 'border-error focus:border-error' 
                         : 'border-border focus:border-primary'
                     }`}
                   />
-                  <label htmlFor="message" className="absolute left-4 top-4 text-muted transition-all duration-300 pointer-events-none bg-white px-2 text-sm">
+                  <label htmlFor="message" className="absolute left-3 top-3 text-muted transition-all duration-300 pointer-events-none bg-white px-2 text-sm">
                     Message *
                   </label>
                   {errors.message && (
@@ -305,7 +305,7 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="btn-primary text-lg px-12 py-4 hover:scale-105 transition-transform duration-300 flex items-center justify-center gap-3 mx-auto disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                    className="btn-primary text-base px-8 py-3 hover:scale-105 transition-transform duration-300 flex items-center justify-center gap-2 mx-auto disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                   >
                     {isSubmitting ? (
                       <>
@@ -329,13 +329,48 @@ export default function Contact() {
 
               </form>
 
-              {/* Google Map Section */}
+              {/* Map and Address Section */}
               <div className="mt-12">
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-primary mb-3">Visit Our Office</h3>
-                  <p className="text-muted">6-chōme-50 Honchō, Naka Ward, Yokohama, Kanagawa 231-0005, Japan</p>
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-8">
+                  {/* Address Information Box */}
+                  <div className="lg:col-span-1">
+                    <div className="bg-white rounded-lg shadow-lg p-6 h-full">
+                      <div className="mb-4">
+                        <h4 className="font-bold text-lg text-gray-800 mb-2">Mokusetu Office</h4>
+                        <p className="text-sm text-gray-600 leading-relaxed">
+                          6-chōme-50 Honchō, Naka Ward,<br />
+                          Yokohama, Kanagawa 231-0005,<br />
+                          Japan
+                        </p>
+                      </div>
+                      
+                      <div className="mb-4">
+                        <div className="flex items-center gap-1 mb-2">
+                          <span className="text-yellow-500 text-sm">★★★★★</span>
+                          <span className="text-sm font-semibold text-gray-700">4.8</span>
+                          <span className="text-xs text-gray-500">(24 reviews)</span>
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-3">
+                        
+                        <a 
+                          href="https://maps.google.com/?q=35.4442,139.6380" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="block text-center text-blue-600 hover:text-blue-800 text-sm underline"
+                        >
+                          View larger map
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Map */}
+                  <div className="lg:col-span-2">
+                    <GoogleMap className="w-full h-96 rounded-lg shadow-lg" />
+                  </div>
                 </div>
-                <GoogleMap className="w-full h-96 rounded-xl shadow-lg" />
               </div>
               
               <div className="mt-12 pt-8 border-t border-accent/30">
@@ -344,7 +379,7 @@ export default function Contact() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
                       href="mailto:info@mokusetu.com"
-                      className="inline-flex items-center gap-3 px-6 py-3 bg-white border border-primary/20 text-primary hover:bg-primary/5 hover:border-primary/30 rounded-xl transition-all duration-300 font-medium group shadow-sm hover:shadow-md"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-primary/20 text-primary hover:bg-primary/5 hover:border-primary/30 rounded-lg transition-all duration-300 font-medium group shadow-sm hover:shadow-md"
                 >
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -353,7 +388,7 @@ export default function Contact() {
                 </a>
                 <a
                       href="tel:+81-3-1234-5678"
-                      className="inline-flex items-center gap-3 px-6 py-3 bg-white border border-secondary/20 text-secondary hover:bg-secondary/5 hover:border-secondary/30 rounded-xl transition-all duration-300 font-medium group shadow-sm hover:shadow-md"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-secondary/20 text-secondary hover:bg-secondary/5 hover:border-secondary/30 rounded-lg transition-all duration-300 font-medium group shadow-sm hover:shadow-md"
                 >
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />

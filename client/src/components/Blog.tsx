@@ -185,12 +185,12 @@ export default function Blog() {
         )}
         
         <div className={`text-center mt-12 ${sectionVisible ? 'fade-in visible' : 'fade-in'}`} style={{ transitionDelay: '0.7s' }}>
-          <div className="inline-flex flex-col items-center gap-4 p-6 bg-white border border-primary/20 rounded-2xl shadow-md group hover:bg-gradient-to-r hover:from-secondary hover:to-primary transition-all duration-300">
+          <div className="inline-flex flex-col items-center gap-4 p-6 bg-white border border-primary/20 rounded-2xl shadow-md transition-all duration-300">
             <div className="text-center">
               <p className="text-sm text-muted mb-3">Ready to explore our full blog content?</p>
               <Link 
                 href="/blog" 
-                className="inline-flex items-center gap-3 px-6 py-3 bg-white border border-secondary/20 text-secondary hover:bg-secondary/5 hover:border-secondary/30 rounded-xl transition-all duration-300 font-medium group shadow-sm hover:shadow-md hover:scale-105"
+                className="inline-flex items-center gap-3 px-6 py-3 bg-white border border-secondary/20 text-secondary hover:bg-gradient-to-r hover:from-secondary hover:to-primary hover:text-white hover:border-secondary rounded-xl transition-all duration-300 font-medium group shadow-sm hover:shadow-md hover:scale-105"
               >
                 <span>View Full Blog Page</span>
                 <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
