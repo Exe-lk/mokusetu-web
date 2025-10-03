@@ -9,8 +9,6 @@ export default function Navbar() {
   const servicesDropdownRef = useRef<HTMLDivElement>(null);
   const navItemClass = "text-sm font-medium text-foreground/90 hover:text-primary transition-colors duration-300";
 
-
-  // Close dropdown when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (servicesDropdownRef.current && !servicesDropdownRef.current.contains(event.target as Node)) {
@@ -55,7 +53,6 @@ export default function Navbar() {
         </div>
       </div>
       
-      {/* Main Navigation */}
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3 group">
           <div className="relative">
@@ -65,7 +62,6 @@ export default function Navbar() {
           <span className="font-bold tracking-wide text-secondary text-lg">MokuSetu Group G.K.</span>
         </Link>
 
-        {/* Centered Navigation */}
         <nav className="hidden md:flex items-center gap-18 flex-1 justify-center">
           <Link href="/" className={navItemClass}>Home</Link>
           <Link href="/about" className={navItemClass}>About Us</Link>

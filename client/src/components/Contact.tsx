@@ -160,8 +160,8 @@ export default function Contact() {
 
   return (
     <section id="contact" className="section" ref={sectionRef}>
-      <div className="container mx-auto px-6">
-        <div className="max-w-4xl mx-auto">
+      <div className="w-full px-6">
+        <div className="w-full">
           <div className={`floating-paper p-12 rounded-3xl relative overflow-hidden ${sectionVisible ? 'scale-in visible' : 'scale-in'}`}>
             
             <div className="relative z-10">
@@ -182,7 +182,7 @@ export default function Contact() {
               </div>
 
               {/* Contact Form */}
-              <form ref={formRef} onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-6">
+              <form ref={formRef} onSubmit={handleSubmit} className="w-full space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Name Field */}
                   <div className="floating-label">
