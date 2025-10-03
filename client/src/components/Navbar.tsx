@@ -59,7 +59,7 @@ export default function Navbar() {
             <img src="/logo.svg" alt="MokuSetu Group G.K. Logo" className="h-10 w-auto group-hover:scale-105 transition-transform duration-300" />
             <div className="absolute -inset-2 bg-primary/10 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col -mt-3">
             <span className="font-bold tracking-wide text-secondary text-lg">MokuSetu Group G.K.</span>
             <img src="/assests/Tagline on red short.png" alt="MokuSetu Group Tagline" className="h-4 w-auto mt-1" />
           </div>

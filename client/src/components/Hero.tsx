@@ -160,11 +160,11 @@ export default function Hero() {
                   <span className="text-sm font-medium text-secondary">Cultural Expertise</span>
                 </div>
                 <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-accent/20 hover:bg-white/80 transition-all duration-300">
-                  <div className="w-3 h-3 bg-secondary rounded-full mx-auto mb-2"></div>
+                  <div className="w-3 h-3 bg-primary rounded-full mx-auto mb-2"></div>
                   <span className="text-sm font-medium text-secondary">Local Network</span>
                 </div>
                 <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-accent/20 hover:bg-white/80 transition-all duration-300">
-                  <div className="w-3 h-3 bg-success rounded-full mx-auto mb-2"></div>
+                  <div className="w-3 h-3 bg-primary rounded-full mx-auto mb-2"></div>
                   <span className="text-sm font-medium text-secondary">Proven Results</span>
                 </div>
               </div>
@@ -173,7 +173,7 @@ export default function Hero() {
                 </div>
               </div>
               
-              <div className="absolute -top-6 -right-6 w-20 h-20 bg-gradient-to-br from-success to-primary rounded-2xl rotate-12 floating shadow-lg"></div>
+              <div className="absolute -top-6 -right-6 w-20 h-20 bg-gradient-to-br from-primary to-secondary rounded-2xl rotate-12 floating shadow-lg"></div>
               <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-xl -rotate-12 floating shadow-lg" style={{ animationDelay: '2s' }}></div>
             </div>
           </div>
@@ -188,13 +188,13 @@ export default function Hero() {
               <div className="text-sm text-muted font-medium">Global Partners</div>
             </div>
             <div className="text-center p-4 lg:p-6 bg-white/60 backdrop-blur-sm rounded-2xl border border-accent/20 hover:bg-white/80 transition-all duration-300 hover:scale-105">
-              <div className="stat-number text-4xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-secondary to-success mb-1">
+              <div className="stat-number text-4xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary mb-1">
                 {counts.experience}+
               </div>
               <div className="text-sm text-muted font-medium">Years Experience</div>
             </div>
             <div className="text-center p-4 lg:p-6 bg-white/60 backdrop-blur-sm rounded-2xl border border-accent/20 hover:bg-white/80 transition-all duration-300 hover:scale-105">
-              <div className="stat-number text-4xl lg:text-6xl font-bold text-success mb-1">
+              <div className="stat-number text-4xl lg:text-6xl font-bold text-gradient-to-r from-primary to-secondary mb-1">
                 {counts.success}%
               </div>
               <div className="text-sm text-muted font-medium">Success Rate</div>
