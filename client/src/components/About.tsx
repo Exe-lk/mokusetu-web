@@ -12,12 +12,13 @@ export default function About() {
           {/* Left Column - Company Story */}
           <div className={`space-y-6 ${sectionVisible ? 'fade-in visible' : 'fade-in'}`} style={{ transitionDelay: '0.3s' }}>
             <div className="floating-paper p-8 rounded-3xl group hover:bg-gradient-to-r hover:from-secondary hover:to-success transition-all duration-300 hover-lift">
-              <h3 className="text-2xl font-bold text-foreground mb-4">Our Story</h3>
+              <h3 className="text-2xl font-bold text-foreground mb-4">Empowering Cross-Border Growth
+              </h3>
               <p className="text-muted leading-relaxed mb-4">
-              MokuSetu: Where Purpose Meets Connection
+              Founded in Japan, MokuSetu Group serves as a trusted partner for international businesses entering or expanding within the Japanese market.
               </p>
               <p className="text-muted leading-relaxed mb-4">
-MokuSetu was created with a clear vision of building purposeful bridges that unite people, ideas, and communities. The name combines mokuteki (Japanese for purpose) and setu (Sanskrit for bridge), symbolizing the belief that true progress happens when intention guides connection. A bridge is not only a means of crossing; it represents transition, collaboration, and shared growth. Guided by this philosophy, MokuSetu works to close divides across cultures, generations, and disciplines, creating pathways that inspire lasting impact.
+              We combine local expertise with global perspective—bridging not only language, but culture, regulation, and business practice—to ensure your operations thrive with precision and trust.
               </p>
               <div className="mt-8 pt-6 border-t border-accent/30">
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -25,10 +26,10 @@ MokuSetu was created with a clear vision of building purposeful bridges that uni
                   <p className="text-sm text-muted mb-3">Want to learn more about our company?</p>
                   <a 
                     href="/about" 
-                    className="inline-flex items-center gap-3 px-6 py-3 bg-white border border-primary/20 text-primary hover:bg-gradient-to-r hover:from-secondary hover:to-primary hover:text-white hover:border-secondary rounded-xl transition-all duration-300 font-medium group shadow-sm hover:shadow-md hover:scale-105"
+                    className="inline-flex items-center gap-3 px-6 py-3 bg-white border border-primary/20 text-primary hover:bg-gradient-to-r hover:from-secondary hover:to-primary hover:border-secondary rounded-xl transition-all duration-300 font-medium group shadow-sm hover:shadow-md hover:scale-105"
                   >
-                    <span>View Full About Page</span>
-                    <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <span className="group-hover:text-white transition-colors duration-300">Learn More</span>
+                    <svg className="w-4 h-4 group-hover:translate-x-1 group-hover:text-white transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
                   </a>

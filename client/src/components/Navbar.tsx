@@ -87,7 +87,7 @@ export default function Navbar() {
               <div 
                 className="absolute top-full left-0 mt-2 w-64 bg-white border border-primary/20 rounded-lg shadow-lg py-2 z-50"
               >
-                <Link href="/services" className="block px-4 py-2 text-sm text-foreground hover:bg-primary/5 transition-colors">
+                <Link href="/services/all-services" className="block px-4 py-2 text-sm text-foreground hover:bg-primary/5 transition-colors">
                   All Services
                 </Link>
                 <div className="border-t border-primary/10 my-1"></div>
@@ -146,7 +146,7 @@ export default function Navbar() {
               </button>
               {mobileServicesOpen && (
                 <div className="ml-4 flex flex-col gap-2">
-                  <Link href="/services" className="text-sm text-foreground/80 hover:text-primary transition-colors" onClick={() => setOpen(false)}>
+                  <Link href="/services/all-services" className="text-sm text-foreground/80 hover:text-primary transition-colors" onClick={() => setOpen(false)}>
                     All Services
                   </Link>
                   <Link href="/services/sales-representation" className="text-sm text-foreground/80 hover:text-primary transition-colors" onClick={() => setOpen(false)}>

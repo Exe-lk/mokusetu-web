@@ -83,8 +83,7 @@ export default function AboutPage() {
                 <div>
                   <h3 className="text-2xl font-bold text-foreground mb-3">Our Mission</h3>
                   <p className="text-muted leading-relaxed">
-                    To empower international businesses with the knowledge, connections, and execution capabilities needed to thrive in Japan's dynamic market, while fostering sustainable partnerships that benefit all stakeholders.
-                  </p>
+                  Our team connects businesses in Japan and worldwide by offering tailored solutions for market entry, sourcing, quality control, and project management. You get what you need, when you need it.                  </p>
                 </div>
               </div>
             </div>
@@ -99,7 +98,26 @@ export default function AboutPage() {
                 <div>
                   <h3 className="text-2xl font-bold text-foreground mb-3">Our Vision</h3>
                   <p className="text-muted leading-relaxed">
-                    To become the most trusted bridge between global businesses and Japan, creating a world where cultural barriers are transformed into competitive advantages and mutual growth opportunities.
+                  Serve as trusted bridge for business across borders enabling growth through integrity, clear communication and cultural understandings. 
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Brand Archetype - Centered */}
+          <div className="mt-12 max-w-3xl mx-auto">
+            <div className="floating-paper p-8 rounded-3xl">
+              <div className="flex items-start gap-4 mb-6">
+                <div className="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-foreground mb-3">Our Brand Archetype: The Caretaker</h3>
+                  <p className="text-muted leading-relaxed">
+                    At MokuSetu, we act as The Caretaker — a trusted partner who nurtures every business relationship with empathy, accountability, and foresight. We ensure that every connection is meaningful and every outcome sustainable, reflecting our belief that true growth comes from mutual trust and understanding.
                   </p>
                 </div>
               </div>
@@ -129,8 +147,10 @@ export default function AboutPage() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold text-foreground mb-2">Cultural Expertise</h4>
-                  <p className="text-muted text-sm">Deep understanding of Japanese business culture, etiquette, and communication styles that drive successful partnerships.</p>
+                  <h4 className="text-lg font-semibold text-foreground mb-2">Honesty & Transparency</h4>
+                  <p className="text-muted text-sm">We believe integrity is the foundation of every successful partnership.
+ At MokuSetu, we communicate openly, set clear expectations, and act with sincerity in every interaction. Transparency builds trust and trust drives long-term collaboration.
+</p>
                 </div>
               </div>
             </div>
@@ -143,8 +163,9 @@ export default function AboutPage() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold text-foreground mb-2">Local Network</h4>
-                  <p className="text-muted text-sm">Extensive connections with Japanese suppliers, partners, and regulatory bodies across diverse industries.</p>
+                  <h4 className="text-lg font-semibold text-foreground mb-2">Respect Across Cultures</h4>
+                  <p className="text-muted text-sm">Cultural understanding is at the heart of what we do.
+                  We value every perspective and approach each partnership with humility and sensitivity to local customs. By respecting cultural differences, we create harmony that strengthens global business relationships.</p>
                 </div>
               </div>
             </div>
@@ -157,8 +178,10 @@ export default function AboutPage() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold text-foreground mb-2">Proven Results</h4>
-                  <p className="text-muted text-sm">Track record of successful market entries, partnerships, and business expansions with measurable outcomes.</p>
+                  <h4 className="text-lg font-semibold text-foreground mb-2">Collaboration for Mutual Growth</h4>
+                  <p className="text-muted text-sm">We grow when our clients grow.
+ Our approach centers on teamwork and shared success, working side by side with partners to create strategies and solutions that benefit everyone involved.
+</p>
                 </div>
               </div>
             </div>
@@ -171,8 +194,9 @@ export default function AboutPage() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold text-foreground mb-2">Trust & Integrity</h4>
-                  <p className="text-muted text-sm">Building lasting relationships based on transparency, honesty, and mutual respect in all our business dealings.</p>
+                  <h4 className="text-lg font-semibold text-foreground mb-2">Building Trust Across Borders</h4>
+                  <p className="text-muted text-sm">Trust is not given; it is earned through consistency and reliability.
+                  We ensure that every promise made is a promise kept, fostering confidence between Japan and international markets through dependable performance and ethical practice.</p>
                 </div>
               </div>
             </div>
@@ -185,22 +209,9 @@ export default function AboutPage() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold text-foreground mb-2">Innovation</h4>
-                  <p className="text-muted text-sm">Continuously evolving our approach to meet the changing needs of global businesses in Japan's dynamic market.</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="floating-paper p-6 rounded-2xl group">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <h4 className="text-lg font-semibold text-foreground mb-2">Global Perspective</h4>
-                  <p className="text-muted text-sm">Combining international business insights with deep local knowledge to create comprehensive solutions.</p>
+                  <h4 className="text-lg font-semibold text-foreground mb-2">Strong Partnerships, Lasting Impact</h4>
+                  <p className="text-muted text-sm">Our goal is not short-term gains but enduring value.
+                  We nurture relationships that stand the test of time, delivering meaningful results that extend beyond projects and create partnerships that shape the future of cross-border business.</p>
                 </div>
               </div>
             </div>
