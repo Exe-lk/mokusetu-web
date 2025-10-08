@@ -182,8 +182,8 @@ export default function Contact() {
               </div>
 
               {/* Contact Form */}
-              <form ref={formRef} onSubmit={handleSubmit} className="w-full space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <form ref={formRef} onSubmit={handleSubmit} className="max-w-2xl mx-auto w-full space-y-4">
+                <div className="grid grid-cols-1 gap-4">
                   {/* Name Field */}
                   <div className="floating-label">
                     <input

@@ -61,7 +61,7 @@ export default function Navbar() {
           </div>
           <div className="flex flex-col -mt-3">
             <span className="font-bold tracking-wide text-secondary text-lg">MokuSetu Group G.K.</span>
-            <img src="/assests/Tagline on red short.png" alt="MokuSetu Group Tagline" className="h-4 w-auto mt-1" />
+            <img src="/assests/Tagline on red short.png" alt="MokuSetu Group Tagline" className="h-4 w-auto mt-1 object-contain" />
           </div>
         </Link>
 
