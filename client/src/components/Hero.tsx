@@ -161,7 +161,7 @@ export default function Hero() {
                   <span className="text-sm font-medium text-secondary">Cultural Expertise</span>
                 </div>
                 <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-accent/20 hover:bg-white/80 transition-all duration-300">
-                  <div className="w-3 h-3 bg-primary rounded-full mx-auto mb-2"></div>
+                  <div className="w-3 h-3 bg-secondary rounded-full mx-auto mb-2"></div>
                   <span className="text-sm font-medium text-secondary">Local Network</span>
                 </div>
                 <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-accent/20 hover:bg-white/80 transition-all duration-300">

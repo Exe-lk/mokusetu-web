@@ -20,15 +20,7 @@ const services: Service[] = [
     color: "from-primary to-primary-light",
     href: "/services/sales-representation"
   },
-  {
-     title: "Recruitment Support Support",
-    description:
-      "Building your Japan team made easier.Our upcoming recruitment service connects you with bilingual and local professionals who understand both your culture and Japan's business environment.",
-    icon: "M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2V6",
-    color: "from-success to-emerald-400",
-    href: "/services/recruitment",
-    comingSoon: true
-   },
+ 
   {
     title: "Quality Inspection",
     description:
@@ -36,6 +28,15 @@ const services: Service[] = [
     icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z",
     color: "from-primary to-primary-light",
     href: "/services/quality-inspection"
+  },
+  {
+    title: "Recruitment Support Support",
+   description:
+     "Building your Japan team made easier.Our upcoming recruitment service connects you with bilingual and local professionals who understand both your culture and Japan's business environment.",
+   icon: "M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2V6",
+   color: "from-success to-emerald-400",
+   href: "/services/recruitment",
+   comingSoon: true
   },
 ];
 
@@ -68,7 +69,7 @@ export default function Services() {
               return (
                 <div 
                   key={service.title} 
-                  className={`floating-paper p-8 rounded-3xl group hover:bg-gradient-to-r ${gradientClass} transition-all duration-300 hover-lift ${sectionVisible ? 'stagger-in visible' : 'stagger-in'}`}
+                  className={`floating-paper p-8 rounded-3xl`}
                   style={{ transitionDelay: `${index * 0.1}s` }}
                 >
                   <div className="flex flex-col items-center text-center h-full">
@@ -93,9 +94,12 @@ export default function Services() {
                       <div className="mt-auto">
                         <Link 
                           href={service.href}
-                          className="inline-block px-6 py-2 bg-primary text-white rounded-full font-semibold text-sm hover:bg-primary-dark transition-colors duration-300 hover:shadow-lg"
+                          className="inline-flex items-center gap-3 px-6 py-3 bg-white border border-primary/20 text-primary hover:bg-gradient-to-r hover:from-secondary hover:to-primary hover:border-secondary hover:text-white rounded-xl transition-all duration-300 font-medium group shadow-sm hover:shadow-md hover:scale-105"
                         >
-                          Learn More →
+                          <span className="group-hover:text-white transition-colors duration-300">Learn More</span>
+                          <svg className="w-4 h-4 group-hover:translate-x-1 group-hover:text-white transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
                         </Link>
                       </div>
                     )}
