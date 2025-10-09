@@ -11,7 +11,7 @@ export default function About() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Company Story */}
           <div className={`space-y-6 ${sectionVisible ? 'fade-in visible' : 'fade-in'}`} style={{ transitionDelay: '0.3s' }}>
-            <div className="floating-paper p-8 rounded-3xl group hover:bg-gradient-to-r hover:from-secondary hover:to-success transition-all duration-300 hover-lift">
+            <div className="floating-paper p-8 rounded-3xl">
               <h3 className="text-2xl font-bold text-foreground mb-4">Empowering Cross-Border Growth
               </h3>
               <p className="text-muted leading-relaxed mb-4">
@@ -26,10 +26,10 @@ export default function About() {
                   <p className="text-sm text-muted mb-3">Want to learn more about our company?</p>
                   <a 
                     href="/about" 
-                    className="inline-flex items-center gap-3 px-6 py-3 bg-white border border-primary/20 text-primary hover:bg-gradient-to-r hover:from-secondary hover:to-primary hover:border-secondary rounded-xl transition-all duration-300 font-medium group shadow-sm hover:shadow-md hover:scale-105"
+                    className="inline-flex items-center gap-3 px-6 py-3 bg-white border border-primary/20 text-primary hover:bg-gradient-to-r hover:from-secondary hover:to-primary hover:border-secondary hover:text-white rounded-xl transition-all duration-300 font-medium group shadow-sm hover:shadow-md hover:scale-105"
                   >
                     <span className="group-hover:text-white transition-colors duration-300">Learn More</span>
-                    <svg className="w-4 h-4 group-hover:translate-x-1 group-hover:text-white transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 group-hover:translate-x-1 group-hover:text-white transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
                   </a>
