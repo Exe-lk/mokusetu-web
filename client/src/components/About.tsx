@@ -12,7 +12,7 @@ export default function About() {
           {/* Left Column - Company Story */}
           <div className={`space-y-6 ${sectionVisible ? 'fade-in visible' : 'fade-in'}`} style={{ transitionDelay: '0.3s' }}>
             <div className="floating-paper p-8 rounded-3xl">
-              <h3 className="text-2xl font-bold text-foreground mb-4">Empowering Cross-Border Growth
+              <h3 className="text-2xl font-bold text-foreground mb-4">Mokusetu Group:Empowering Cross-Border Growth
               </h3>
               <p className="text-muted leading-relaxed mb-4">
               Founded in Japan, MokuSetu Group serves as a trusted partner for international businesses entering or expanding within the Japanese market.

@@ -107,7 +107,7 @@ export default function Hero() {
                 <span className="px-4 py-2 bg-secondary/10 text-secondary rounded-xl font-medium text-sm border border-secondary/20">
                   SMEs
                 </span>
-                <span className="px-4 py-2 bg-success/10 text-success rounded-xl font-medium text-sm border border-success/20">
+                <span className="px-4 py-2 bg-primary/10 text-primary rounded-xl font-medium text-sm border border-primary/20">
                   Corporations
                 </span>
               </div>
