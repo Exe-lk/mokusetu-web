@@ -36,9 +36,9 @@ export default function QualityInspectionPage() {
             </div>
 
             <div className="grid md:grid-cols-2 gap-8 mb-12">
-              <div className="floating-paper p-8 rounded-3xl">
-                <div className="w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-2xl flex items-center justify-center mb-6">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="floating-paper p-8 rounded-3xl flex flex-col items-center text-center h-full">
+              <div className={`icon-container-unique w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-lg mb-6`}>
+              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
@@ -48,9 +48,9 @@ export default function QualityInspectionPage() {
                 </p>
               </div>
               
-              <div className="floating-paper p-8 rounded-3xl">
-                <div className="w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-2xl flex items-center justify-center mb-6">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="floating-paper p-8 rounded-3xl flex flex-col items-center text-center h-full">
+              <div className={`icon-container-unique w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-lg mb-6`}>
+              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9" />
                   </svg>
                 </div>
@@ -61,7 +61,7 @@ export default function QualityInspectionPage() {
               </div>
             </div>
             
-            <div className="floating-paper p-8 rounded-3xl mb-8">
+            <div className="floating-paper p-8 rounded-3xl mb-8 flex flex-col items-center text-center h-full">
               <h2 className="text-3xl font-bold mb-6 gradient-text-brand">Our Quality Inspection Services</h2>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
@@ -89,7 +89,7 @@ export default function QualityInspectionPage() {
             </div>
             
             <div className="floating-paper p-8 rounded-3xl mb-8">
-              <h3 className="text-2xl font-bold mb-4">Why Choose Our Quality Services?</h3>
+              <h3 className="text-2xl font-bold mb-4 text-center mb-12">Why Choose Our Quality Services?</h3>
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="text-center">
                   <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3">

@@ -22,13 +22,11 @@ export default function AboutPage() {
         subtitle="Your trusted partner in bridging global business with Japan's dynamic market."
       />
 
-      {/* Our Story Section */}
       <section className="section bg-white">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
 
             <div className="space-y-12">
-              {/* MokuSetu: Where Bridge Begins */}
               <div ref={storyRef1 as React.RefObject<HTMLDivElement>} className={`floating-paper p-8 rounded-3xl fade-in ${isStoryVisible1 ? 'visible' : ''}`}>
                 <h3 className="text-2xl lg:text-3xl font-bold text-foreground mb-6 text-center">
                   <span className="gradient-text-brand">MokuSetu: Where Bridge Begins</span>
@@ -38,7 +36,6 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              {/* Bridging Cultures and Generations */}
               <div ref={storyRef2 as React.RefObject<HTMLDivElement>} className={`floating-paper p-8 rounded-3xl fade-in ${isStoryVisible2 ? 'visible' : ''}`}>
                 <h3 className="text-2xl lg:text-3xl font-bold text-foreground mb-6">
                   <span className="gradient-text-brand">Bridging Cultures and Generations</span>
@@ -48,7 +45,6 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              {/* Inspired by Purpose */}
               <div ref={storyRef3 as React.RefObject<HTMLDivElement>} className={`floating-paper p-8 rounded-3xl fade-in ${isStoryVisible3 ? 'visible' : ''}`}>
                 <h3 className="text-2xl lg:text-3xl font-bold text-foreground mb-6">
                   <span className="gradient-text-brand">Inspired by Purpose</span>
@@ -58,7 +54,6 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              {/* Rooted in Connection */}
               <div ref={storyRef4 as React.RefObject<HTMLDivElement>} className={`floating-paper p-8 rounded-3xl fade-in ${isStoryVisible4 ? 'visible' : ''}`}>
                 <h3 className="text-2xl lg:text-3xl font-bold text-foreground mb-6">
                   <span className="gradient-text-brand">Rooted in Connection</span>
@@ -72,7 +67,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Mission & Vision Section */}
       <section className="section section-muted">
         <div className="container mx-auto px-6">
           <div ref={missionRef as React.RefObject<HTMLDivElement>} className={`text-center mb-16 fade-in ${isMissionVisible ? 'visible' : ''}`}>
@@ -123,7 +117,6 @@ export default function AboutPage() {
             </h2>
           </div>
 
-          {/* Brand Archetype - Centered */}
           <div className="mt-12 max-w-3xl mx-auto">
             <div className={`floating-paper p-8 rounded-3xl scale-in ${isMissionVisible ? 'visible' : ''}`}>
               <div className="flex items-start gap-4 mb-6">
@@ -138,7 +131,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Core Values Section */}
       <section className="section">
         <div className="container mx-auto px-6">
           <div ref={valuesRef as React.RefObject<HTMLDivElement>} className={`text-center mb-16 fade-in ${isValuesVisible ? 'visible' : ''}`}>
@@ -150,7 +142,7 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
             <div className={`floating-paper p-6 rounded-2xl scale-in ${isValuesVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.1s' }}>
               <div className="flex flex-col items-center text-center">
                 <div className={`icon-container-unique w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-lg mb-6`}>
@@ -191,7 +183,9 @@ export default function AboutPage() {
                 </p>
               </div>
             </div>
+          </div>
 
+          <div className="flex justify-center gap-8">
             <div className={`floating-paper p-6 rounded-2xl scale-in ${isValuesVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.4s' }}>
               <div className="flex flex-col items-center text-center">
                 <div className={`icon-container-unique w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-lg mb-6`}>
@@ -221,7 +215,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Company Timeline Section */}
       <section className="section section-muted">
         <div className="container mx-auto px-6">
           <div ref={timelineRef as React.RefObject<HTMLDivElement>} className={`text-center mb-16 fade-in ${isTimelineVisible ? 'visible' : ''}`}>
@@ -234,7 +227,6 @@ export default function AboutPage() {
           </div>
 
           <div className="relative">
-            {/* Timeline Line */}
             <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-primary/20 to-secondary/20"></div>
 
             <div className="space-y-12">
@@ -259,16 +251,12 @@ export default function AboutPage() {
                   </div>
                 </div>
               </div>
-
-
-
             </div>
           </div>
         </div>
       </section>
 
 
-      {/* CTA Section */}
       <section className="section section-muted">
         <div className="container mx-auto px-6">
           <div ref={ctaRef as React.RefObject<HTMLDivElement>} className={`floating-paper p-12 rounded-3xl text-center max-w-4xl mx-auto scale-in ${isCtaVisible ? 'visible' : ''}`}>
