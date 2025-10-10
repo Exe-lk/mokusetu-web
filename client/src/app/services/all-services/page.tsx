@@ -92,7 +92,7 @@ export default function SalesRepresentationPage() {
         subtitle="End-to-end support across strategy, sourcing, quality, and execution."
       />
 
-      <section className="section" ref={sectionRef}>
+      <section className="section" ref={sectionRef as React.RefObject<HTMLElement>}>
         <div className="flex justify-center">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl w-full">
             {services.map((service, index) => {
@@ -105,8 +105,8 @@ export default function SalesRepresentationPage() {
               return (
                 <div
                   key={service.title}
-                  className={`floating-paper p-8 rounded-3xl`}
-                  style={{ transitionDelay: `${index * 0.1}s` }}
+                  className={`floating-paper p-8 rounded-3xl scale-in ${sectionVisible ? 'visible' : ''}`}
+                  style={{ transitionDelay: `${index * 0.15}s` }}
                 >
                   <div className="flex flex-col items-center text-center h-full">
                     <div className={`icon-container-unique w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-lg mb-6`}>
@@ -148,8 +148,8 @@ export default function SalesRepresentationPage() {
       </section>
 
       {/* Our Expertise Section */}
-      <section className="section bg-background-light" ref={expertiseRef}>
-        <div className="text-center mb-16">
+      <section className="section bg-background-light" ref={expertiseRef as React.RefObject<HTMLElement>}>
+        <div className={`text-center mb-16 fade-in ${expertiseVisible ? 'visible' : ''}`}>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
             Our Expertise
           </h2>
@@ -171,10 +171,10 @@ export default function SalesRepresentationPage() {
               return (
                 <div
                   key={item.title}
-                  className={`floating-paper p-8 rounded-3xl group hover:bg-gradient-to-r ${gradientClass} transition-all duration-300 hover-lift ${expertiseVisible ? 'stagger-in visible' : 'stagger-in'}`}
-                  style={{ transitionDelay: `${index * 0.1}s` }}
+                  className={`floating-paper p-8 rounded-3xl group fade-in ${expertiseVisible ? 'visible' : ''}`}
+                  style={{ transitionDelay: `${index * 0.15}s` }}
                 >
-                  <div className="flex flex-col h-full">
+                  <div className="flex flex-col items-center text-center h-full">
                     <div className={`icon-container-unique w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-lg mb-6`}>
                       <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
