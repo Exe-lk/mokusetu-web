@@ -26,7 +26,7 @@ export default function About() {
                   <p className="text-sm text-muted mb-3">Want to learn more about our company?</p>
                   <a 
                     href="/about" 
-                    className="inline-flex items-center gap-3 px-6 py-3 bg-white border border-primary/20 text-primary hover:bg-gradient-to-r hover:from-secondary hover:to-primary hover:border-secondary hover:text-white rounded-xl transition-all duration-300 font-medium group shadow-sm hover:shadow-md hover:scale-105"
+                    className="inline-flex items-center gap-3 px-6 py-3 bg-white border border-primary/20 text-primary hover:bg-[#1D3557] hover:border-[#1D3557] hover:text-white rounded-xl transition-all duration-300 font-medium group shadow-sm hover:shadow-md hover:scale-105"
                   >
                     <span className="group-hover:text-white transition-colors duration-300">Learn More</span>
                     <svg className="w-4 h-4 group-hover:translate-x-1 group-hover:text-white transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">

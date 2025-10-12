@@ -56,12 +56,11 @@ export default function Navbar() {
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3 group">
           <div className="relative">
-            <img src="/logo.svg" alt="MokuSetu Group G.K. Logo" className="h-10 w-auto group-hover:scale-105 transition-transform duration-300" />
+            <img src="/assests/Logo on White.png" alt="MokuSetu Group G.K. Logo" className="h-10 w-auto group-hover:scale-105 transition-transform duration-300" />
             <div className="absolute -inset-2 bg-primary/10 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </div>
           <div className="flex flex-col -mt-3">
             <span className="font-bold tracking-wide text-secondary text-lg">MokuSetu Group G.K.</span>
-            <img src="/assests/Tagline on red short.png" alt="MokuSetu Group Tagline" className="h-4 w-auto mt-1 object-contain" />
           </div>
         </Link>
 

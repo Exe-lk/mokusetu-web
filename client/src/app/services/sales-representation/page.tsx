@@ -1,7 +1,12 @@
+"use client";
 import Breadcrumb from "@/components/Breadcrumb";
 import PageHeader from "@/components/PageHeader";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 
 export default function SalesRepresentationPage() {
+  const [contentRef, isContentVisible] = useIntersectionObserver();
+  const [ctaRef, isCtaVisible] = useIntersectionObserver();
+  
   return (
     <>
       <Breadcrumb 
@@ -13,12 +18,13 @@ export default function SalesRepresentationPage() {
       <PageHeader 
         title="Sales & Representative  Support" 
         subtitle="Comprehensive sales and representation services to help your business thrive in the Japanese market."
+        backgroundImage="/assests/pexels-satoshi-1633791.jpg"
       />
 
       <section className="section">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
-            <div className="floating-paper p-8 rounded-3xl mb-8">
+            <div ref={contentRef as React.RefObject<HTMLDivElement>} className={`floating-paper p-8 rounded-3xl mb-8 fade-in ${isContentVisible ? 'visible' : ''}`}>
               <div className="prose prose-lg max-w-none">
                 <p className="text-lg text-muted leading-relaxed mb-6">
                   At MokuSetu Group, sales and representative support is more than just making introductions; it's about standing alongside you as a partner as you build a presence in Japan. We believe that navigating a new market is easier when you have someone on the ground who understands your business and shares your goals. That's why we take the time to learn what you do and what success looks like for you before we do anything else.
@@ -34,8 +40,8 @@ export default function SalesRepresentationPage() {
               </div>
             </div>
             
-            <div className="text-center">
-              <div className="inline-flex flex-col items-center gap-4 p-6 bg-white border border-primary/20 rounded-2xl shadow-md">
+            <div ref={ctaRef as React.RefObject<HTMLDivElement>} className="text-center">
+              <div className={`inline-flex flex-col items-center gap-4 p-6 bg-white border border-primary/20 rounded-2xl shadow-md scale-in ${isCtaVisible ? 'visible' : ''}`}>
                 <h3 className="text-xl font-semibold">Ready to expand your sales in Japan?</h3>
                 <p className="text-muted">Let us help you establish a strong presence in the Japanese market.</p>
                 <a 

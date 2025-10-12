@@ -20,6 +20,7 @@ export default function AboutPage() {
       <PageHeader
         title="About Us"
         subtitle="Your trusted partner in bridging global business with Japan's dynamic market."
+        backgroundImage="/assests/pexels-evgeny-tchebotarev-1058775-2187661.jpg"
       />
 
       <section className="section bg-white">
