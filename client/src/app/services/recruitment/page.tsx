@@ -1,7 +1,14 @@
+"use client";
 import Breadcrumb from "@/components/Breadcrumb";
 import PageHeader from "@/components/PageHeader";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 
 export default function RecruitmentPage() {
+  const [section1Ref, isSection1Visible] = useIntersectionObserver();
+  const [section2Ref, isSection2Visible] = useIntersectionObserver();
+  const [section3Ref, isSection3Visible] = useIntersectionObserver();
+  const [ctaRef, isCtaVisible] = useIntersectionObserver();
+  
   return (
     <>
       <Breadcrumb 
@@ -17,8 +24,8 @@ export default function RecruitmentPage() {
       <section className="section">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-8 mb-12">
-              <div className="floating-paper p-8 rounded-3xl">
+            <div ref={section1Ref as React.RefObject<HTMLDivElement>} className="grid md:grid-cols-2 gap-8 mb-12">
+              <div className={`floating-paper p-8 rounded-3xl slide-in-left ${isSection1Visible ? 'visible' : ''}`}>
                 <div className="w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-2xl flex items-center justify-center mb-6">
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2V6" />
@@ -30,7 +37,7 @@ export default function RecruitmentPage() {
                 </p>
               </div>
               
-              <div className="floating-paper p-8 rounded-3xl">
+              <div className={`floating-paper p-8 rounded-3xl slide-in-right ${isSection1Visible ? 'visible' : ''}`}>
                 <div className="w-16 h-16 bg-gradient-to-r from-secondary to-success rounded-2xl flex items-center justify-center mb-6">
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -43,7 +50,7 @@ export default function RecruitmentPage() {
               </div>
             </div>
             
-            <div className="floating-paper p-8 rounded-3xl mb-8">
+            <div ref={section2Ref as React.RefObject<HTMLDivElement>} className={`floating-paper p-8 rounded-3xl mb-8 scale-in ${isSection2Visible ? 'visible' : ''}`}>
               <h2 className="text-3xl font-bold mb-6 gradient-text-brand">Our Recruitment Services</h2>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
@@ -67,7 +74,7 @@ export default function RecruitmentPage() {
               </div>
             </div>
             
-            <div className="floating-paper p-8 rounded-3xl mb-8">
+            <div ref={section3Ref as React.RefObject<HTMLDivElement>} className={`floating-paper p-8 rounded-3xl mb-8 fade-in ${isSection3Visible ? 'visible' : ''}`}>
               <h3 className="text-2xl font-bold mb-6">Why Choose Our Recruitment Services?</h3>
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="text-center">
@@ -100,8 +107,8 @@ export default function RecruitmentPage() {
               </div>
             </div>
             
-            <div className="text-center">
-              <div className="inline-flex flex-col items-center gap-4 p-6 bg-white border border-primary/20 rounded-2xl shadow-md">
+            <div ref={ctaRef as React.RefObject<HTMLDivElement>} className="text-center">
+              <div className={`inline-flex flex-col items-center gap-4 p-6 bg-white border border-primary/20 rounded-2xl shadow-md scale-in ${isCtaVisible ? 'visible' : ''}`}>
                 <h3 className="text-xl font-semibold">Looking for the right talent?</h3>
                 <p className="text-muted">Let us help you find the perfect candidates for your business needs.</p>
                 <a 

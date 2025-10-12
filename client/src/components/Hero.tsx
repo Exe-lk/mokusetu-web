@@ -123,17 +123,15 @@ export default function Hero() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link 
                   href="/contact" 
-                  className="group relative px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-2xl overflow-hidden hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="group relative px-8 py-4 bg-primary text-white font-semibold rounded-2xl overflow-hidden hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl"
                 >
                   <span className="relative z-10">Start Your Journey</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-secondary to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </Link>
                 <Link 
                   href="/services" 
-                  className="px-8 py-4 bg-white/80 backdrop-blur-sm border-2 border-secondary/30 text-secondary font-semibold rounded-2xl hover:bg-gradient-to-r hover:from-secondary hover:to-primary  overflow-hidden hover:scale-105 hover:text-white hover:border-secondary/50 transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="px-8 py-4 bg-white/80 backdrop-blur-sm border-2 border-blue-500 text-secondary font-semibold rounded-2xl hover:scale-110 hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-2xl"
                 >
                   <span className="relative z-10">Explore Services</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-secondary to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </Link>
               </div>
             </div>
@@ -152,9 +150,6 @@ export default function Hero() {
                      <Image src="/Picture1.png" alt="Hero Image" width={350} height={350} className="rounded-3xl mx-auto" />
                     </div>
                     <div className="space-y-3">
-                      <div className="text-base text-secondary font-semibold max-w-xs mx-auto">
-                        Comprehensive market entry solutions with local expertise
-                      </div>
                       <div className="grid grid-cols-3 gap-4">
                 <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-accent/20 hover:bg-white/80 transition-all duration-300">
                   <div className="w-3 h-3 bg-primary rounded-full mx-auto mb-2"></div>

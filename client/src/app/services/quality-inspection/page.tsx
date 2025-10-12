@@ -1,7 +1,15 @@
+"use client";
 import Breadcrumb from "@/components/Breadcrumb";
 import PageHeader from "@/components/PageHeader";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 
 export default function QualityInspectionPage() {
+  const [contentRef, isContentVisible] = useIntersectionObserver();
+  const [cardsRef, isCardsVisible] = useIntersectionObserver();
+  const [servicesRef, isServicesVisible] = useIntersectionObserver();
+  const [whyUsRef, isWhyUsVisible] = useIntersectionObserver();
+  const [ctaRef, isCtaVisible] = useIntersectionObserver();
+  
   return (
     <>
       <Breadcrumb 
@@ -13,11 +21,12 @@ export default function QualityInspectionPage() {
       <PageHeader 
         title="Quality Inspection Services" 
         subtitle="Comprehensive QA/QC and inspection services to ensure the highest standards of safety, reliability, and compliance."
+        backgroundImage="/assests/pexels-pixabay-209798.jpg"
       />
       <section className="section">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
-            <div className="floating-paper p-8 rounded-3xl mb-8">
+            <div ref={contentRef as React.RefObject<HTMLDivElement>} className={`floating-paper p-8 rounded-3xl mb-8 fade-in ${isContentVisible ? 'visible' : ''}`}>
               <p className="text-lg text-muted leading-relaxed mb-6">
                 At MokuSetu Group, we specialize in delivering comprehensive QA/QC and inspection services to ensure every project meets the highest standards of safety, reliability, and compliance. Our expertise covers third-party inspection, vendor audits, NDT/coating inspections, site QA/QC, expediting, and Japanese documentation support, enabling international companies to execute projects in Japan with confidence and precision.
               </p>
@@ -35,8 +44,8 @@ export default function QualityInspectionPage() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8 mb-12">
-              <div className="floating-paper p-8 rounded-3xl flex flex-col items-center text-center h-full">
+            <div ref={cardsRef as React.RefObject<HTMLDivElement>} className="grid md:grid-cols-2 gap-8 mb-12">
+              <div className={`floating-paper p-8 rounded-3xl flex flex-col items-center text-center h-full slide-in-left ${isCardsVisible ? 'visible' : ''}`}>
               <div className={`icon-container-unique w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-lg mb-6`}>
               <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -48,7 +57,7 @@ export default function QualityInspectionPage() {
                 </p>
               </div>
               
-              <div className="floating-paper p-8 rounded-3xl flex flex-col items-center text-center h-full">
+              <div className={`floating-paper p-8 rounded-3xl flex flex-col items-center text-center h-full slide-in-right ${isCardsVisible ? 'visible' : ''}`}>
               <div className={`icon-container-unique w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-lg mb-6`}>
               <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9" />
@@ -61,12 +70,12 @@ export default function QualityInspectionPage() {
               </div>
             </div>
             
-            <div className="floating-paper p-8 rounded-3xl mb-8 flex flex-col items-center text-center h-full">
-              <h2 className="text-3xl font-bold mb-6 gradient-text-brand">Our Quality Inspection Services</h2>
+            <div ref={servicesRef as React.RefObject<HTMLDivElement>} className={`floating-paper p-8 rounded-3xl mb-8 h-full scale-in ${isServicesVisible ? 'visible' : ''}`}>
+              <h2 className="text-3xl font-bold mb-6 gradient-text-brand text-center">Our Quality Inspection Services</h2>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h4 className="text-xl font-semibold mb-3">Inspection Services</h4>
-                  <ul className="space-y-2 text-muted">
+                  <h4 className="text-xl font-semibold mb-3 text-left ml-32">Inspection Services</h4>
+                  <ul className="space-y-2 text-muted text-left ml-32">
                     <li>• Third-party inspection</li>
                     <li>• Vendor audits</li>
                     <li>• NDT/coating inspections</li>
@@ -74,9 +83,9 @@ export default function QualityInspectionPage() {
                     <li>• Expediting services</li>
                   </ul>
                 </div>
-                <div>
-                  <h4 className="text-xl font-semibold mb-3">Industry Coverage</h4>
-                  <ul className="space-y-2 text-muted">
+                <div className="text-right">
+                  <h4 className="text-xl font-semibold mb-3 text-left mr-32">Industry Coverage</h4>
+                  <ul className="space-y-2 text-muted text-left mr-32">
                     <li>• Infrastructure</li>
                     <li>• Oil & Gas</li>
                     <li>• Petrochemical</li>
@@ -88,7 +97,7 @@ export default function QualityInspectionPage() {
               </div>
             </div>
             
-            <div className="floating-paper p-8 rounded-3xl mb-8">
+            <div ref={whyUsRef as React.RefObject<HTMLDivElement>} className={`floating-paper p-8 rounded-3xl mb-8 fade-in ${isWhyUsVisible ? 'visible' : ''}`}>
               <h3 className="text-2xl font-bold mb-4 text-center mb-12">Why Choose Our Quality Services?</h3>
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="text-center">
@@ -121,8 +130,8 @@ export default function QualityInspectionPage() {
               </div>
             </div>
             
-            <div className="text-center">
-              <div className="inline-flex flex-col items-center gap-4 p-6 bg-white border border-primary/20 rounded-2xl shadow-md">
+            <div ref={ctaRef as React.RefObject<HTMLDivElement>} className="text-center">
+              <div className={`inline-flex flex-col items-center gap-4 p-6 bg-white border border-primary/20 rounded-2xl shadow-md scale-in ${isCtaVisible ? 'visible' : ''}`}>
                 <h3 className="text-xl font-semibold">Need quality inspection services?</h3>
                 <p className="text-muted">Our experts are ready to ensure your project meets the highest standards.</p>
                 <a 

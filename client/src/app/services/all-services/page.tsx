@@ -38,15 +38,15 @@ export default function SalesRepresentationPage() {
       color: "from-primary to-primary-light",
       href: "/services/quality-inspection"
     },
-    {
-      title: "Recruitment Support Support",
-      description:
-        "Building your Japan team made easier.Our upcoming recruitment service connects you with bilingual and local professionals who understand both your culture and Japan's business environment.",
-      icon: "M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2V6",
-      color: "from-success to-emerald-400",
-      href: "/services/recruitment",
-      comingSoon: true
-    },
+    // {
+    //   title: "Recruitment Support Support",
+    //   description:
+    //     "Building your Japan team made easier.Our upcoming recruitment service connects you with bilingual and local professionals who understand both your culture and Japan's business environment.",
+    //   icon: "M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2V6",
+    //   color: "from-success to-emerald-400",
+    //   href: "/services/recruitment",
+    //   comingSoon: true
+    // },
   ];
 
   const expertise: Expertise[] = [
@@ -90,6 +90,7 @@ export default function SalesRepresentationPage() {
       <PageHeader
         title="Our Services"
         subtitle="End-to-end support across strategy, sourcing, quality, and execution."
+        backgroundImage="/assests/pexels-evgeny-tchebotarev-1058775-2187662.jpg"
       />
 
       <section className="section" ref={sectionRef as React.RefObject<HTMLElement>}>
@@ -130,7 +131,7 @@ export default function SalesRepresentationPage() {
                       <div className="mt-auto">
                         <Link
                           href={service.href}
-                          className="inline-flex items-center gap-3 px-6 py-3 bg-white border border-primary/20 text-primary hover:bg-gradient-to-r hover:from-secondary hover:to-primary hover:border-secondary hover:text-white rounded-xl transition-all duration-300 font-medium group shadow-sm hover:shadow-md hover:scale-105"
+                          className="inline-flex items-center gap-3 px-6 py-3 bg-white border border-primary/20 text-primary hover:bg-[#1D3557] hover:border-[#1D3557] hover:text-white rounded-xl transition-all duration-300 font-medium group shadow-sm hover:shadow-md hover:scale-105"
                         >
                           <span className="group-hover:text-white transition-colors duration-300">Learn More</span>
                           <svg className="w-4 h-4 group-hover:translate-x-1 group-hover:text-white transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">

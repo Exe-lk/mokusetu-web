@@ -10,6 +10,7 @@ export default function BlogPageRoute() {
       <PageHeader 
         title="Our Blog" 
         subtitle="Insights, strategies, and expert knowledge for successful business in Japan."
+        backgroundImage="/assests/pexels-dexplanet-1628061.jpg"
       />
       <BlogPage />
     </>

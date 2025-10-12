@@ -8,7 +8,7 @@ export default function Footer() {
           <div className="group space-y-3 lg:col-span-1">
             <div className="relative inline-block">
               <img
-                src="/logo.svg"
+                src="/assests/Logo on White.png"
                 alt="MokuSetu Group G.K. Logo"
                 className="h-10 w-auto group-hover:scale-105 transition-transform duration-300"
               />
@@ -69,9 +69,9 @@ export default function Footer() {
               </div>
               <div>
                 <p className="font-medium text-white">Address</p>
-                <p>6-50-10 Honchō, Naka-ku</p>
-                <p>Yokohama-shi, Kanagawa-ken</p>
-                <p>231-0005, Japan</p>
+                <p>5-16-15 Kirigaoka,Midori-ku                </p>
+                <p>Yokohama-shi, Kanagawa-ken                </p>
+                <p>226-0016, Japan</p>
               </div>
             </div>
           </div>

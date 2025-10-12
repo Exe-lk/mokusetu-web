@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { decodeHTMLEntities, stripHtmlTags } from "@/utils/lib";
 import { formatDate } from "@/utils/lib";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 
 interface BlogPost {
   id: number;
@@ -39,6 +40,9 @@ export default function BlogPage() {
   const [error, setError] = useState<string | null>(null);
   const [isFallback, setIsFallback] = useState(false);
   const postsPerPage = 9;
+  
+  const [categoryRef, isCategoryVisible] = useIntersectionObserver();
+  const [postsRef, isPostsVisible] = useIntersectionObserver();
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -148,7 +152,7 @@ export default function BlogPage() {
       )}
 
       {categories.length > 0 && (
-        <div className="mb-12">
+        <div ref={categoryRef as React.RefObject<HTMLDivElement>} className={`mb-12 fade-in ${isCategoryVisible ? 'visible' : ''}`}>
           <h3 className="text-2xl font-bold text-gray-900 mb-6">Filter by Category</h3>
           <div className="flex flex-wrap gap-3">
             <button
@@ -189,7 +193,7 @@ export default function BlogPage() {
         </div>
       ) : posts.length > 0 ? (
         <>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          <div ref={postsRef as React.RefObject<HTMLDivElement>} className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 fade-in ${isPostsVisible ? 'visible' : ''}`}>
             {posts.map((post) => (
               <article
                 key={post.id}
