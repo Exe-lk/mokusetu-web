@@ -4,6 +4,7 @@ import Breadcrumb from "@/components/Breadcrumb";
 import PageHeader from "@/components/PageHeader";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import Link from "next/link";
+import Image from "next/image";
 
 type Service = {
   title: string;
@@ -11,6 +12,7 @@ type Service = {
   icon: string;
   color: string;
   href: string;
+  image: string;
   comingSoon?: boolean;
 };
 
@@ -25,18 +27,20 @@ export default function SalesRepresentationPage() {
     {
       title: "Sales & Representative Support",
       description:
-        "Your trusted local business partner in Japan.We represent your brand, build lasting client relationships, and help you expand with confidence and cultural precision.",
+        "Your trusted local business partner in Japan. We represent your brand, build lasting client relationships, and help you expand with confidence and cultural precision.",
       icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z",
       color: "from-primary to-primary-light",
-      href: "/services/sales-representation"
+      href: "/services/sales-representation",
+      image: "/assests/pexels-sora-shimazaki-5673488.jpg"
     },
     {
       title: "Quality Inspection",
       description:
-        "Ensure your products meet the highest standards with our comprehensive quality inspection services.",
+        "Ensure your products meet the highest standards with our comprehensive quality inspection services. Our expert team conducts thorough evaluations to guarantee compliance and excellence.",
       icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z",
       color: "from-primary to-primary-light",
-      href: "/services/quality-inspection"
+      href: "/services/quality-inspection",
+      image: "/assests/pexels-tima-miroshnichenko-6263113.jpg"
     },
     // {
     //   title: "Recruitment Support Support",
@@ -94,57 +98,59 @@ export default function SalesRepresentationPage() {
       />
 
       <section className="section" ref={sectionRef as React.RefObject<HTMLElement>}>
-        <div className="flex justify-center">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl w-full">
-            {services.map((service, index) => {
-              const gradientClass = index === 0
-                ? "hover:from-primary hover:to-secondary"
-                : index === 1
-                  ? "hover:from-secondary hover:to-success"
-                  : "hover:from-success hover:to-primary";
-
-              return (
-                <div
-                  key={service.title}
-                  className={`floating-paper p-8 rounded-3xl scale-in ${sectionVisible ? 'visible' : ''}`}
-                  style={{ transitionDelay: `${index * 0.15}s` }}
-                >
-                  <div className="flex flex-col items-center text-center h-full">
-                    <div className={`icon-container-unique w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-lg mb-6`}>
-                      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={service.icon} />
-                      </svg>
-                    </div>
-                    <h3 className="text-xl font-bold text-foreground mb-3">
-                      {service.title}
-                    </h3>
-                    <p className="text-muted leading-relaxed mb-6 flex-grow">
-                      {service.description}
-                    </p>
-                    {service.comingSoon ? (
-                      <div className="mt-auto">
-                        <span className="inline-block px-6 py-2 bg-gray-300 text-gray-600 rounded-full font-semibold text-sm cursor-not-allowed">
-                          Coming Soon
-                        </span>
-                      </div>
-                    ) : (
-                      <div className="mt-auto">
-                        <Link
-                          href={service.href}
-                          className="btn-secondary inline-flex items-center gap-3 group"
-                        >
-                          <span>Learn More</span>
-                          <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                          </svg>
-                        </Link>
-                      </div>
-                    )}
+        <div className="max-w-7xl mx-auto">
+          {services.map((service, index) => (
+            <div
+              key={service.title}
+              className={`mb-20 last:mb-0 ${sectionVisible ? 'fade-in visible' : 'fade-in'}`}
+              style={{ transitionDelay: `${index * 0.3}s` }}
+            >
+              <div className={`flex flex-col ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-12`}>
+                {/* Image Section */}
+                <div className="w-full lg:w-1/2">
+                  <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      width={600}
+                      height={400}
+                      className="w-full h-[400px] object-cover transition-transform duration-500 hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                   </div>
                 </div>
-              );
-            })}
-          </div>
+
+                {/* Content Section */}
+                <div className="w-full lg:w-1/2 space-y-6">
+                  <h3 className="text-3xl lg:text-4xl font-bold text-foreground leading-tight">
+                    {service.title}
+                  </h3>
+                  <p className="text-lg text-muted leading-relaxed">
+                    {service.description}
+                  </p>
+                  {service.comingSoon ? (
+                    <div className="pt-4">
+                      <span className="inline-block px-8 py-3 bg-gray-300 text-gray-600 rounded-full font-semibold text-lg cursor-not-allowed">
+                        Coming Soon
+                      </span>
+                    </div>
+                  ) : (
+                    <div className="pt-4">
+                      <Link
+                        href={service.href}
+                        className="btn-secondary inline-flex items-center gap-3 group"
+                      >
+                        <span>Learn More</span>
+                        <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </Link>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 

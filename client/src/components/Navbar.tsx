@@ -151,6 +151,9 @@ export default function Navbar() {
                   <Link href="/services/sales-representation" className="text-sm text-foreground/80 hover:text-primary transition-colors" onClick={() => setOpen(false)}>
                     Sales & Representative  Support
                   </Link>
+                  <Link href="/services/quality-inspection" className="text-sm text-foreground/80 hover:text-primary transition-colors" onClick={() => setOpen(false)}>
+                    Quality Inspection
+                  </Link>
                   {/* <Link href="/services/recruitment" className="text-sm text-foreground/80 hover:text-primary transition-colors" onClick={() => setOpen(false)}>
                     Recruitment
                   </Link> */}

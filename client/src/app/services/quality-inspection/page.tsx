@@ -21,7 +21,7 @@ export default function QualityInspectionPage() {
       <PageHeader 
         title="Quality Inspection Services" 
         subtitle="Comprehensive QA/QC and inspection services to ensure the highest standards of safety, reliability, and compliance."
-        backgroundImage="/assests/pexels-pixabay-209798.jpg"
+        backgroundImage="/assests/qualityinspection.jpg"
       />
       <section className="section">
         <div className="container mx-auto px-6">

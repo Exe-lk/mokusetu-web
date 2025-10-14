@@ -44,7 +44,6 @@ export default function PrivacyPolicy() {
                       <li>Name</li>
                       <li>Company name</li>
                       <li>Email address</li>
-                      <li>Phone number</li>
                     </ul>
                     <p className="text-muted leading-relaxed mt-4">
                       We do not collect information from minors (under 16 under GDPR / as defined by APPI).

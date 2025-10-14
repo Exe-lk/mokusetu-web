@@ -7,14 +7,12 @@ import GoogleMap from './GoogleMap';
 interface FormData {
   name: string;
   email: string;
-  phone: string;
   message: string;
 }
 
 interface FormErrors {
   name?: string;
   email?: string;
-  phone?: string;
   message?: string;
 }
 
@@ -24,7 +22,6 @@ export default function Contact() {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
-    phone: "",
     message: ""
   });
   const [errors, setErrors] = useState<FormErrors>({});
@@ -49,9 +46,6 @@ export default function Contact() {
       }
     }
 
-    if (formData.phone.trim() && formData.phone.trim().length < 10) {
-      newErrors.phone = "Please enter a valid phone number";
-    }
 
     if (!formData.message.trim()) {
       newErrors.message = "Message is required";
@@ -69,7 +63,6 @@ export default function Contact() {
     const fieldMap: { [key: string]: keyof FormData } = {
       'full_name': 'name',
       'email': 'email',
-      'phone': 'phone',
       'message': 'message'
     };
     
@@ -131,7 +124,7 @@ export default function Contact() {
       });
 
       setSubmitStatus('success');
-      setFormData({ name: "", email: "", phone: "", message: "" });
+      setFormData({ name: "", email: "", message: "" });
       setErrors({});
       console.log('Email sent successfully!');
     } catch (error) {
@@ -238,34 +231,6 @@ export default function Contact() {
                           <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
                         </svg>
                         {errors.email}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* Phone Field */}
-                  <div className="floating-label">
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      placeholder=" "
-                      className={`w-full px-3 py-3 border-2 rounded-lg bg-white/50 backdrop-blur-sm focus:ring-0 focus:outline-none transition-all duration-300 ${
-                        errors.phone 
-                          ? 'border-error focus:border-error' 
-                          : 'border-border focus:border-primary'
-                      }`}
-                    />
-                    <label htmlFor="phone" className="absolute left-3 top-3 text-muted transition-all duration-300 pointer-events-none bg-white px-2 text-sm">
-                      Phone Number
-                    </label>
-                    {errors.phone && (
-                      <p className="mt-2 text-sm text-error flex items-center gap-1">
-                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                        </svg>
-                        {errors.phone}
                       </p>
                     )}
                   </div>
