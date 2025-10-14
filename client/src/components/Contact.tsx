@@ -338,9 +338,10 @@ export default function Contact() {
                       <div className="mb-4">
                         <h4 className="font-bold text-lg text-gray-800 mb-2">Mokusetu Office</h4>
                         <p className="text-sm text-gray-600 leading-relaxed">
-                          6-chōme-50 Honchō, Naka Ward,<br />
-                          Yokohama, Kanagawa 231-0005,<br />
-                          Japan
+                        5-16-15 Kirigaoka,Midori-ku
+                        <br />
+                        Yokohama-shi, Kanagawa-ken<br />
+                        226-0016, Japan
                         </p>
                       </div>
                       
