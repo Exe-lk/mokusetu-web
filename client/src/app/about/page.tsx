@@ -269,7 +269,7 @@ export default function AboutPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="/contact" className="btn-primary">Get Started Today</a>
-              <a href="/services" className="btn-secondary">Explore Our Services</a>
+              <a href="/services" className="btn-secondary"><span>Explore Our Services</span></a>
             </div>
           </div>
         </div>

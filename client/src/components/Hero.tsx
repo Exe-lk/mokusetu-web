@@ -129,9 +129,9 @@ export default function Hero() {
                 </Link>
                 <Link 
                   href="/services" 
-                  className="px-8 py-4 bg-white/80 backdrop-blur-sm border-2 border-blue-500 text-secondary font-semibold rounded-2xl hover:scale-110 hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-2xl"
+                  className="btn-secondary"
                 >
-                  <span className="relative z-10">Explore Services</span>
+                  <span>Explore Services</span>
                 </Link>
               </div>
             </div>
