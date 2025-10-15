@@ -18,7 +18,7 @@ export default function SalesRepresentationPage() {
       <PageHeader 
         title="Sales & Representative  Support" 
         subtitle="Comprehensive sales and representation services to help your business thrive in the Japanese market."
-        backgroundImage="/assests/salesRepresentative.jpg"
+        backgroundImage="/assests/sales1.jpg"
       />
 
       <section className="section">
