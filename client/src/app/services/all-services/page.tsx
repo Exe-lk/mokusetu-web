@@ -40,7 +40,7 @@ export default function SalesRepresentationPage() {
       icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z",
       color: "from-primary to-primary-light",
       href: "/services/quality-inspection",
-      image: "/assests/pexels-tima-miroshnichenko-6263113.jpg"
+      image: "/assests/quality2.jpg"
     },
     // {
     //   title: "Recruitment Support Support",
