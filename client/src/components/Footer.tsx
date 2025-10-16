@@ -8,7 +8,7 @@ export default function Footer() {
           <div className="group space-y-3 lg:col-span-1">
             <div className="relative inline-block">
               <img
-                src="/assests/Logo on White.png"
+                src="/logo.svg"
                 alt="MokuSetu Group G.K. Logo"
                 className="h-10 w-auto group-hover:scale-105 transition-transform duration-300"
               />
