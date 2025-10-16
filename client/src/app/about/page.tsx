@@ -20,7 +20,7 @@ export default function AboutPage() {
       <PageHeader
         title="About Us"
         subtitle="Your trusted partner in bridging global business with Japan's dynamic market."
-        backgroundImage="/assests/pexels-evgeny-tchebotarev-1058775-2187661.jpg"
+        backgroundImage="/assests/aboutUs.jpg"
       />
 
       <section className="section bg-white">
@@ -60,7 +60,7 @@ export default function AboutPage() {
                   <span className="gradient-text-brand">Rooted in Connection</span>
                 </h3>
                 <p className="text-lg text-muted leading-relaxed">
-                  A bridge (setu) is more than steel or stone. In the Sanskrit tradition, bridges often symbolize connection and transition. The mythological bridge of Setu Bandha, for example, linked mainland India to Lanka so Rama could rescue Sita—a story of unity against great odds. MokuSetu embraces this symbolism. We build pathways—literal and metaphorical—that allow people to cross divides, share experiences, and grow together.
+                  A bridge (setu) is more than steel or stone. In the Sanskrit tradition, bridges often symbolize connection and transition. The epic bridge of Setu Bandha, for example, linked mainland India to Lanka so Rama could rescue Sita—a story of unity against great odds. MokuSetu embraces this symbolism. We build pathways—literal and metaphorical—that allow people to cross divides, share experiences, and grow together.
                 </p>
               </div>
             </div>

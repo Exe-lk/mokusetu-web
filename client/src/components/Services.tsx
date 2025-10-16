@@ -58,7 +58,7 @@ export default function Services() {
         <div className="section-divider mb-12"></div>
         
         <div className="flex justify-center">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl w-full">
             {services.map((service, index) => {
               const gradientClass = index === 0 
                 ? "hover:from-primary hover:to-secondary"
