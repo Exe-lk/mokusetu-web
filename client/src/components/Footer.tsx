@@ -10,16 +10,16 @@ export default function Footer() {
               <img
                 src="/logo.svg"
                 alt="MokuSetu Group G.K. Logo"
-                className="h-10 w-auto group-hover:scale-105 transition-transform duration-300"
+                className="h-14 w-auto group-hover:scale-105 transition-transform duration-300"
               />
               <div className="absolute -inset-2 bg-primary/10 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
             <img
               src="/assests/Tagline on red short.png"
               alt="MokuSetu Group Tagline"
-              className="h-4 w-auto object-contain"
+              className="h-6 w-auto object-contain"
             />
-            <span className="font-bold tracking-wide text-secondary text-lg block">
+            <span className="font-bold tracking-wide text-secondary text-2xl block">
               MokuSetu Group G.K.
             </span>
           </div>
