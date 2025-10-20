@@ -18,7 +18,7 @@ export default function PageHeader({ title, subtitle, backgroundImage }: PageHea
             alt="Page Header Background"
             className="absolute inset-0 w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-white/95 via-white/30 to-white/30"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-black/95 via-black/40 to-black/80"></div>
         </>
       )}
       
@@ -28,13 +28,13 @@ export default function PageHeader({ title, subtitle, backgroundImage }: PageHea
         <div className="text-center">
           
           {/* Page Title */}
-          <h1 className="text-4xl lg:text-5xl font-bold mb-4 ">
-            <span className="gradient-text-brand">{title}</span>
+          <h1 className="text-4xl lg:text-5xl font-bold mb-4 drop-shadow-lg">
+            <span className="text-accent drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] " style={{ textShadow: "0 2px 6px rgba(7, 1, 1, 0.7), 0 4px 12px rgba(9, 1, 1, 0.5)" }}>{title}</span>
           </h1>
           
           {/* Page Subtitle */}
           {subtitle && (
-            <p className="text-xl text-foreground max-w-3xl mx-auto font-bold">
+            <p className="text-xl text-accent max-w-3xl mx-auto font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style={{ textShadow: "0 2px 6px rgba(14, 13, 13, 0.7), 0 4px 12px rgba(14, 13, 13, 0.5)" }}>
               {subtitle}
             </p>
           )}
