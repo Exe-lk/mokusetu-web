@@ -46,7 +46,7 @@ export default function SalesRepresentationPage() {
     //   title: "Recruitment Support Support",
     //   description:
     //     "Building your Japan team made easier.Our upcoming recruitment service connects you with bilingual and local professionals who understand both your culture and Japan's business environment.",
-    //   icon: "M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2V6",
+    //   icon: "M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0v-2m-8 2v2m0-2h8m-8 0H6a2 2 0 00-2 2v6a2 2 0 002 2h12a2 2 0 002-2V8a2 2 0 00-2-2h-2"
     //   color: "from-success to-emerald-400",
     //   href: "/services/recruitment",
     //   comingSoon: true
@@ -58,7 +58,7 @@ export default function SalesRepresentationPage() {
       title: "Market Entry & Business Development",
       description:
         "We support international companies looking to establish and expand their presence in Japan. Our approach—rooted in thorough, market-specific research—ensures you connect with the right partners and develop effective sales strategies tailored for Japan's competitive landscape.",
-      icon: "M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+      icon: "M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2H6a2 2 0 01-2-2V8a2 2 0 012-2V6",
     },
     {
       title: "Supplier Sourcing & Procurement",
@@ -98,11 +98,11 @@ export default function SalesRepresentationPage() {
       />
 
       <section className="section" ref={sectionRef as React.RefObject<HTMLElement>}>
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           {services.map((service, index) => (
             <div
               key={service.title}
-              className={`mb-20 last:mb-0 ${sectionVisible ? 'fade-in visible' : 'fade-in'}`}
+              className={`mb-16 sm:mb-20 last:mb-0 ${sectionVisible ? 'fade-in visible' : 'fade-in'}`}
               style={{ transitionDelay: `${index * 0.3}s` }}
             >
               <div className={`flex flex-col ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-12`}>
@@ -114,7 +114,7 @@ export default function SalesRepresentationPage() {
                       alt={service.title}
                       width={600}
                       height={400}
-                      className="w-full h-[400px] object-cover transition-transform duration-500 hover:scale-105"
+                      className="w-full h-64 sm:h-80 md:h-[400px] object-cover transition-transform duration-500 hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                   </div>
@@ -122,15 +122,15 @@ export default function SalesRepresentationPage() {
 
                 {/* Content Section */}
                 <div className="w-full lg:w-1/2 space-y-6">
-                  <h3 className="text-3xl lg:text-4xl font-bold text-foreground leading-tight">
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground leading-tight">
                     {service.title}
                   </h3>
-                  <p className="text-lg text-muted leading-relaxed">
+                  <p className="text-base sm:text-lg text-muted leading-relaxed">
                     {service.description}
                   </p>
                   {service.comingSoon ? (
                     <div className="pt-4">
-                      <span className="inline-block px-8 py-3 bg-gray-300 text-gray-600 rounded-full font-semibold text-lg cursor-not-allowed">
+                      <span className="inline-block px-6 py-2 sm:px-8 sm:py-3 bg-gray-300 text-gray-600 rounded-full font-semibold text-base sm:text-lg cursor-not-allowed">
                         Coming Soon
                       </span>
                     </div>
@@ -138,10 +138,10 @@ export default function SalesRepresentationPage() {
                     <div className="pt-4">
                       <Link
                         href={service.href}
-                        className="btn-secondary inline-flex items-center gap-3 group"
+                        className="btn-secondary inline-flex items-center gap-2 sm:gap-3 group text-base sm:text-lg"
                       >
                         <span>Learn More</span>
-                        <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                         </svg>
                       </Link>
@@ -156,16 +156,16 @@ export default function SalesRepresentationPage() {
 
       {/* Our Expertise Section */}
       <section className="section bg-background-light" ref={expertiseRef as React.RefObject<HTMLElement>}>
-        <div className={`text-center mb-16 fade-in ${expertiseVisible ? 'visible' : ''}`}>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+        <div className={`text-center mb-12 sm:mb-16 fade-in ${expertiseVisible ? 'visible' : ''}`}>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-3 sm:mb-4">
             Our Expertise
           </h2>
-          <p className="text-lg text-muted max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg text-muted max-w-3xl mx-auto px-4">
             Comprehensive solutions tailored to your business needs in the Japanese market
           </p>
         </div>
-        <div className="flex justify-center">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl w-full">
+        <div className="flex justify-center px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-6xl w-full">
             {expertise.map((item, index) => {
               const gradientClass = index === 0
                 ? "hover:from-primary hover:to-secondary"
@@ -178,19 +178,19 @@ export default function SalesRepresentationPage() {
               return (
                 <div
                   key={item.title}
-                  className={`floating-paper p-8 rounded-3xl group fade-in ${expertiseVisible ? 'visible' : ''}`}
+                  className={`floating-paper p-6 sm:p-8 rounded-2xl sm:rounded-3xl group fade-in ${expertiseVisible ? 'visible' : ''}`}
                   style={{ transitionDelay: `${index * 0.15}s` }}
                 >
                   <div className="flex flex-col items-center text-center h-full">
-                    <div className={`icon-container-unique w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-lg mb-6`}>
-                      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className={`icon-container-unique w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center flex-shrink-0 shadow-lg mb-5 sm:mb-6`}>
+                      <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
                       </svg>
                     </div>
-                    <h3 className="text-xl font-bold text-foreground mb-3">
+                    <h3 className="text-xl sm:text-xl font-bold text-foreground mb-3">
                       {item.title}
                     </h3>
-                    <p className="text-muted leading-relaxed flex-grow">
+                    <p className="text-muted leading-relaxed text-base flex-grow">
                       {item.description}
                     </p>
                   </div>

@@ -73,9 +73,9 @@ export default function QualityInspectionPage() {
             <div ref={servicesRef as React.RefObject<HTMLDivElement>} className={`floating-paper p-8 rounded-3xl mb-8 h-full scale-in ${isServicesVisible ? 'visible' : ''}`}>
               <h2 className="text-3xl font-bold mb-6 gradient-text-brand text-center">Our Quality Inspection Services</h2>
               <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <h4 className="text-xl font-semibold mb-3 text-left ml-32">Inspection Services</h4>
-                  <ul className="space-y-2 text-muted text-left ml-32">
+                <div className="md:pr-4">
+                  <h4 className="text-xl font-semibold mb-3 text-left">Inspection Services</h4>
+                  <ul className="space-y-2 text-muted text-left pl-4">
                     <li>• Third-party inspection</li>
                     <li>• Vendor audits</li>
                     <li>• NDT/coating inspections</li>
@@ -83,9 +83,9 @@ export default function QualityInspectionPage() {
                     <li>• Expediting services</li>
                   </ul>
                 </div>
-                <div className="text-right">
-                  <h4 className="text-xl font-semibold mb-3 text-left mr-32">Industry Coverage</h4>
-                  <ul className="space-y-2 text-muted text-left mr-32">
+                <div className="md:pl-4">
+                  <h4 className="text-xl font-semibold mb-3 text-left">Industry Coverage</h4>
+                  <ul className="space-y-2 text-muted text-left pl-4">
                     <li>• Infrastructure</li>
                     <li>• Oil & Gas</li>
                     <li>• Petrochemical</li>
