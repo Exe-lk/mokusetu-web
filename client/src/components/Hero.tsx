@@ -147,26 +147,26 @@ export default function Hero() {
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center space-y-8">
                     <div className="relative">
-                      <Image src="/Picture1.png" alt="Hero Image" width={350} height={350} className="rounded-3xl mx-auto" />
+                      <Image src="/Picture1.png" alt="Hero Image" width={350} height={350} className="rounded-3xl mx-auto w-48 h-48 md:w-64 md:h-64 lg:w-[350px] lg:h-[350px] object-contain" />
                     </div>
                     <img
                       src="/assests/Tagline on red long.png"
                       alt="MokuSetu Group Tagline"
-                      className="h-8 w-auto object-contain"
+                      className="h-6 w-auto object-contain mx-auto px-4 md:h-8"
                     />
-                    <div className="space-y-3">
-                      <div className="grid grid-cols-3 gap-4">
-                        <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-accent/20 hover:bg-white/80 transition-all duration-300">
-                          <div className="w-3 h-3 bg-primary rounded-full mx-auto mb-2"></div>
-                          <span className="text-sm font-medium text-secondary">Cultural Expertise</span>
+                    <div className="space-y-3 px-2">
+                      <div className="grid grid-cols-3 gap-2 md:gap-4">
+                        <div className="text-center p-3 bg-white/60 backdrop-blur-sm rounded-2xl border border-accent/20 hover:bg-white/80 transition-all duration-300">
+                          <div className="w-2 h-2 bg-primary rounded-full mx-auto mb-1 md:w-3 md:h-3 md:mb-2"></div>
+                          <span className="text-xs font-medium text-secondary md:text-sm">Cultural Expertise</span>
                         </div>
-                        <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-accent/20 hover:bg-white/80 transition-all duration-300">
-                          <div className="w-3 h-3 bg-secondary rounded-full mx-auto mb-2"></div>
-                          <span className="text-sm font-medium text-secondary">Local Network</span>
+                        <div className="text-center p-3 bg-white/60 backdrop-blur-sm rounded-2xl border border-accent/20 hover:bg-white/80 transition-all duration-300">
+                          <div className="w-2 h-2 bg-secondary rounded-full mx-auto mb-1 md:w-3 md:h-3 md:mb-2"></div>
+                          <span className="text-xs font-medium text-secondary md:text-sm">Local Network</span>
                         </div>
-                        <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-accent/20 hover:bg-white/80 transition-all duration-300">
-                          <div className="w-3 h-3 bg-primary rounded-full mx-auto mb-2"></div>
-                          <span className="text-sm font-medium text-secondary">Proven Results</span>
+                        <div className="text-center p-3 bg-white/60 backdrop-blur-sm rounded-2xl border border-accent/20 hover:bg-white/80 transition-all duration-300">
+                          <div className="w-2 h-2 bg-primary rounded-full mx-auto mb-1 md:w-3 md:h-3 md:mb-2"></div>
+                          <span className="text-xs font-medium text-secondary md:text-sm">Proven Results</span>
                         </div>
                       </div>
                     </div>
@@ -174,8 +174,8 @@ export default function Hero() {
                 </div>
               </div>
 
-              <div className="absolute -top-6 -right-6 w-20 h-20 bg-gradient-to-br from-primary to-secondary rounded-2xl rotate-12 floating shadow-lg"></div>
-              <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-xl -rotate-12 floating shadow-lg" style={{ animationDelay: '2s' }}></div>
+              <div className="absolute -top-3 -right-3 w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-2xl rotate-12 floating shadow-lg md:-top-6 md:-right-6 md:w-20 md:h-20"></div>
+              <div className="absolute -bottom-3 -left-3 w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl -rotate-12 floating shadow-lg md:-bottom-6 md:-left-6 md:w-16 md:h-16" style={{ animationDelay: '2s' }}></div>
             </div>
           </div>
         </div>
