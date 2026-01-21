@@ -1,0 +1,215 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  role      String   @default("user")
+  avatar    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  pages     Page[]
+  
+  @@map("users")
+}
+
+model Post {
+  id            String   @id @default(uuid())
+  title         String
+  slug          String   @unique
+  content       String?  @db.Text
+  excerpt       String?
+  featuredImage String?
+  published     Boolean  @default(false)
+  publishedAt   DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  categoryId    String?
+  category      Category? @relation(fields: [categoryId], references: [id])
+  
+  @@map("posts")
+}
+
+model Page {
+  id        String   @id @default(uuid())
+  title     String
+  slug      String   @unique
+  content   String?  @db.Text
+  published Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  
+  @@map("pages")
+}
+
+model Category {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  slug        String   @unique
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  posts       Post[]
+  
+  @@map("categories")
+}
+
+
+model Service {
+  id              String   @id @default(uuid())
+  // Header section
+  backgroundImage String?
+  pageTitle       String
+  pageSubtitle    String?  @db.Text
+
+    // Listing / overview (for all-services page)
+  listImage       String?          // Thumbnail or card image for listing views
+  summary         String?  @db.Text // Short 1–3 line summary for listing views
+  
+  // Main content
+  mainContent     String   @db.Text
+  
+  // Card contents (JSON array)
+  cardContents    String?  @db.Text  // JSON: [{ header, content, icon }]
+  
+  // Services section
+  servicesTitle   String?              // "Our X Services"
+  servicesList    String?  @db.Text    // JSON: [{ title, points: [] }]
+  
+  // Why choose section
+  whyChooseTitle  String?              // "Why Choose Our X?"
+  whyChoosePoints String?  @db.Text    // JSON: [{ title, subPoints: [] }]
+  
+  // Footer CTA
+  footerTitle     String?
+  footerContent   String?  @db.Text
+  
+  // Meta
+  slug            String   @unique
+  active          Boolean  @default(true)
+  order           Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@map("services")
+}
+
+model TeamMember {
+  id        String   @id @default(uuid())
+  name      String
+  role      String
+  bio       String?  @db.Text
+  avatar    String?
+  email     String?
+  linkedin  String?
+  twitter   String?
+  order     Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@map("team_members")
+}
+
+model Setting {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  value     String?  @db.Text
+  type      String   @default("text")
+  updatedAt DateTime @updatedAt
+  
+  @@map("settings")
+}
+
+model AboutPage {
+  id              String   @id @default(uuid())
+  
+  // Header
+  backgroundImage String?
+  pageTitle       String   @default("About Us")
+  pageSubtitle    String?  @db.Text
+  
+  // Story sections (JSON array)
+  storySections   String?  @db.Text  // [{ title, content, image? }]
+  
+  // Mission & Vision
+  missionSectionTitle    String?  @db.Text
+  missionSectionSubtitle String?  @db.Text
+  missionTitle    String?
+  missionContent  String?  @db.Text
+  missionIcon     String?  @db.Text
+  visionTitle     String?
+  visionContent   String?  @db.Text
+  visionIcon      String?  @db.Text
+  brandArchetypeTitle String?  @db.Text
+  brandArchetype  String?  @db.Text
+  
+  // Core Values
+  coreValuesSectionTitle    String?  @db.Text
+  coreValuesSectionSubtitle String?  @db.Text
+  coreValues      String?  @db.Text  // [{ title, description, icon }]
+  
+  // Timeline
+  timelineSectionTitle    String?  @db.Text
+  timelineSectionSubtitle String?  @db.Text
+  timeline        String?  @db.Text  // [{ year, title, description }]
+  
+  // CTA Section
+  ctaTitle        String?
+  ctaContent      String?  @db.Text
+  
+  active          Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@map("about_page")
+}
+
+model Home {
+  id                String   @id @default(uuid())
+
+  // Hero section
+  titleHero         String? 
+  contentHero       String?  @db.Text
+  globalPartners    String?
+  yearsExperiences  String?
+  successRate       String?
+
+  // About section
+  aboutTitle        String?
+  aboutContent      String?  @db.Text
+
+  // Services highlight section
+  serviceIcon       String?  @db.Text
+  serviceServiceId  String?
+  serviceTitle      String?
+  serviceContent    String?  @db.Text
+  serviceCards      String?  @db.Text // [{ cardIcon, selectedService, content }]
+
+  // Three cards section (JSON array)
+  threeCards        String?  @db.Text // [{ cardIcon, cardTitle, cardContent }]
+
+  // Why choose us section
+  whyChooseTitle    String?
+  whyChooseSubtitle String?  @db.Text
+  whyChooseCards    String?  @db.Text // [{ cardIcon, cardTitle, cardContent }]
+
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@map("home")
+}

@@ -1,105 +1,44 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { getPosts, getCategories, getPostsByCategoryName } from "@/action/wp.client";
 import Link from "next/link";
 import Image from "next/image";
 import { decodeHTMLEntities, stripHtmlTags } from "@/utils/lib";
 import { formatDate } from "@/utils/lib";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import { fetchPosts } from '../app/store/slices/postsSlice';
+import { fetchCategories } from '../app/store/slices/categoriesSlice';
+import { useAppDispatch, useAppSelector } from '../app/store/hooks';
 
-interface BlogPost {
-  id: number;
-  title: { rendered: string };
-  excerpt: { rendered: string };
-  slug: string;
-  date: string;
-  category_names: string[];
-  featured_image_url?: string | null;
-}
-
-interface BlogData {
-  posts: BlogPost[];
-  totalPages: number;
-  error?: string;
-  isFallback?: boolean;
-}
-
-interface Category {
-  id: number;
-  name: string;
-  slug: string;
-}
 
 export default function BlogPage() {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [categories, setCategories] = useState<Category[]>([]);
+  const dispatch = useAppDispatch();
+  const { posts, loading, pagination, error: postsError } = useAppSelector((state) => state.posts);
+  const { categories } = useAppSelector((state) => state.categories);
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [isFallback, setIsFallback] = useState(false);
   const postsPerPage = 9;
   
   const [categoryRef, isCategoryVisible] = useIntersectionObserver();
   const [postsRef, isPostsVisible] = useIntersectionObserver();
 
-  useEffect(() => {
-    const fetchCategories = async () => {
-      if (typeof window === 'undefined') return;
-      
-      try {
-        const categoriesData = await getCategories();
-        console.log('Categories fetched:', categoriesData);
-        setCategories(categoriesData);
-      } catch (error) {
-        console.error('Error fetching categories:', error);
-      }
-    };
-
-    fetchCategories();
-  }, []);
+  const selectedCategoryId = selectedCategory === 'all' 
+    ? undefined 
+    : categories.find(cat => cat.slug === selectedCategory)?.id;
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      if (typeof window === 'undefined') return;
-      
-      setLoading(true);
-      setError(null);
-      
-      try {
-        let result: BlogData;
-        if (selectedCategory === 'all') {
-          result = await getPosts(currentPage, postsPerPage);
-        } else {
-          result = await getPostsByCategoryName(selectedCategory, currentPage, postsPerPage);
-        }
-        
-        console.log('Posts fetched:', result);
-        
-        if (Array.isArray(result)) {
-          setPosts(result);
-          setTotalPages(1);
-          setIsFallback(false);
-        } else {
-          setPosts(result.posts || []);
-          setTotalPages(result.totalPages || 1);
-          setError(result.error || null);
-          setIsFallback(result.isFallback || false);
-        }
-      } catch (error) {
-        console.error('Error fetching posts:', error);
-        setPosts([]);
-        setTotalPages(1);
-        setError(error instanceof Error ? error.message : 'Unknown error occurred');
-        setIsFallback(false);
-      } finally {
-        setLoading(false);
-      }
-    };
+    dispatch(fetchPosts({ 
+      page: currentPage, 
+      limit: postsPerPage,
+      published: true,
+      categoryId: selectedCategoryId 
+    }));
+  }, [dispatch, currentPage, selectedCategoryId]);
 
-    fetchPosts();
-  }, [selectedCategory, currentPage]);
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, [dispatch]);
+
+  const totalPages = pagination.totalPages || 1;
 
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
@@ -112,18 +51,12 @@ export default function BlogPage() {
   };
 
   const handleRefresh = () => {
-    setError(null);
-    setIsFallback(false);
-    setLoading(true);
-    
-    // Force a refresh by updating the current page state
-    setCurrentPage(prev => prev);
+    dispatch(fetchPosts({ page: currentPage, limit: postsPerPage }));
   };
 
   return (
     <div className="container mx-auto px-6 py-12">
-      {/* Connection Status Banner */}
-      {(error || isFallback) && (
+      {postsError && (
         <div className="mb-8 p-4 rounded-lg border-l-4 border-yellow-400 bg-yellow-50">
           <div className="flex items-center">
             <svg className="w-5 h-5 text-yellow-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
@@ -131,13 +64,10 @@ export default function BlogPage() {
             </svg>
             <div>
               <h4 className="text-sm font-medium text-yellow-800">
-                {isFallback ? 'Connection Issue Detected' : 'WordPress API Error'}
+                Blog API Error
               </h4>
               <p className="text-sm text-yellow-700 mt-1">
-                {isFallback 
-                  ? "We're experiencing connectivity issues with our blog server. Showing cached content while we work to restore the connection."
-                  : `There was an issue loading the blog content: ${error}`
-                }
+                {postsError}
               </p>
             </div>
             <button
@@ -182,7 +112,7 @@ export default function BlogPage() {
         </div>
       )}
 
-      {loading ? (
+      {loading && posts.length === 0 ? (
         <div className="text-center py-12">
           <div className="loading-dots">
             <span></span>
@@ -193,37 +123,54 @@ export default function BlogPage() {
         </div>
       ) : posts.length > 0 ? (
         <>
-          <div ref={postsRef as React.RefObject<HTMLDivElement>} className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 fade-in ${isPostsVisible ? 'visible' : ''}`}>
+          <div ref={postsRef as React.RefObject<HTMLDivElement>} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {posts.map((post) => (
               <article
                 key={post.id}
                 className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group border border-gray-100"
               >
-                <div className="relative h-48 overflow-hidden">
-                  <Image
-                    src={post.featured_image_url || `https://picsum.photos/400/250?random=${post.id}`}
-                    alt={post.title?.rendered || 'Blog post image'}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-300"
-                  />
+                <div className="relative h-48 overflow-hidden bg-gray-200">
+                  {post.featuredImage ? (
+                    <Image
+                      src={post.featuredImage}
+                      alt={post.title || 'Blog post image'}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-300"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      unoptimized
+                    />
+                  ) : (
+                    <Image
+                      src={`https://picsum.photos/400/250?random=${post.id}`}
+                      alt={post.title || 'Blog post image'}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-300"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      unoptimized
+                    />
+                  )}
                   <div className="absolute top-3 left-3">
                     <span className="px-3 py-1 text-xs font-bold text-gray-900 bg-white rounded-full shadow-sm">
-                      {post.category_names && post.category_names.length > 0 ? post.category_names[0] : 'Uncategorized'}
+                      {(post as any).category?.name || categories.find(cat => cat.id === post.categoryId)?.name || 'Uncategorized'}
                     </span>
                   </div>
                 </div>
 
                 <div className="p-6">
                   <p className="text-sm text-gray-500 mb-3" suppressHydrationWarning>
-                    {post.date ? formatDate(post.date) : 'No date'}
+                    {post.publishedAt 
+                      ? formatDate(post.publishedAt instanceof Date ? post.publishedAt.toISOString() : String(post.publishedAt)) 
+                      : post.createdAt 
+                        ? formatDate(post.createdAt instanceof Date ? post.createdAt.toISOString() : String(post.createdAt)) 
+                        : 'No date'}
                   </p>
                   
                   <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-primary transition-colors duration-300">
-                    {post.title?.rendered ? decodeHTMLEntities(post.title.rendered) : 'No title'}
+                    {post.title || 'No title'}
                   </h3>
                   
                   <p className="text-gray-600 mb-4 line-clamp-3">
-                    {post.excerpt?.rendered ? stripHtmlTags(post.excerpt.rendered) : 'No excerpt available'}
+                    {post.excerpt ? stripHtmlTags(post.excerpt) : 'No excerpt available'}
                   </p>
 
                   <div className="flex justify-end">

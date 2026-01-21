@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   trailingSlash: true,
+  turbopack: {},
   webpack: (config: any, { isServer }: { isServer: boolean }) => {
     if (!isServer) {
       // Ensure client-side modules are handled properly
@@ -24,27 +25,6 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'loading.io',
       },
-
-      {
-        protocol: 'https',
-        hostname: 'seagreen-tapir-758954.hostingersite.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'i0.wp.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'i1.wp.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'i2.wp.com',
-      },
-      {
-        protocol: 'https',
-        hostname: '*.wp.com',
-      },
       {
         protocol: 'https',
         hostname: 'via.placeholder.com',
@@ -52,6 +32,14 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'picsum.photos',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.supabase.co',
+      },
+      {
+        protocol: 'https',
+        hostname: 'nhfjkdcjfoptfbcwauxz.supabase.co',
       },
     ],
   },

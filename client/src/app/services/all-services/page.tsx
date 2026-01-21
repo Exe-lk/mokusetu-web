@@ -5,16 +5,9 @@ import PageHeader from "@/components/PageHeader";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import Link from "next/link";
 import Image from "next/image";
-
-type Service = {
-  title: string;
-  description: string;
-  icon: string;
-  color: string;
-  href: string;
-  image: string;
-  comingSoon?: boolean;
-};
+import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
+import { fetchServices, clearCurrentService } from "@/app/store/slices/servicesSlice";
+import { useEffect } from "react";
 
 type Expertise = {
   title: string;
@@ -23,35 +16,14 @@ type Expertise = {
 };
 
 export default function SalesRepresentationPage() {
-  const services: Service[] = [
-    {
-      title: "Sales & Representative Support",
-      description:
-        "Your trusted local business partner in Japan. We represent your brand, build lasting client relationships, and help you expand with confidence and cultural precision.",
-      icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z",
-      color: "from-primary to-primary-light",
-      href: "/services/sales-representation",
-      image: "/assests/pexels-sora-shimazaki-5673488.jpg"
-    },
-    {
-      title: "Quality Inspection",
-      description:
-        "Ensure your products meet the highest standards with our comprehensive quality inspection services. Our expert team conducts thorough evaluations to guarantee compliance and excellence.",
-      icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z",
-      color: "from-primary to-primary-light",
-      href: "/services/quality-inspection",
-      image: "/assests/quality2.jpg"
-    },
-    // {
-    //   title: "Recruitment Support Support",
-    //   description:
-    //     "Building your Japan team made easier.Our upcoming recruitment service connects you with bilingual and local professionals who understand both your culture and Japan's business environment.",
-    //   icon: "M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0v-2m-8 2v2m0-2h8m-8 0H6a2 2 0 00-2 2v6a2 2 0 002 2h12a2 2 0 002-2V8a2 2 0 00-2-2h-2"
-    //   color: "from-success to-emerald-400",
-    //   href: "/services/recruitment",
-    //   comingSoon: true
-    // },
-  ];
+  const dispatch = useAppDispatch();
+  const { services, loading, error } = useAppSelector((state) => state.services);
+  console.log("services", services);
+
+  useEffect(() => {
+    dispatch(fetchServices());
+  }, [dispatch]);
+
 
   const expertise: Expertise[] = [
     {
@@ -101,43 +73,37 @@ export default function SalesRepresentationPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           {services.map((service, index) => (
             <div
-              key={service.title}
+              key={service.id}
               className={`mb-16 sm:mb-20 last:mb-0 ${sectionVisible ? 'fade-in visible' : 'fade-in'}`}
               style={{ transitionDelay: `${index * 0.3}s` }}
             >
               <div className={`flex flex-col ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-12`}>
-                {/* Image Section */}
                 <div className="w-full lg:w-1/2">
-                  <div className="relative overflow-hidden rounded-2xl shadow-2xl">
-                    <Image
-                      src={service.image}
-                      alt={service.title}
-                      width={600}
-                      height={400}
-                      className="w-full h-64 sm:h-80 md:h-[400px] object-cover transition-transform duration-500 hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                  </div>
+                  {service.listImage || service.backgroundImage ? (
+                    <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+                      <Image
+                        src={service.listImage || service.backgroundImage as string}
+                        alt={service.pageTitle || "Service image"}
+                        width={600}
+                        height={400}
+                        className="w-full h-64 sm:h-80 md:h-[400px] object-cover transition-transform duration-500 hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                    </div>
+                  ) : null}
                 </div>
 
-                {/* Content Section */}
                 <div className="w-full lg:w-1/2 space-y-6">
                   <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground leading-tight">
-                    {service.title}
+                    {service.pageTitle}
                   </h3>
                   <p className="text-base sm:text-lg text-muted leading-relaxed">
-                    {service.description}
+                    {service.summary || service.pageSubtitle}
                   </p>
-                  {service.comingSoon ? (
-                    <div className="pt-4">
-                      <span className="inline-block px-6 py-2 sm:px-8 sm:py-3 bg-gray-300 text-gray-600 rounded-full font-semibold text-base sm:text-lg cursor-not-allowed">
-                        Coming Soon
-                      </span>
-                    </div>
-                  ) : (
-                    <div className="pt-4">
+                  <div className="pt-4">
+                    {service.active ? (
                       <Link
-                        href={service.href}
+                        href={`/services/${service.slug}`}
                         className="btn-secondary inline-flex items-center gap-2 sm:gap-3 group text-base sm:text-lg"
                       >
                         <span>Learn More</span>
@@ -145,8 +111,12 @@ export default function SalesRepresentationPage() {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                         </svg>
                       </Link>
-                    </div>
-                  )}
+                    ) : (
+                      <span className="inline-block px-6 py-2 sm:px-8 sm:py-3 bg-gray-300 text-gray-600 rounded-full font-semibold text-base sm:text-lg cursor-not-allowed">
+                        Coming Soon
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -154,7 +124,6 @@ export default function SalesRepresentationPage() {
         </div>
       </section>
 
-      {/* Our Expertise Section */}
       <section className="section bg-background-light" ref={expertiseRef as React.RefObject<HTMLElement>}>
         <div className={`text-center mb-12 sm:mb-16 fade-in ${expertiseVisible ? 'visible' : ''}`}>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-3 sm:mb-4">

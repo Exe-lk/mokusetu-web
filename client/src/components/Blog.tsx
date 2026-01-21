@@ -1,65 +1,25 @@
 "use client";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
-import { useEffect, useState } from "react";
-import { getPosts, getPostImageUrl } from "@/action/wp.client";
+import { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { decodeHTMLEntities, stripHtmlTags } from "@/utils/lib";
 import { formatDate } from "@/utils/lib";
-import WordPressImage from "@/components/WordPressImage";
-
-interface BlogPost {
-  id: number;
-  title: { rendered: string };
-  excerpt: { rendered: string };
-  slug: string;
-  date: string;
-  category_names: string[];
-  featured_image_url?: string | null;
-}
-
-interface BlogResponse {
-  posts: BlogPost[];
-  totalPages: number;
-  error?: string;
-  isFallback?: boolean;
-}
+import { fetchPosts } from '../app/store/slices/postsSlice';
+import { fetchCategories } from '../app/store/slices/categoriesSlice';
+import { useAppDispatch, useAppSelector } from '../app/store/hooks';
 
 export default function Blog() {
+  const dispatch = useAppDispatch();
+  const { posts, loading, error } = useAppSelector((state) => state.posts);
+  const { categories } = useAppSelector((state) => state.categories);
   const [sectionRef, sectionVisible] = useIntersectionObserver();
-  const [recentPosts, setRecentPosts] = useState<BlogPost[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [isFallback, setIsFallback] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchRecentPosts = async () => {
-      if (typeof window === 'undefined') return;
-      
-      try {
-        const response: BlogResponse = await getPosts(1, 3); 
-        console.log('Recent posts fetched:', response);
-        
-        if (response.isFallback) {
-          setIsFallback(true);
-          setError(response.error || 'WordPress temporarily unavailable');
-        } else {
-          setIsFallback(false);
-          setError(null);
-        }
-        
-        setRecentPosts(response.posts);
-      } catch (error) {
-        console.error('Error fetching recent posts:', error);
-        setError('Failed to load blog posts');
-        setIsFallback(false);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchRecentPosts();
-  }, []);
+    dispatch(fetchPosts({ page: 1, limit: 3, published: true }));
+    dispatch(fetchCategories());
+  }, [dispatch]);
+  
+  const recentPosts = posts.slice(0, 3);
 
   return (
     <section id="blog" className="section section-muted" ref={sectionRef}>
@@ -85,76 +45,76 @@ export default function Blog() {
             <p className="text-muted mt-4">Loading recent blog posts...</p>
           </div>
         ) : recentPosts.length > 0 ? (
-          <>
-            {isFallback && (
-              <div className="mb-8 p-4 bg-amber-50 border border-amber-200 rounded-lg">
-                <div className="flex items-center gap-3">
-                  <svg className="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
-                  </svg>
-                  <p className="text-amber-800">
-                    <strong>Note:</strong> We're experiencing temporary connectivity issues with our blog. 
-                    Showing fallback content. Please check back soon for the latest posts.
-                  </p>
-                </div>
-              </div>
-            )}
-            
-            <div className="grid lg:grid-cols-3 gap-8">
-              {recentPosts.map((post, index) => (
-                <article 
-                  key={post.id} 
-                  className={`floating-paper p-6 rounded-3xl group hover:bg-gradient-to-r hover:from-primary hover:to-secondary transition-all duration-300 hover-lift ${sectionVisible ? 'stagger-in visible' : 'stagger-in'}`}
-                  style={{ transitionDelay: `${index * 0.1}s` }}
-                >
-                  <div className="relative mb-6 overflow-hidden rounded-2xl h-48">
-                    <WordPressImage
-                      src={post.featured_image_url || null}
-                      alt={post.title?.rendered || 'Blog post image'}
+          <div className="grid lg:grid-cols-3 gap-8">
+            {recentPosts.map((post, index) => (
+              <article 
+                key={post.id} 
+                className={`floating-paper p-6 rounded-3xl group hover:bg-gradient-to-r hover:from-primary hover:to-secondary transition-all duration-300 hover-lift ${sectionVisible ? 'stagger-in visible' : 'stagger-in'}`}
+                style={{ transitionDelay: `${index * 0.1}s` }}
+              >
+                <div className="relative mb-6 overflow-hidden rounded-2xl h-48 bg-gray-200">
+                  {post.featuredImage ? (
+                    <Image
+                      src={post.featuredImage}
+                      alt={post.title || 'Blog post image'}
                       fill
                       className="object-cover group-hover:scale-110 transition-transform duration-300"
-                      fallbackSeed={post.id}
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      unoptimized
                     />
-                    <div className="absolute top-3 left-3">
-                      <span className="px-3 py-1 text-xs font-bold text-gray-900 bg-white rounded-full shadow-sm">
-                        {post.category_names && post.category_names.length > 0 ? post.category_names[0] : 'Uncategorized'}
-                      </span>
-                    </div>
+                  ) : (
+                    <Image
+                      src={`https://picsum.photos/400/250?random=${post.id}`}
+                      alt={post.title || 'Blog post image'}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-300"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      unoptimized
+                    />
+                  )}
+                  <div className="absolute top-3 left-3">
+                    <span className="px-3 py-1 text-xs font-bold text-gray-900 bg-white rounded-full shadow-sm">
+                      {categories.find(cat => cat.id === post.categoryId)?.name || 'Uncategorized'}
+                    </span>
+                  </div>
+                </div>
+                
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3 text-sm">
+                    <span className="text-muted" suppressHydrationWarning>
+                      {post.publishedAt 
+                        ? formatDate(post.publishedAt instanceof Date ? post.publishedAt.toISOString() : String(post.publishedAt))
+                        : post.createdAt 
+                          ? formatDate(post.createdAt instanceof Date ? post.createdAt.toISOString() : String(post.createdAt))
+                          : 'No date'}
+                    </span>
                   </div>
                   
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3 text-sm">
-                      <span className="text-muted" suppressHydrationWarning>
-                        {post.date ? formatDate(post.date) : 'No date'}
-                      </span>
-                    </div>
-                    
-                    <h3 className="text-xl font-bold text-foreground line-clamp-2">
-                      {post.title?.rendered ? decodeHTMLEntities(post.title.rendered) : 'No title'}
-                    </h3>
-                    
-                    <p className="text-muted leading-relaxed line-clamp-3">
-                      {post.excerpt?.rendered ? stripHtmlTags(post.excerpt.rendered) : 'No excerpt available'}
-                    </p>
-                    
-                    <div className="flex items-center justify-between pt-4 border-t border-accent/30">
-                      <div className="flex items-center gap-2 text-primary">
-                        <Link 
-                          href={`/${post.slug || '#'}`}
-                          className="text-sm font-medium hover:underline"
-                        >
-                          Read More
-                        </Link>
-                        <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
-                      </div>
+                  <h3 className="text-xl font-bold text-foreground line-clamp-2">
+                    {post.title || 'No title'}
+                  </h3>
+                  
+                  <p className="text-muted leading-relaxed line-clamp-3">
+                    {post.excerpt || 'No excerpt available'}
+                  </p>
+                  
+                  <div className="flex items-center justify-between pt-4 border-t border-accent/30">
+                    <div className="flex items-center gap-2 text-primary">
+                      <Link 
+                        href={`/${post.slug || '#'}`}
+                        className="text-sm font-medium hover:underline"
+                      >
+                        Read More
+                      </Link>
+                      <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
                     </div>
                   </div>
-                </article>
-              ))}
-            </div>
-          </>
+                </div>
+              </article>
+            ))}
+          </div>
         ) : (
           <div className="text-center py-16">
             <div className="max-w-md mx-auto">

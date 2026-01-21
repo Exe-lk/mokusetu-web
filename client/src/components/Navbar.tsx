@@ -1,6 +1,9 @@
 "use client";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
+import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
+import { fetchServices } from "@/app/store/slices/servicesSlice";
+import type { Service } from "@/app/service/services.service";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -8,6 +11,28 @@ export default function Navbar() {
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const servicesDropdownRef = useRef<HTMLDivElement>(null);
   const navItemClass = "text-sm font-medium text-foreground/90 hover:text-primary transition-colors duration-300";
+  
+  const dispatch = useAppDispatch();
+  const { services } = useAppSelector((state) => state.services);
+
+  useEffect(() => {
+    // Fetch active services for navbar
+    dispatch(fetchServices(true));
+  }, [dispatch]);
+
+  // Filter active services and sort by order
+  const activeServices = services
+    .filter((service: Service) => service.active)
+    .sort((a: Service, b: Service) => (a.order || 0) - (b.order || 0));
+
+  // Helper function to convert slug to route path
+  const getRouteFromSlug = (slug: string): string => {
+    const slugMap: Record<string, string> = {
+      "quality-inspection-services": "/services/quality-inspection",
+      "sales-representative-support": "/services/sales-representation",
+    };
+    return slugMap[slug] || `/services/${slug}`;
+  };
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -78,19 +103,28 @@ export default function Navbar() {
               <div 
                 className="absolute top-full left-0 mt-2 w-64 bg-white border border-primary/20 rounded-lg shadow-lg py-2 z-50"
               >
-                <Link href="/services/all-services" className="block px-4 py-2 text-sm text-foreground hover:bg-primary/5 transition-colors">
+                <Link 
+                  href="/services/all-services" 
+                  className="block px-4 py-2 text-sm text-foreground hover:bg-primary/5 transition-colors"
+                  onClick={() => setServicesDropdownOpen(false)}
+                >
                   All Services
                 </Link>
-                <div className="border-t border-primary/10 my-1"></div>
-                <Link href="/services/sales-representation" className="block px-4 py-2 text-sm text-foreground hover:bg-primary/5 transition-colors">
-                  Sales & Representative  Support
-                </Link>
-                {/* <Link href="/services/recruitment" className="block px-4 py-2 text-sm text-foreground hover:bg-primary/5 transition-colors">
-                  Recruitment
-                </Link> */}
-                <Link href="/services/quality-inspection" className="block px-4 py-2 text-sm text-foreground hover:bg-primary/5 transition-colors">
-                  Quality Inspection
-                </Link>
+                {activeServices.length > 0 && (
+                  <>
+                    <div className="border-t border-primary/10 my-1"></div>
+                    {activeServices.map((service: Service) => (
+                      <Link
+                        key={service.id}
+                        href={getRouteFromSlug(service.slug)}
+                        className="block px-4 py-2 text-sm text-foreground hover:bg-primary/5 transition-colors"
+                        onClick={() => setServicesDropdownOpen(false)}
+                      >
+                        {service.pageTitle}
+                      </Link>
+                    ))}
+                  </>
+                )}
               </div>
             )}
           </div>
@@ -137,18 +171,23 @@ export default function Navbar() {
               </button>
               {mobileServicesOpen && (
                 <div className="ml-4 flex flex-col gap-2">
-                  <Link href="/services/all-services" className="text-sm text-foreground/80 hover:text-primary transition-colors" onClick={() => setOpen(false)}>
+                  <Link 
+                    href="/services/all-services" 
+                    className="text-sm text-foreground/80 hover:text-primary transition-colors" 
+                    onClick={() => setOpen(false)}
+                  >
                     All Services
                   </Link>
-                  <Link href="/services/sales-representation" className="text-sm text-foreground/80 hover:text-primary transition-colors" onClick={() => setOpen(false)}>
-                    Sales & Representative  Support
-                  </Link>
-                  <Link href="/services/quality-inspection" className="text-sm text-foreground/80 hover:text-primary transition-colors" onClick={() => setOpen(false)}>
-                    Quality Inspection
-                  </Link>
-                  {/* <Link href="/services/recruitment" className="text-sm text-foreground/80 hover:text-primary transition-colors" onClick={() => setOpen(false)}>
-                    Recruitment
-                  </Link> */}
+                  {activeServices.map((service: Service) => (
+                    <Link
+                      key={service.id}
+                      href={getRouteFromSlug(service.slug)}
+                      className="text-sm text-foreground/80 hover:text-primary transition-colors"
+                      onClick={() => setOpen(false)}
+                    >
+                      {service.pageTitle}
+                    </Link>
+                  ))}
                 </div>
               )}
             </div>

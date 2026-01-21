@@ -6,6 +6,8 @@ import Footer from "@/components/Footer";
 import Loader from "@/components/Loader";
 import ScrollIndicator from "@/components/ScrollIndicator";
 import { LoadingProvider } from "@/contexts/LoadingContext";
+import { Providers } from "./providers";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -51,10 +53,11 @@ export default function RootLayout({
           {/* Scroll Indicator - Client Component */}
           <ScrollIndicator />
           
-          
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
+          <Providers>  
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+          </Providers>
         </LoadingProvider>
       </body>
     </html>
