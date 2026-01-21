@@ -3,7 +3,6 @@ import authReducer from './slices/authSlice';
 import postsReducer from './slices/postsSlice';
 import usersReducer from './slices/usersSlice';
 import categoriesReducer from './slices/categoriesSlice';
-import tagsReducer from './slices/tagsSlice';
 import pagesReducer from './slices/pagesSlice';
 import servicesReducer from './slices/servicesSlice';
 import teamReducer from './slices/teamSlice';
@@ -17,7 +16,6 @@ export const store = configureStore({
     posts: postsReducer,
     users: usersReducer,
     categories: categoriesReducer,
-    tags: tagsReducer,
     pages: pagesReducer,
     services: servicesReducer,
     team: teamReducer,

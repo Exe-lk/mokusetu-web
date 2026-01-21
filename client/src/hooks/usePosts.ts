@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { postsService, Post } from '@/services';
+import { postsService, Post } from '@/app/service';
 
 export function usePosts(params?: {
   page?: number;

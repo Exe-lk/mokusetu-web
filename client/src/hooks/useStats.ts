@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { postsService, pagesService, usersService } from '@/services';
+import { postsService, pagesService, usersService } from '@/app/service';
 
 export interface DashboardStats {
   totalPosts: number;

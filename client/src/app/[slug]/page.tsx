@@ -39,7 +39,12 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
 
   useEffect(() => {
     params.then(({ slug }) => {
-      setSlug(slug);
+      // Decode in case Next/router gives us a URL-encoded slug (e.g. for non-Latin characters)
+      try {
+        setSlug(decodeURIComponent(slug));
+      } catch {
+        setSlug(slug);
+      }
     });
   }, [params]);
 
@@ -50,7 +55,13 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
 
   useEffect(() => {
     if (slug && posts.length > 0) {
-      const foundPost = posts.find((p) => p.slug === slug && p.published);
+      const encodedSlug = encodeURIComponent(slug);
+
+      const foundPost = posts.find(
+        (p) =>
+          p.published &&
+          (p.slug === slug || p.slug === encodedSlug)
+      );
       if (foundPost) {
         const postWithCategory = {
           ...foundPost,
