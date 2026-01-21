@@ -1,25 +1,48 @@
 "use client";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
+import { fetchHomePage, updateHomePage } from '@/app/store/slices/homeSlice';
+import type { HomePage } from '@/app/service/home.services';
+import { useEffect } from 'react';
+import IconRenderer from '@/components/IconRenderer';
 
 export default function About() {
   const [sectionRef, sectionVisible] = useIntersectionObserver();
+  const dispatch = useAppDispatch();
+  const { home, loading, error } = useAppSelector((state) => state.home);
+
+
+  useEffect(() => {
+    dispatch(fetchHomePage());
+  }, [dispatch]);
+
+  const aboutParagraphs = (home?.aboutContent || '')
+    .split(/\r\n\s*\r\n|\n\s*\n/)
+    .filter((p) => p.trim().length > 0);
 
   return (
     <section id="about" className="section section-muted" ref={sectionRef}>
       <div className="container mx-auto px-6">
         
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Column - Company Story */}
           <div className={`space-y-6 ${sectionVisible ? 'fade-in visible' : 'fade-in'}`} style={{ transitionDelay: '0.3s' }}>
             <div className="floating-paper p-8 rounded-3xl">
-              <h3 className="text-2xl font-bold text-foreground mb-4">Mokusetu Group:Empowering Cross-Border Growth
+              <h3 className="text-2xl font-bold text-foreground mb-4">
+                {home?.aboutTitle}
               </h3>
-              <p className="text-muted leading-relaxed mb-4">
-              Founded in Japan, MokuSetu Group serves as a trusted partner for international businesses entering or expanding within the Japanese market.
-              </p>
-              <p className="text-muted leading-relaxed mb-4">
-              We combine local expertise with global perspective—bridging not only language, but culture, regulation, and business practice—to ensure your operations thrive with precision and trust.
-              </p>
+              {aboutParagraphs.length > 0 ? (
+                aboutParagraphs.map((paragraph, index) => (
+                  <p key={index} className="text-muted leading-relaxed mb-4">
+                    {paragraph.trim()}
+                  </p>
+                ))
+              ) : (
+                home?.aboutContent && (
+                  <p className="text-muted leading-relaxed mb-4">
+                    {home.aboutContent}
+                  </p>
+                )
+              )}
               <div className="mt-8 pt-6 border-t border-accent/30">
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <div className="text-center">
@@ -38,48 +61,59 @@ export default function About() {
             </div>
             </div>
           </div>
-
-          {/* Right Column - Key Strengths */}
+              
           <div className={`space-y-6 ${sectionVisible ? 'fade-in visible' : 'fade-in'}`} style={{ transitionDelay: '0.4s' }}>
             <div className="grid gap-6">
               <div className="floating-paper p-6 rounded-2xl group">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-xl flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                    </svg>
+                  <div className="w-10 h-10 bg-gradient-to-r from-primary to-secondary rounded-xl flex items-center justify-center flex-shrink-0">
+                    {home?.threeCards[0].cardIcon && (
+                      <IconRenderer
+                        icon={home.threeCards[0].cardIcon}
+                        color="white"
+                        size={24}
+                      />
+                    )}
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-foreground mb-2">Cultural Expertise</h4>
-                    <p className="text-muted text-sm">Deep understanding of Japanese business culture, etiquette, and communication styles that drive successful partnerships.</p>
+                    <h4 className="text-lg font-semibold text-foreground mb-2">{home?.threeCards[0].cardTitle}</h4>
+                    <p className="text-muted text-sm">{home?.threeCards[0].cardContent}</p>
                   </div>
                 </div>
               </div>
 
               <div className="floating-paper p-6 rounded-2xl group">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-xl flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
-                    </svg>
+                  <div className="w-10 h-10 bg-gradient-to-r from-primary to-secondary rounded-xl flex items-center justify-center flex-shrink-0">
+                    {home?.threeCards[1].cardIcon && (
+                      <IconRenderer
+                        icon={home.threeCards[1].cardIcon}
+                        color="white"
+                        size={24}
+                      />
+                    )}
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-foreground mb-2">Local Network</h4>
-                    <p className="text-muted text-sm">Extensive connections with Japanese suppliers, partners, and regulatory bodies across diverse industries.</p>
+                    <h4 className="text-lg font-semibold text-foreground mb-2">{home?.threeCards[1].cardTitle}</h4>
+                    <p className="text-muted text-sm">{home?.threeCards[1].cardContent}</p>
                   </div>
                 </div>
               </div>
 
               <div className="floating-paper p-6 rounded-2xl group">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-xl flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
+                  <div className="w-10 h-10 bg-gradient-to-r from-primary to-secondary rounded-xl flex items-center justify-center flex-shrink-0">
+                    {home?.threeCards[2].cardIcon && (
+                      <IconRenderer
+                        icon={home.threeCards[2].cardIcon}
+                        color="white"
+                        size={24}
+                      />
+                    )}
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-foreground mb-2">Proven Results</h4>
-                    <p className="text-muted text-sm">Track record of successful market entries, partnerships, and business expansions with measurable outcomes.</p>
+                    <h4 className="text-lg font-semibold text-foreground mb-2">{home?.threeCards[2].cardTitle}</h4>
+                    <p className="text-muted text-sm">{home?.threeCards[2].cardContent}</p>
                   </div>
                 </div>
               </div>

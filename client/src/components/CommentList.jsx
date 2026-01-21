@@ -1,32 +1,10 @@
 'use client';
-import { getComments, getAllCommentsForPost } from '@/action/wp.client';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { formatDate } from '@/utils/lib';
-import DOMPurify from 'dompurify';
 
 const CommentList = ({ post }) => {
-  const [comments, setComments] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  const getAllComments = async () => {
-    setLoading(true);
-    try {
-      const allComments = await getAllCommentsForPost(post.id);
-      console.log('All comments received:', allComments);
-      
-      const approvedComments = allComments.filter(comment => comment.status === 'approved');
-      setComments(approvedComments);
-    } catch (error) {
-      console.error('Error fetching comments:', error);
-      setComments([]);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    getAllComments();
-  }, [post.id]);
+  const comments = [];
+  const loading = false;
 
   return (
     <div className="w-2/3 m-auto space-y-4">

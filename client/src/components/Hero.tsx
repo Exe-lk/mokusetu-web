@@ -3,6 +3,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
+import { fetchHomePage, updateHomePage } from '@/app/store/slices/homeSlice';
+import type { HomePage } from '@/app/service/home.services';
 
 export default function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -12,6 +15,16 @@ export default function Hero() {
     experience: 0,
     success: 0
   });
+
+  const dispatch = useAppDispatch();
+  const { home, loading, error } = useAppSelector((state) => state.home);
+
+
+  useEffect(() => {
+    dispatch(fetchHomePage());
+  }, [dispatch]);
+
+  console.log("home", home);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -62,6 +75,22 @@ export default function Hero() {
     }
   }, [heroVisible]);
 
+  // Split titleHero into four parts:
+  // "Bridging" | "Global" | "Business" | "with Japan"
+  const rawTitle = (home?.titleHero || "").trim();
+  let titleParts = [rawTitle, "", "", ""];
+  if (rawTitle) {
+    const words = rawTitle.split(/\s+/);
+    if (words.length >= 4) {
+      titleParts = [
+        words[0] || "",
+        words[1] || "",
+        words[2] || "",
+        words.slice(3).join(" ") || "",
+      ];
+    }
+  }
+
   return (
     <section id="home" className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-accent/5 via-white to-secondary/5" ref={heroRef}>
       <div className="absolute inset-0 opacity-30">
@@ -87,16 +116,16 @@ export default function Hero() {
             <div className="space-y-6 mt-8">
               <h1 className="text-5xl lg:text-7xl font-black leading-none">
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-success">
-                  Bridging
+                  {titleParts[0]}
                 </span>
                 <span className="block text-6xl lg:text-8xl text-secondary mt-2">
-                  Global
+                  {titleParts[1]}
                 </span>
                 <span className="block text-5xl lg:text-7xl text-foreground/80 mt-1">
-                  Business
+                  {titleParts[2]}
                 </span>
                 <span className="block text-4xl lg:text-6xl text-muted mt-2">
-                  with Japan
+                  {titleParts[3]}
                 </span>
               </h1>
 
@@ -115,7 +144,7 @@ export default function Hero() {
 
             <div className="space-y-6">
               <p className="text-xl text-muted max-w-2xl leading-relaxed font-medium">
-                MokuSetu Group G.K. connects international businesses with opportunities in the Japanese market — from strategy to on-the-ground execution.
+                {home?.contentHero}
               </p>
             </div>
 
@@ -184,19 +213,19 @@ export default function Hero() {
           <div className="grid grid-cols-3 gap-4 lg:gap-8 items-center max-w-4xl mx-auto">
             <div className="text-center p-4 lg:p-6 bg-white/60 backdrop-blur-sm rounded-2xl border border-accent/20 hover:bg-white/80 transition-all duration-300 ">
               <div className="stat-number text-4xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary mb-1">
-                {counts.partners}+
+                {home?.globalPartners}
               </div>
               <div className="text-sm text-muted font-medium">Global Partners</div>
             </div>
             <div className="text-center p-4 lg:p-6 bg-white/60 backdrop-blur-sm rounded-2xl border border-accent/20 hover:bg-white/80 transition-all duration-300 ">
               <div className="stat-number text-4xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary mb-1">
-                {counts.experience}+
+                {home?.yearsExperiences}
               </div>
               <div className="text-sm text-muted font-medium">Years Experience</div>
             </div>
             <div className="text-center p-4 lg:p-6 bg-white/60 backdrop-blur-sm rounded-2xl border border-accent/20 hover:bg-white/80 transition-all duration-300">
               <div className="stat-number text-4xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary mb-1">
-                {counts.success}%
+                {home?.successRate}
               </div>
               <div className="text-sm text-muted font-medium">Success Rate</div>
             </div>

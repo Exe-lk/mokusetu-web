@@ -4,18 +4,30 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "build": "npx prisma generate && next build",
+    "start": "next start",
+    "lint": "eslint",
+    "prisma:generate": "npx prisma generate",
+    "prisma:push": "npx prisma db push",
+    "prisma:studio": "npx prisma studio",
+    "prisma:migrate": "npx prisma migrate dev",
+    "prisma:migrate:deploy": "npx prisma migrate deploy",
+    "setup": "npx prisma generate && npx prisma db push"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@googlemaps/react-wrapper": "^1.2.0",
+    "@prisma/client": "^6.11.0",
+    "@reduxjs/toolkit": "^2.11.2",
+    "@supabase/supabase-js": "^2.90.1",
     "@types/dompurify": "^3.0.5",
     "dompurify": "^3.2.6",
-    "next": "15.5.0",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "sweetalert2": "^11.23.0"
+    "next": "16.1.1",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-icons": "^5.5.0",
+    "react-redux": "^9.2.0",
+    "sweetalert2": "^11.26.17"
   },
   "devDependencies": {
     "@netlify/plugin-nextjs": "^5.12.1",
@@ -24,6 +36,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "prisma": "^6.11.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
