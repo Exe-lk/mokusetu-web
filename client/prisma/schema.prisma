@@ -208,6 +208,10 @@ model Home {
   whyChooseSubtitle String?  @db.Text
   whyChooseCards    String?  @db.Text // [{ cardIcon, cardTitle, cardContent }]
 
+  
+  footerTitle       String?
+  footerSubtitle    String?  @db.Text
+
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 

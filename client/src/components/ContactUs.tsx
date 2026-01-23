@@ -1,9 +1,21 @@
 "use client";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import Link from "next/link";
+import { fetchHomePage, updateHomePage } from '@/app/store/slices/homeSlice';
+import type { HomePage } from '@/app/service/home.services';
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
+import IconRenderer from '@/components/IconRenderer';
+
 
 export default function ContactUs() {
   const [sectionRef, sectionVisible] = useIntersectionObserver();
+  const dispatch = useAppDispatch();
+  const { home, loading, error } = useAppSelector((state) => state.home);
+
+  useEffect(() => {
+    dispatch(fetchHomePage());
+  }, [dispatch]);
 
   return (
     <section id="contact-us" className="section" ref={sectionRef}>
@@ -13,11 +25,11 @@ export default function ContactUs() {
             <div className="relative z-10">
               <div className="text-center">
                 <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-                  <span className="gradient-text-brand">Get In Touch</span>
+                  <span className="gradient-text-brand">{home?.footerTitle}</span>
                 </h2>
                 
                 <p className="text-lg text-muted mb-8 max-w-2xl mx-auto">
-                  Please do not hesitate to contact us if you have any queries. We are just a CLICK away!
+                  {home?.footerSubtitle}
                 </p>
 
                 <div className="flex justify-center">
