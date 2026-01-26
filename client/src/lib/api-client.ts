@@ -13,18 +13,57 @@ class ApiClient {
     this.baseUrl = '/api';
   }
 
+  private buildUrl(endpoint: string): string {
+    // Ensure endpoint starts with /
+    const cleanEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+    // Ensure baseUrl doesn't end with /
+    const cleanBaseUrl = this.baseUrl.endsWith('/') ? this.baseUrl.slice(0, -1) : this.baseUrl;
+    return `${cleanBaseUrl}${cleanEndpoint}`;
+  }
+
   private async request<T>(
     endpoint: string,
     options?: RequestInit
   ): Promise<ApiResponse<T>> {
+    // Only allow in browser
+    if (typeof window === 'undefined') {
+      return {
+        success: false,
+        error: 'API requests can only be made from the browser',
+      };
+    }
+
+    const url = this.buildUrl(endpoint);
+    const method = options?.method || 'GET';
+
+    // Log in development
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`[ApiClient] ${method} ${url}`);
+    }
+
     try {
-      const response = await fetch(`${this.baseUrl}${endpoint}`, {
+      // Prepare fetch options
+      const fetchOptions: RequestInit = {
+        method,
         headers: {
           'Content-Type': 'application/json',
           ...options?.headers,
         },
-        ...options,
-      });
+        credentials: 'same-origin',
+        mode: 'same-origin',
+        cache: 'no-store',
+      };
+
+      // Merge any additional options (but don't override our settings)
+      if (options) {
+        Object.keys(options).forEach((key) => {
+          if (key !== 'headers' && key !== 'method') {
+            (fetchOptions as any)[key] = (options as any)[key];
+          }
+        });
+      }
+
+      const response = await fetch(url, fetchOptions);
 
       // Check if response is JSON
       const contentType = response.headers.get('content-type') || '';
@@ -103,10 +142,11 @@ class ApiClient {
       }
       
       // Handle network errors
-      if (error instanceof TypeError && errorMessage.includes('fetch')) {
+      if (error instanceof TypeError && (errorMessage.includes('fetch') || errorMessage === 'Failed to fetch')) {
+        const fullUrl = this.buildUrl(endpoint);
         return {
           success: false,
-          error: `Network error: Unable to reach ${this.baseUrl}${endpoint}. Make sure the server is running.`,
+          error: `Network error: Unable to reach ${fullUrl}. Please ensure:\n1. The development server is running (npm run dev)\n2. The server is accessible at ${window.location.origin}\n3. Check browser console Network tab for details`,
         };
       }
       

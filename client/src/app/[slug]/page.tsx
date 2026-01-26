@@ -1,7 +1,7 @@
 "use client";
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import { formatDate } from '@/utils/lib';
+import { formatDate, formatCategoryName } from '@/utils/lib';
 import Breadcrumb from '@/components/Breadcrumb';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -110,7 +110,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
         <div className="flex items-center gap-4 mb-8">
           {post.category && (
             <span className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">
-              {post.category.name}
+              {formatCategoryName(post.category.name)}
             </span>
           )}
           <span className="text-muted text-sm" suppressHydrationWarning>

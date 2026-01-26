@@ -2,8 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { decodeHTMLEntities } from '@/utils/lib';
-import { formatDate } from '@/utils/lib';
+import { decodeHTMLEntities, formatDate, formatCategoryName } from '@/utils/lib';
 const Postgrid = ({ post }) => {
   console.log('Post data:', post);
   console.log('Category names:', post?.category_names);
@@ -26,7 +25,7 @@ const Postgrid = ({ post }) => {
           />
         </div>
         <span className="absolute px-3 py-2 text-xs font-bold tracking-widest text-gray-900 uppercase bg-white rounded left-3 top-3">
-          {post.category_names && post.category_names.length > 0 ? post.category_names[0] : 'Uncategorized'}
+          {formatCategoryName(post.category_names && post.category_names.length > 0 ? post.category_names[0] : 'Uncategorized')}
         </span>
       </div>
       <p className="mt-6 text-sm font-medium text-gray-500">
