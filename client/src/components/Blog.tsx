@@ -3,7 +3,7 @@ import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { formatDate } from "@/utils/lib";
+import { formatDate, formatCategoryName } from "@/utils/lib";
 import { fetchPosts } from '../app/store/slices/postsSlice';
 import { fetchCategories } from '../app/store/slices/categoriesSlice';
 import { useAppDispatch, useAppSelector } from '../app/store/hooks';
@@ -74,7 +74,7 @@ export default function Blog() {
                   )}
                   <div className="absolute top-3 left-3">
                     <span className="px-3 py-1 text-xs font-bold text-gray-900 bg-white rounded-full shadow-sm">
-                      {categories.find(cat => cat.id === post.categoryId)?.name || 'Uncategorized'}
+                      {formatCategoryName(categories.find(cat => cat.id === post.categoryId)?.name || 'Uncategorized')}
                     </span>
                   </div>
                 </div>

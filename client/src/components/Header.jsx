@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useEffect } from 'react';
 import { fetchCategories } from '../../store/slices/categoriesSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { formatCategoryName } from '@/utils/lib';
 
 const Header = () => {
   const dispatch = useAppDispatch();
@@ -77,7 +78,7 @@ const Header = () => {
                   title=""
                   className="text-base font-medium text-gray-900 transition-all duration-200 rounded focus:outline-none font-pj hover:text-opacity-50 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"
                 >
-                  {category.name}
+                  {formatCategoryName(category.name)}
                 </Link>
               ))}
           </nav>

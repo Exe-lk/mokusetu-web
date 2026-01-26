@@ -51,3 +51,30 @@ export function formatDate(dateString) {
   // Format the date string
   return `${month} ${day}, ${year}`;
 }
+
+export function formatCategoryName(categoryName) {
+  if (!categoryName) return categoryName;
+  
+  // Check if the category name matches the pattern "YYYY-MM" (e.g., "2026-01")
+  const yearMonthPattern = /^(\d{4})-(\d{2})$/;
+  const match = categoryName.match(yearMonthPattern);
+  
+  if (match) {
+    const year = match[1];
+    const monthNum = parseInt(match[2], 10);
+    
+    // Array of month abbreviations
+    const monthAbbr = [
+      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+    ];
+    
+    // Validate month number (1-12)
+    if (monthNum >= 1 && monthNum <= 12) {
+      return `${year} ${monthAbbr[monthNum - 1]}`;
+    }
+  }
+  
+  // If it doesn't match the pattern, return the original name
+  return categoryName;
+}

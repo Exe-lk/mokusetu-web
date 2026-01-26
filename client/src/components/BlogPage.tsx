@@ -2,8 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { decodeHTMLEntities, stripHtmlTags } from "@/utils/lib";
-import { formatDate } from "@/utils/lib";
+import { decodeHTMLEntities, stripHtmlTags, formatDate, formatCategoryName } from "@/utils/lib";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import { fetchPosts } from '../app/store/slices/postsSlice';
 import { fetchCategories } from '../app/store/slices/categoriesSlice';
@@ -105,7 +104,7 @@ export default function BlogPage() {
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:shadow-md'
                 }`}
               >
-                {category.name}
+                {formatCategoryName(category.name)}
               </button>
             ))}
           </div>
@@ -151,7 +150,7 @@ export default function BlogPage() {
                   )}
                   <div className="absolute top-3 left-3">
                     <span className="px-3 py-1 text-xs font-bold text-gray-900 bg-white rounded-full shadow-sm">
-                      {(post as any).category?.name || categories.find(cat => cat.id === post.categoryId)?.name || 'Uncategorized'}
+                      {formatCategoryName((post as any).category?.name || categories.find(cat => cat.id === post.categoryId)?.name || 'Uncategorized')}
                     </span>
                   </div>
                 </div>
